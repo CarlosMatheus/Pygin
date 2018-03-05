@@ -1,5 +1,5 @@
 from game_engine.engine import Engine
-from elements.scenes.scenes import ScenesController
+from elements.scenes.scenes_controller import ScenesController
 
 game_name = "Balance"
 
