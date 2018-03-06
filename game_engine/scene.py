@@ -48,6 +48,10 @@ class Scene:
         for normal_behavior in self.normal_behaviors:
             if isinstance(normal_behavior, GameObject):
                 normal_behavior.draw_game_object()
+            elif hasattr(normal_behavior, 'game_object_list'):
+                if len(normal_behavior.game_object_list) > 0:
+                    for game_object in normal_behavior.game_object_list:
+                        game_object.draw_game_object()
 
     def scene_loop(self):
         """
