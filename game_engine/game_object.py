@@ -27,4 +27,4 @@ class GameObject(NormalBehavior):
                       self.transform.scale[1] * self.rectangle_mash.height, self.rectangle_mash.color)
 
         elif hasattr(self, 'circle_mash'):
-            Draw.circle(self.transform.translate[0], self.transform.translate[1], self.circle_mash.radius, self.circle_mash.color)
+            Draw.circle(self.circle_mash.position_x, self.circle_mash.position_y, self.circle_mash.radius, self.circle_mash.color)

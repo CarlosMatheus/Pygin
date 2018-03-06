@@ -47,6 +47,9 @@ class Scene:
         for normal_behavior in self.normal_behaviors:
             if isinstance(normal_behavior, GameObject):
                 normal_behavior.draw_game_object()
+            elif len(normal_behavior.game_object_list)>0:
+                for i in range(len(normal_behavior.game_object_list)):
+                    normal_behavior.game_object_list[i].draw_game_object()
 
     def scene_loop(self):
         """
