@@ -72,6 +72,10 @@ class Scene:
         game_object.start()
 
     def remove_game_object(self, game_object):
+        """
+        Remove a game_object if it is on normal_behavior list
+        :param game_object: the game_object to be removed
+        """
         if game_object in self.normal_behaviors:
             self.normal_behaviors.remove(game_object)
 
@@ -86,14 +90,19 @@ class Scene:
     def debug_event(self):
         """
         DEBUG print all the events of each frame
-        :return:
         """
         for event in self.frame_events:
             print(event)
 
     def end_scene(self):
+        """
+        Set the variable to stop scene loop
+        """
         self.should_end_scene = True
 
     def exit_scene(self):
+        """
+        empty the normal_behaviors list and start next scene
+        """
         self.normal_behaviors = []
         Engine.start_next_scene()
