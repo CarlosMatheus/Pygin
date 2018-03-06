@@ -1,4 +1,5 @@
 from elements.scenes.scenes_list.main_scene import MainScene
+from elements.scenes.scenes_list.main_menu import MainMenu
 
 
 class ScenesController:
@@ -8,4 +9,4 @@ class ScenesController:
         """
         :return: the scene list
         """
-        return [MainScene()]
+        return [MainMenu(), MainScene()]
