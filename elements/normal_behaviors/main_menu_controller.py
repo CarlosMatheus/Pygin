@@ -2,7 +2,7 @@ from game_engine.engine import Engine
 from random import randint as rand
 from game_engine.normal_behavior import NormalBehavior
 from game_engine.game_object import GameObject
-from elements.normal_behaviors.game_objects.square_test_falling import SquareTestFalling
+from elements.normal_behaviors.game_objects.main_menu_rectangle import Rectangle
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
@@ -32,8 +32,8 @@ class MainMenuController(NormalBehavior):
         Spawn a random block
         """
         parameters = self.generate_random_parameters()
-        GameObject.instantiate(SquareTestFalling(parameters[0], parameters[1], parameters[2],
-                                                 parameters[3], parameters[4], parameters[5]))
+        GameObject.instantiate(Rectangle(parameters[0], parameters[1], parameters[2],
+                                         parameters[3], parameters[4]))
 
     def generate_random_parameters(self):
         """
@@ -45,7 +45,7 @@ class MainMenuController(NormalBehavior):
         color = Color.random_color()
         position_x = rand(10, Engine.screen_width - width - 10)
         position_y = -height
-        return position_x, position_y, 0, width, height, color
+        return position_x, position_y, width, height, color
 
     def pressed_button(self):
         """
