@@ -1,7 +1,6 @@
 from .normal_behavior import NormalBehavior
 from .draw import Draw
 from .components.transform import Transform
-from .components.material import Material
 
 
 class GameObject(NormalBehavior):
@@ -24,6 +23,8 @@ class GameObject(NormalBehavior):
         Draw the game_object on screen
         """
         if hasattr(self, 'rectangle_mash'):
-            print("Drawing rect")
             Draw.rect(self.transform.translate[0], self.transform.translate[1], self.transform.scale[0] * self.rectangle_mash.width,
                       self.transform.scale[1] * self.rectangle_mash.height, self.rectangle_mash.color)
+
+        elif hasattr(self, 'circle_mash'):
+            Draw.circle(self.transform.translate[0], self.transform.translate[1], self.circle_mash.radius, self.circle_mash.color)

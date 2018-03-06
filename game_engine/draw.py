@@ -31,3 +31,14 @@ class Draw:
         :param color: rect's color
         """
         pygame.draw.rect(cls.game_display, color, [position_x, position_y, scale_x, scale_y])
+
+    @classmethod
+    def circle(cls, position_x, position_y, radius, color):
+        """
+        Draw a circle
+        :param position_x: circle's x position
+        :param position_y: circle's y position
+        :param radius: circle's radius
+        :param color: circle's color
+        """
+        pygame.draw.circle(cls.game_display, color, [position_x, position_y], radius)
