@@ -55,4 +55,4 @@ class Draw:
         :param font: the path for a .ttf file representing the desired font. Can be none
         :return:
         """
-        pygame.draw.circle(cls.game_display, color, [position_x, position_y], radius)
+        label = font.render("Some text!", 1, (255, 255, 0))
