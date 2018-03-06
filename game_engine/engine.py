@@ -36,12 +36,19 @@ class Engine:
 
     @classmethod
     def change_scene(cls, scene_index):
+        """
+        End the current scene to start the next scene
+        :param scene_index: the index on scene_list of the next scene
+        """
         cls.current_running_scene.end_scene()
         cls.current_running_scene_index = scene_index
         cls.current_running_scene = cls.scenes_list[scene_index]
 
     @classmethod
     def start_next_scene(cls):
+        """
+        Start next scene
+        """
         cls.current_running_scene.start()
         cls.current_running_scene.scene_loop()
 

@@ -31,8 +31,16 @@ class GameObject(NormalBehavior):
 
     @classmethod
     def instantiate(cls, game_object):
+        """
+        Instantiate a new game_object on scene
+        :param game_object: game_object to be instantiated
+        """
         Engine.current_running_scene.add_game_object(game_object)
 
     @classmethod
     def destroy(cls, game_object):
+        """
+        Destroy the game_object, remove it from scene
+        :param game_object: the game_object to be removed
+        """
         Engine.current_running_scene.remove_game_object(game_object)

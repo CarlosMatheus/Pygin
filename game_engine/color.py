@@ -7,4 +7,7 @@ class Color:
 
     @classmethod
     def random_color(cls):
+        """
+        :return: a random color
+        """
         return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
