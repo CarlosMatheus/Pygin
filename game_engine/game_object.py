@@ -6,7 +6,7 @@ from .components.material import Material
 
 class GameObject(NormalBehavior):
 
-    def __init__(self, position_x, position_y, rotation, scale_x, scale_y, color):
+    def __init__(self, position_x, position_y, rotation, scale_x, scale_y):
         """
         set basics game_objects parameters
         :param position_x: game_object's x initial position
@@ -15,13 +15,15 @@ class GameObject(NormalBehavior):
         :param scale_x: game_object's x initial scale
         :param scale_y: game_object's y initial scale
         :param color: game_object's initial material color
+        :param type: string representing the object type (Circle or Rectangle)
         """
         self.transform = Transform(position_x, position_y, rotation, scale_x, scale_y)
-        self.material = Material(color)
 
     def draw_game_object(self):
         """
         Draw the game_object on screen
         """
-        Draw.rect(self.transform.translate[0], self.transform.translate[1], self.transform.scale[0],
-                  self.transform.scale[1], self.material.color)
+        if hasattr(self, 'rectangle_mash'):
+            print("Drawing rect")
+            Draw.rect(self.transform.translate[0], self.transform.translate[1], self.transform.scale[0] * self.rectangle_mash.width,
+                      self.transform.scale[1] * self.rectangle_mash.height, self.rectangle_mash.color)
