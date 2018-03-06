@@ -3,7 +3,8 @@ from .draw import Draw
 
 
 class Engine:
-
+    current_running_scene_index = 0
+    current_running_scene = 0
     screen_width = 360
     screen_height = 640
     game_display = 0
@@ -28,8 +29,21 @@ class Engine:
         """
         Start the first scene
         """
-        Engine.scenes_list[0].start()
-        Engine.scenes_list[0].scene_loop()
+        cls.current_running_scene = cls.scenes_list[0]
+        cls.current_running_scene_index = 0
+        cls.scenes_list[0].start()
+        cls.scenes_list[0].scene_loop()
+
+    @classmethod
+    def change_scene(cls, scene_index):
+        cls.current_running_scene.end_scene()
+        cls.current_running_scene_index = scene_index
+        cls.current_running_scene = cls.scenes_list[scene_index]
+
+    @classmethod
+    def start_next_scene(cls):
+        cls.current_running_scene.start()
+        cls.current_running_scene.scene_loop()
 
     @classmethod
     def end_game(cls):
@@ -38,3 +52,4 @@ class Engine:
         """
         pygame.quit()
         quit()
+

@@ -1,5 +1,6 @@
 import pygame
 from .game_object import GameObject
+from .engine import Engine
 from .time import Time
 from .input import Input
 from .draw import Draw
@@ -14,7 +15,7 @@ class Scene:
         """
         self.normal_behaviors = _normal_behaviors
         self.frame_events = []
-        self.end_scene = False
+        self.should_end_scene = False
 
     def start(self):
         """
@@ -53,13 +54,14 @@ class Scene:
         Defines the main loop of the scene
         The scene occurs while in the loop
         """
-        while not self.end_scene:
+        while not self.should_end_scene:
             self.run_events()
             Draw.update_background()
             self.run_all_updates()
             self.draw_all_game_objects()
             pygame.display.flip()
             Time.end_of_loop()
+        self.exit_scene()
 
     def add_game_object(self, game_object):
         """
@@ -84,3 +86,10 @@ class Scene:
         """
         for event in self.frame_events:
             print(event)
+
+    def end_scene(self):
+        self.should_end_scene = True
+
+    def exit_scene(self):
+        self.normal_behaviors = []
+        Engine.start_next_scene()
