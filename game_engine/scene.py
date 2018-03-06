@@ -71,6 +71,10 @@ class Scene:
         self.normal_behaviors.append(game_object)
         game_object.start()
 
+    def remove_game_object(self, game_object):
+        if game_object in self.normal_behaviors:
+            self.normal_behaviors.remove(game_object)
+
     def run_events(self):
         """
         get the events in pygame queue

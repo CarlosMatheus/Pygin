@@ -9,3 +9,4 @@ class NormalBehavior:
         """
         Will be call every frame
         """
+
