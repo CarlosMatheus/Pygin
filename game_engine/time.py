@@ -30,3 +30,10 @@ class Time:
             return 1/cls.clock.get_fps()
         else:
             return 0
+
+    @classmethod
+    def now(cls):
+        """
+        :return: the time right now in seconds, based on how long the game is running
+        """
+        return pygame.time.get_ticks()/1000
