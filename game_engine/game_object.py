@@ -34,6 +34,10 @@ class GameObject(NormalBehavior):
             Draw.circle(self.circle_mash.position_x, self.circle_mash.position_y,
                         self.circle_mash.radius, self.circle_mash.color)
 
+        elif hasattr(self, 'text_mash'):
+            Draw.text(self.text_mash.position_x, self.text_mash.position_y, self.text_mash.message,
+                      self.text_mash.color, self.text_mash.size, self.text_mash.font)
+
     @classmethod
     def instantiate(cls, game_object):
         """

@@ -42,3 +42,17 @@ class Draw:
         :param color: circle's color
         """
         pygame.draw.circle(cls.game_display, color, [position_x, position_y], radius)
+
+    @classmethod
+    def text(cls, position_x, position_y, message, color, size, font):
+        """
+        Draws text
+        :param position_x: text's x position
+        :param position_y: text's y position
+        :param message: the text's content. The message attached to it
+        :param color: text's color
+        :param size: text's size
+        :param font: the path for a .ttf file representing the desired font. Can be none
+        :return:
+        """
+        pygame.draw.circle(cls.game_display, color, [position_x, position_y], radius)
