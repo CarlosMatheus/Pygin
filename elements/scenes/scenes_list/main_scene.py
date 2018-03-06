@@ -15,3 +15,4 @@ class MainScene(Scene):
         self.normal_behaviors_list = [PlayerController()]
 
         super(MainScene, self).__init__(self.normal_behaviors_list)
+

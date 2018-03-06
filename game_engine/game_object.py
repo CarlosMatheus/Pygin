@@ -49,3 +49,4 @@ class GameObject(NormalBehavior):
         :param game_object: the game_object to be removed
         """
         Engine.current_running_scene.remove_game_object(game_object)
+
