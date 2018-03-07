@@ -45,6 +45,16 @@ class Draw:
         pygame.draw.circle(cls.game_display, color, [int(position.x), int(position.y)], int(radius))
 
     @classmethod
+    def polygon(cls, color, point_list):
+        """
+        Draw a polygon
+        :param color:
+        :param point_list:
+        :return:
+        """
+        pygame.draw.polygon(cls.game_display, color, point_list)
+
+    @classmethod
     def text(cls, position_x, position_y, message, color, size, font_path):
         """
         Draws text
