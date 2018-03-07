@@ -1,10 +1,10 @@
 from pygame.math import Vector2
 from game_engine.time import Time
 from random import randint as rand
-from game_engine.engine import Engine
 from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.rectangle import Rectangle
 from game_engine.components.material import Material
+from game_engine.components.constants import Constants
 
 class TwoInOneSimpleObstacleController(NormalBehavior):
 
@@ -16,15 +16,15 @@ class TwoInOneSimpleObstacleController(NormalBehavior):
 
         if len(self.game_object_list) > 0:
             for index, obstacle in enumerate(self.game_object_list):
-                if obstacle.transform.position.y > 2 * Engine.screen_height:
+                if obstacle.transform.position.y > 2 * Constants.screen_height:
                     self.game_object_list.remove(obstacle)
                     obstacle.destroy(obstacle)
                 else:
                     self.fall(obstacle, index)
 
     def fall(self, obstacle, ind):
-        visible_condition = 0.1*Engine.screen_height<obstacle.transform.position.y and obstacle.transform.position.y<0.45*Engine.screen_height and ind%2 == 1
-        invisible_condition = 1.1*Engine.screen_height<obstacle.transform.position.y and obstacle.transform.position.y<1.45*Engine.screen_height and ind%2 == 0
+        visible_condition = 0.1*Constants.screen_height<obstacle.transform.position.y and obstacle.transform.position.y<0.45*Constants.screen_height and ind%2 == 1
+        invisible_condition = 1.1*Constants.screen_height<obstacle.transform.position.y and obstacle.transform.position.y<1.45*Constants.screen_height and ind%2 == 0
 
         if visible_condition or invisible_condition:
             obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
@@ -35,17 +35,17 @@ class TwoInOneSimpleObstacleController(NormalBehavior):
 
     def trap_condition(self, obstacle):
         trap = True
-        if obstacle.transform.position.y < 0.2 * Engine.screen_height or obstacle.transform.position.y > 0.6 * Engine.screen_height:
+        if obstacle.transform.position.y < 0.2 * Constants.screen_height or obstacle.transform.position.y > 0.6 * Constants.screen_height:
             trap = False
 
         return trap
 
     def generate_obstacle(self):
         direction = rand(0, 1) < 0.5
-        obstacle_width = 0.5 * Engine.screen_width
-        obstacle_height = 0.06 * Engine.screen_height
+        obstacle_width = 0.5 * Constants.screen_width
+        obstacle_height = 0.06 * Constants.screen_height
 
-        rect1 = Rectangle(Vector2(direction * 0.5 * Engine.screen_width, - obstacle_height),
+        rect1 = Rectangle(Vector2(direction * 0.5 * Constants.screen_width, - obstacle_height),
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
 

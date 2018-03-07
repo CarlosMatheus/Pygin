@@ -1,6 +1,6 @@
 import pygame
+
 from .color import Color
-from pygame.math import Vector2
 
 
 class Draw:

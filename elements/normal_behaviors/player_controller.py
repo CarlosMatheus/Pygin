@@ -4,8 +4,8 @@ from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.circle import Circle
 from pygame.math import Vector2
 from game_engine.components.material import Material
-from elements.normal_behaviors.game_objects.text import Text
-from game_engine.engine import Engine
+from game_engine.components.constants import Constants
+
 
 import math
 
@@ -18,8 +18,8 @@ class PlayerController(NormalBehavior):
         self.angularSpeed = 5.0
 
         self.game_object_list = [
-            Circle(Vector2(Engine.circCenter_x + Engine.circRadius, Engine.circCenter_y), 15, Material((253, 102, 0))),
-            Circle(Vector2(Engine.circCenter_x - Engine.circRadius, Engine.circCenter_y), 15, Material((0, 120, 255)))
+            Circle(Vector2(Constants.circCenter_x + Constants.circRadius, Constants.circCenter_y), 15, Material((253, 102, 0))),
+            Circle(Vector2(Constants.circCenter_x - Constants.circRadius, Constants.circCenter_y), 15, Material((0, 120, 255)))
         ]
 
     def update(self):
@@ -41,9 +41,9 @@ class PlayerController(NormalBehavior):
 
     def update_circles(self):
         self.game_object_list[0].transform.\
-            translate(Vector2(Engine.circCenter_x + Engine.circRadius * math.cos(self.angle),
-                              Engine.circCenter_y + Engine.circRadius * math.sin(self.angle)))
+            translate(Vector2(Constants.circCenter_x + Constants.circRadius * math.cos(self.angle),
+                              Constants.circCenter_y + Constants.circRadius * math.sin(self.angle)))
 
         self.game_object_list[1].transform.\
-            translate(Vector2(Engine.circCenter_x + Engine.circRadius * math.cos(self.angle + math.pi),
-                              Engine.circCenter_y + Engine.circRadius * math.sin(self.angle + math.pi)))
+            translate(Vector2(Constants.circCenter_x + Constants.circRadius * math.cos(self.angle + math.pi),
+                              Constants.circCenter_y + Constants.circRadius * math.sin(self.angle + math.pi)))

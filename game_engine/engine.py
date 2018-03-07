@@ -1,17 +1,13 @@
 import pygame
 from .draw import Draw
+from game_engine.components.constants import Constants
 
 
 class Engine:
     current_running_scene_index = 0
     current_running_scene = 0
-    screen_width = 360
-    screen_height = 640
     game_display = 0
     scenes_list = []
-    circCenter_x = 180
-    circCenter_y = 520
-    circRadius = 85
 
     @classmethod
     def start_game(cls, game_name, scenes):
@@ -21,7 +17,7 @@ class Engine:
         :param scenes: list of scenes of the game
         """
         pygame.init()
-        cls.game_display = pygame.display.set_mode((cls.screen_width, cls.screen_height))
+        cls.game_display = pygame.display.set_mode((Constants.screen_width, Constants.screen_height))
         pygame.display.set_caption(game_name)
         cls.scenes_list = scenes
         Draw.set_game_display(Engine.game_display)

@@ -9,6 +9,7 @@ from game_engine.time import Time
 from elements.normal_behaviors.game_objects.text import Text
 from game_engine.components.material import Material
 from pygame.math import Vector2
+from game_engine.components.constants import Constants
 
 
 class MainMenuController(NormalBehavior):
@@ -62,7 +63,7 @@ class MainMenuController(NormalBehavior):
         width = rand(20, 100)
         height = rand(10, 90)
         color = Color.random_color()
-        position_x = rand(10, Engine.screen_width - width - 10)
+        position_x = rand(10, Constants.screen_width - width - 10)
         position_y = -height
         return position_x, position_y, width, height, color
 
