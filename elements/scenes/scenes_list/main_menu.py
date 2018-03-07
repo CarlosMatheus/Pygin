@@ -8,5 +8,5 @@ class MainMenu(Scene):
         """
         Create the list of normal_behaviors and call the superclass constructor passing the list
         """
-        self.normal_behaviors_list = [MainMenuController()]
-        super(MainMenu, self).__init__(self.normal_behaviors_list)
+        self.init_normal_behaviors_list = [MainMenuController()]
+        super(MainMenu, self).__init__(self.init_normal_behaviors_list)

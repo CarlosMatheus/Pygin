@@ -9,6 +9,6 @@ class MainScene(Scene):
         """
         Create the list of normal_behaviors and call the superclass constructor passing the list
         """
-        self.normal_behaviors_list = [PlayerController(), TestRectGenerator()]
+        self.init_normal_behaviors_list = [PlayerController(), TestRectGenerator()]
 
-        super(MainScene, self).__init__(self.normal_behaviors_list)
+        super(MainScene, self).__init__(self.init_normal_behaviors_list)
