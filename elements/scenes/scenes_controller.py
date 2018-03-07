@@ -7,6 +7,6 @@ class ScenesController:
     @classmethod
     def get_scenes(cls):
         """
-        :return: the scene list
+        :return: the scene list with the references to the scenes classes
         """
-        return [MainMenu(), MainScene()]
+        return [MainMenu, MainScene]
