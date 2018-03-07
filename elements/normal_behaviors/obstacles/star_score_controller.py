@@ -28,7 +28,9 @@ class StarScoreController(NormalBehavior):
                                         + self.fall_velocity * Time.delta_time())
 
     def generate_obstacle(self):
-        random_pos = int(randfloat(self.radius, Constants.screen_width-self.radius))
+        random_pos = int(randfloat(self.radius/2+Constants.circCenter_x-Constants.circRadius,
+                                   Constants.screen_width-
+                                   (self.radius/2+Constants.circCenter_x-Constants.circRadius)))
 
         star = Circle(Vector2(random_pos, - 0.06 * Constants.screen_height), self.radius,
                       Material(Color.yellow))
