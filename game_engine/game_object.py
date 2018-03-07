@@ -2,13 +2,14 @@ from .normal_behavior import NormalBehavior
 from .draw import Draw
 from .components.transform import Transform
 from .engine import Engine
+from pygame.math import Vector2
 
 
 class GameObject(NormalBehavior):
 
     current_running_scene = 0
 
-    def __init__(self, position_x, position_y, rotation, scale_x, scale_y):
+    def __init__(self, position, rotation, scale):
         """
         set basics game_objects parameters
         :param position_x: game_object's x initial position
@@ -19,20 +20,20 @@ class GameObject(NormalBehavior):
         :param color: game_object's initial material color
         :param type: string representing the object type (Circle or Rectangle)
         """
-        self.transform = Transform(position_x, position_y, rotation, scale_x, scale_y)
+        self.transform = Transform(position, rotation, scale)
 
     def draw_game_object(self):
         """
         Draw the game_object on screen
         """
         if hasattr(self, 'rectangle_mash'):
-            Draw.rect(self.transform.translate[0], self.transform.translate[1],
-                      self.transform.scale[0] * self.rectangle_mash.width,
-                      self.transform.scale[1] * self.rectangle_mash.height, self.rectangle_mash.color)
+            Draw.rect(Vector2(self.transform.position.x, self.transform.position.y),
+                      Vector2(self.transform.scale.x * self.rectangle_mash.dimension.x,
+                              self.transform.scale.y * self.rectangle_mash.dimension.y),
+                      self.rectangle_mash.material.color)
 
         elif hasattr(self, 'circle_mash'):
-            Draw.circle(self.circle_mash.position_x, self.circle_mash.position_y,
-                        self.circle_mash.radius, self.circle_mash.color)
+            Draw.circle(self.transform.position, self.circle_mash.radius, self.circle_mash.material.color)
 
     @classmethod
     def instantiate(cls, game_object):
