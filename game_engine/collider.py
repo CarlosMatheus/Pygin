@@ -1,37 +1,46 @@
-from game_engine.components.box_collider import BoxCollider
-from game_engine.components.circle_collider import CircleCollider
-
-
-class Collider():
+class Collider:
 
     collider_list = []
 
     @classmethod
     def add_collider(cls, collider):
+        """
+        Add a new collider to the collider list
+        :param collider: the collider to be added
+        """
         cls.collider_list.append(collider)
 
-    def on_collision(self):
-        for collider in Collider.collider_list:
-            if isinstance(collider, BoxCollider):
-                return self.__box_collision()
-            elif isinstance(collider, CircleCollider):
-                return self.__circle_collision()
+    @classmethod
+    def remove(cls, game_object):
+        """
+        Remove a collider from the collider list
+        :param game_object: the game_object that contains the collider
+        """
+        if hasattr(game_object, "box_collider"):
+            cls.collider_list.remove(game_object.box_collider)
+        elif hasattr(game_object, "circle_collider"):
+            cls.collider_list.remove(game_object.circle_collider)
 
-    # TODO: other kinds of collisions -- for this game you can only call this function inside a circle_collide
+    def on_collision(self):
+        """
+        Check if the have occurred a collision between two colliders
+        loop on the collider list to check if this collider have collided with other
+        :return: True if collided
+        """
+        pass
 
     def __box_collision(self, box):
-        for vertex in box.vextexes:
-            if self.is_vertex_inside(vertex):
-                return True
-        for point in self.main_points:
-            if box.is_point_inside(point):
-                return True
-        return False
+        """
+        Check a collision between this collider and a box_collider
+        :param box: the box collider reference
+        :return: True if collided
+        """
+        pass
 
     def __circle_collision(self, circle):
-        if circle == self:
-            return False
-        elif circle.center.distance_to(self.center) > circle.radius + self.radius:
-            return False
-        else:
-            return True
+        """
+        Check a collision between this collider and a circle_collider
+        :param circle: the circle collider reference
+        :return: True if collided
+        """
+        pass

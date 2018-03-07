@@ -1,4 +1,5 @@
 import pygame
+from .collider import Collider
 from .game_object import GameObject
 from .engine import Engine
 from .time import Time
@@ -82,6 +83,7 @@ class Scene:
         """
         if game_object in self.normal_behaviors:
             self.normal_behaviors.remove(game_object)
+            Collider.remove(game_object)
 
     def run_events(self):
         """
@@ -98,6 +100,12 @@ class Scene:
         for event in self.frame_events:
             print(event)
 
+    def debug_fps(self):
+        """
+        DEBUG print the game fps each frame
+        """
+        print(Time.clock.get_fps())
+
     def end_scene(self):
         """
         Set the variable to stop scene loop
@@ -106,7 +114,8 @@ class Scene:
 
     def exit_scene(self):
         """
-        empty the normal_behaviors list and start next scene
+        empty the normal_behaviors and the collider list and start next scene
         """
         self.normal_behaviors = []
+        Collider.collider_list = []
         Engine.start_next_scene()

@@ -4,14 +4,80 @@ from pygame.math import Vector2
 
 class BoxCollider(Collider):
 
-    def __init__(self, position, dimension):
+    def __init__(self, rectangle_obj_ref):
+        """
+        initiate collider
+        :param rectangle_obj_ref: The reference to the object that contains the collider
+        """
         Collider.add_collider(self)
-        self.left = position.x
-        self.right = position.x + dimension.x
-        self.up = position.y
-        self.down = position.y + dimension.y
-        self.vertexes = (Vector2(self.left, self.up), Vector2(self.left, self.down),
-                         Vector2(self.right, self.down), Vector2(self.right, self.up))
+        self.rectangle = rectangle_obj_ref
 
     def is_point_inside(self, point):
-        return point.x >= self.left and point.x <= self.right and point.y >= self.down and point.y <= self.up
+        """
+        Verify if a point is inside of the rectangle
+        :param point: the point to verify
+        :return: True if it is inside
+        """
+        return point.x >= self.get_left_side() and point.x <= self.get_right_side() \
+               and point.y <= self.get_down_side() and point.y >= self.get_up_side()
+
+    def get_left_side(self):
+        """
+        :return: left side position x
+        """
+        return self.rectangle.transform.position.x
+
+    def get_right_side(self):
+        """
+        :return: right side position x
+        """
+        return self.rectangle.transform.position.x + self.rectangle.rectangle_mash.dimension.x
+
+    def get_up_side(self):
+        """
+        :return: up side position y
+        """
+        return self.rectangle.transform.position.y
+
+    def get_down_side(self):
+        """
+        :return: down side position y
+        """
+        return self.rectangle.transform.position.y + self.rectangle.rectangle_mash.dimension.y
+
+    def get_vertexes(self):
+        """
+        :return: The rectangle vertexes in an array
+        """
+        return [Vector2(self.get_left_side(), self.get_up_side()),
+                Vector2(self.get_left_side(), self.get_down_side()),
+                Vector2(self.get_right_side(), self.get_down_side()),
+                Vector2(self.get_right_side(), self.get_up_side())
+                ]
+
+    def on_collision(self):
+        """
+        Check if the have occurred a collision between two colliders
+        loop on the collider list to check if this collider have collided with other
+        :return: True if collided
+        TODO: other kinds of collisions -- for this game you can only call this function inside a circle_collide
+        """
+        raise Exception('--- This methods have not been implemented yet! Use circle_collider instead ---')
+
+    def __box_collision(self, box):
+        """
+        Check a collision between this collider and a box_collider
+        :param box: the box collider reference
+        :return: True if collided
+        TODO: other kinds of collisions -- for this game you can only call this function inside a circle_collide
+        """
+        raise Exception('--- This methods have not been implemented yet! Use circle_collider instead ---')
+
+    def __circle_collision(self, circle):
+        """
+        Check a collision between this collider and a circle_collider
+        :param circle: the circle collider reference
+        :return: True if collided
+        TODO: other kinds of collisions -- for this game you can only call this function inside a circle_collide
+        """
+        raise Exception('--- This methods have not been implemented yet! Use circle_collider instead ---')
