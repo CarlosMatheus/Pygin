@@ -2,6 +2,8 @@ from game_engine.input import Input
 from game_engine.time import Time
 from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.circle import Circle
+from pygame.math import Vector2
+from game_engine.components.material import Material
 
 import math
 
@@ -17,8 +19,8 @@ class PlayerController(NormalBehavior):
         self.angularSpeed = 4.0
 
         self.game_object_list = [
-            Circle(self.circCenter_x + self.circRadius, self.circCenter_y, 15, (253, 102, 0)),
-            Circle(self.circCenter_x - self.circRadius, self.circCenter_y, 15, (0, 120, 255))
+            Circle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
+            Circle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255)))
         ]
 
     def update(self):
@@ -39,8 +41,10 @@ class PlayerController(NormalBehavior):
         self.update_circles()
 
     def update_circles(self):
-        self.game_object_list[0].circle_mash.position_x = int(self.circCenter_x + self.circRadius * math.cos(self.angle))
-        self.game_object_list[0].circle_mash.position_y = int(self.circCenter_y + self.circRadius * math.sin(self.angle))
+        self.game_object_list[0].transform.\
+            translate(Vector2(self.circCenter_x + self.circRadius * math.cos(self.angle),
+                              self.circCenter_y + self.circRadius * math.sin(self.angle)))
 
-        self.game_object_list[1].circle_mash.position_x = int(self.circCenter_x + self.circRadius * math.cos(self.angle + math.pi))
-        self.game_object_list[1].circle_mash.position_y = int(self.circCenter_y + self.circRadius * math.sin(self.angle + math.pi))
+        self.game_object_list[1].transform.\
+            translate(Vector2(self.circCenter_x + self.circRadius * math.cos(self.angle + math.pi),
+                              self.circCenter_y + self.circRadius * math.sin(self.angle + math.pi)))
