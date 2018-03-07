@@ -1,8 +1,5 @@
 class CircleMash:
 
-    def __init__(self, position_x, position_y, radius, color):
-        self.position_x = position_x
-        self.position_y = position_y
+    def __init__(self, radius, material):
         self.radius = radius
-        self.color = color
-
+        self.material = material
