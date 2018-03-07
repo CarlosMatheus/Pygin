@@ -9,15 +9,16 @@ from game_engine.components.material import Material
 class SimpleObstacleController(NormalBehavior):
 
     def start(self):
-        self.fall_velocity = 250
+        self.fall_velocity = 300
         self.game_object_list = []
-        self.last_generation_time = 0
 
     def update(self):
 
         for obstacle in self.game_object_list:
-            if obstacle.transform.position.x > Engine.screen_height:
-                obstacle.destroy()
+            if obstacle.transform.position.y > Engine.screen_height:
+                print("DESTROYING OBSTACLE")
+                self.game_object_list.remove(obstacle)
+                obstacle.destroy(obstacle)
             else:
                 self.fall(obstacle)
 
