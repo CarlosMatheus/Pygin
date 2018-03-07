@@ -6,9 +6,7 @@ from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.rectangle import Rectangle
 from game_engine.components.material import Material
 
-import math
-
-class ObstaclesController(NormalBehavior):
+class SimpleObstacleController(NormalBehavior):
 
     def start(self):
         self.fall_velocity = 250
@@ -16,9 +14,6 @@ class ObstaclesController(NormalBehavior):
         self.last_generation_time = 0
 
     def update(self):
-
-        if 1000 * Time.now() - self.last_generation_time > 1500:
-            self.generate_simple_obstacle()
 
         for obstacle in self.game_object_list:
             if obstacle.transform.position.x > Engine.screen_height:
@@ -30,11 +25,9 @@ class ObstaclesController(NormalBehavior):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                         + self.fall_velocity * Time.delta_time())
 
-    def generate_simple_obstacle(self):
-        self.last_generation_time = 1000 * Time.now()
-
-        direction = rand(0,1) < 0.5
-        rect = Rectangle(Vector2(direction * 0.6 * Engine.screen_width, - 0.1 * Engine.screen_height),
-                         Vector2(0.4 * Engine.screen_width,0.1 * Engine.screen_height),
+    def generate_obstacle(self):
+        direction = rand(0, 1) < 0.5
+        rect = Rectangle(Vector2(direction * 0.5 * Engine.screen_width, - 0.06 * Engine.screen_height),
+                         Vector2(0.5 * Engine.screen_width,0.06 * Engine.screen_height),
                          Material((255, 255, 255)))
         self.game_object_list.append(rect)
