@@ -18,12 +18,12 @@ class PlayerController(NormalBehavior):
         self.angle = 0.0
         self.angularSpeed = 4.0
 
-        myfont = pygame.font.SysFont("monospace", 15)
+        font_path = "assets/fonts/neuropolxrg.ttf"
 
         self.game_object_list = [
             Circle(self.circCenter_x + self.circRadius, self.circCenter_y, 15, (253, 102, 0)),
             Circle(self.circCenter_x - self.circRadius, self.circCenter_y, 15, (0, 120, 255)),
-            Text(100, 100, "Hello World", Color.white, 12, myfont)
+            Text(100, 100, "Hello World", Color.white, 120, myfont)
         ]
 
     def update(self):
