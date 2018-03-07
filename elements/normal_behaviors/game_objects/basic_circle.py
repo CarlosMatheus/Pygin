@@ -1,10 +1,11 @@
 from game_engine.components.circle_mash import CircleMash
 from game_engine.game_object import GameObject
+from pygame.math import Vector2
 
 
 class Circle(GameObject):
 
-    def __init__(self, position_x, position_y, radius, color):
+    def __init__(self, position, radius, material):
         """
         Add the circle mash component
         Call the superclass constructor passing basic game_object parameters
@@ -13,5 +14,5 @@ class Circle(GameObject):
         :param radius: initial radius of the circle
         :param color: initial color of the circle
         """
-        self.circle_mash = CircleMash(position_x, position_y, radius, color)
-        super(Circle, self).__init__(position_x, position_y, 0, 1, 1)
+        self.circle_mash = CircleMash(radius, material)
+        super(Circle, self).__init__(position, 0, Vector2(1, 1))

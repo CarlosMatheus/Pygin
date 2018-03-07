@@ -1,6 +1,7 @@
 from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.text import Text
 from game_engine.color import Color
+from pygame.math import Vector2
 
 class ScoreController(NormalBehavior):
 
@@ -8,7 +9,7 @@ class ScoreController(NormalBehavior):
 
         font_path = "assets/fonts/neuropolxrg.ttf"
 
-        self.step_delta = 250  # Number of steps of the game required to update the score
+        self.step_delta = 200  # Number of steps of the game required to update the score
 
         self.score = 0.0
         score_x = 10.0
@@ -18,7 +19,7 @@ class ScoreController(NormalBehavior):
         score_size = 15
 
         self.game_object_list = [
-            Text(score_x, score_y, score_message, score_color, score_size, font_path)
+            Text(Vector2(score_x, score_y), score_message, score_color, score_size, font_path)
         ]
 
     def update(self):
