@@ -1,9 +1,6 @@
 from game_engine.scene import Scene
 from elements.normal_behaviors.player_controller import PlayerController
-from elements.normal_behaviors.game_objects.rectangle import Rectangle
-from elements.normal_behaviors.game_objects.circle import Circle
-from elements.normal_behaviors.game_objects.square_test import SquareTest
-from elements.normal_behaviors.game_objects.square_test_falling import SquareTestFalling
+from elements.normal_behaviors.score_controller import ScoreController
 
 
 class MainScene(Scene):
@@ -12,7 +9,7 @@ class MainScene(Scene):
         """
         Create the list of normal_behaviors and call the superclass constructor passing the list
         """
-        self.normal_behaviors_list = [PlayerController()]
+        self.normal_behaviors_list = [PlayerController(), ScoreController()]
 
         super(MainScene, self).__init__(self.normal_behaviors_list)
 
