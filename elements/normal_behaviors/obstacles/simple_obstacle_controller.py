@@ -16,7 +16,6 @@ class SimpleObstacleController(NormalBehavior):
 
         for obstacle in self.game_object_list:
             if obstacle.transform.position.y > Engine.screen_height:
-                print("DESTROYING OBSTACLE")
                 self.game_object_list.remove(obstacle)
                 obstacle.destroy(obstacle)
             else:
