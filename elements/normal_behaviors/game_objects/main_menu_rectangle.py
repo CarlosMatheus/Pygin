@@ -1,4 +1,5 @@
 from game_engine.components.rectangle_mash import RectangleMash
+from game_engine.components.box_collider import BoxCollider
 from game_engine.game_object import GameObject
 from game_engine.engine import Engine
 from game_engine.time import Time
@@ -18,6 +19,7 @@ class Rectangle(GameObject):
         :param color: initial color of the rectangle
         """
         self.rectangle_mash = RectangleMash(dimension, material)
+        self.box_collider = BoxCollider(self)
         super(Rectangle, self).__init__(position, 0, Vector2(1, 1))
 
     def start(self):
