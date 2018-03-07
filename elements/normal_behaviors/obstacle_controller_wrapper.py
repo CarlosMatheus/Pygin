@@ -4,13 +4,17 @@ from game_engine.normal_behavior import NormalBehavior
 
 #Controllers
 from elements.normal_behaviors.obstacles.simple_obstacle_controller import SimpleObstacleController
-
-import math
+from elements.normal_behaviors.obstacles.middle_rect_obstacle_controller import MiddleRectObstacleController
+from elements.normal_behaviors.obstacles.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 
 class ObstacleControllerWrapper(NormalBehavior):
 
     def start(self):
-        self.obstacle_generators = [SimpleObstacleController()]
+        self.obstacle_generators = [
+            SimpleObstacleController(),
+            MiddleRectObstacleController(),
+            TwoInOneSimpleObstacleController()
+        ]
         self.last_generation_time = 0.0
         self.game_object_list = []
 
