@@ -14,10 +14,10 @@ class PlayerController(NormalBehavior):
     def start(self):
 
         self.circCenter_x = 180
-        self.circCenter_y = 480
+        self.circCenter_y = 520
         self.circRadius = 80
         self.angle = 0.0
-        self.angularSpeed = 4.0
+        self.angularSpeed = 5.0
 
         self.game_object_list = [
             Circle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
