@@ -1,5 +1,6 @@
 from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.text import Text
+from game_engine.game_object import GameObject
 from game_engine.color import Color
 from pygame.math import Vector2
 
@@ -21,12 +22,9 @@ class ScoreController(NormalBehavior):
         self.game_object_list = [
             Text(Vector2(score_x, score_y), score_message, score_color, score_size, font_path)
         ]
+        GameObject.instantiate(self.game_object_list)
 
     def update(self):
         self.score = self.score + 1 / self.step_delta
 
         self.game_object_list[0].text_mash.message = str(int(self.score))
-
-        for game_object in self.game_object_list:
-            game_object.update()
-

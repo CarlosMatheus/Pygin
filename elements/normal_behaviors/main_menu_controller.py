@@ -3,6 +3,7 @@ from random import randint as rand
 from game_engine.normal_behavior import NormalBehavior
 from game_engine.game_object import GameObject
 from elements.normal_behaviors.game_objects.main_menu_rectangle import Rectangle
+from game_engine.game_object import GameObject
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
@@ -35,6 +36,7 @@ class MainMenuController(NormalBehavior):
             Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Color.white, message_size, font_path),
             Text(Vector2(title_x, title_y), "Balance", Color.white, title_size, font_path)
         ]
+        GameObject.instantiate(self.game_object_list)
 
     def update(self):
         """

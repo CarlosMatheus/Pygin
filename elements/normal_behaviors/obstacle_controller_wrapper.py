@@ -8,6 +8,7 @@ from elements.normal_behaviors.obstacles.middle_rect_obstacle_controller import 
 from elements.normal_behaviors.obstacles.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 from elements.normal_behaviors.obstacles.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
 from elements.normal_behaviors.obstacles.star_score_controller import StarScoreController
+from game_engine.game_object import GameObject
 
 
 class ObstacleControllerWrapper(NormalBehavior):
@@ -38,15 +39,15 @@ class ObstacleControllerWrapper(NormalBehavior):
             self.generate_random_obstacle()
 
         for obstacle_generator in self.obstacle_generators:
-            obstacle_generator.update()
             self.game_object_list.extend(obstacle_generator.game_object_list)
+            GameObject.instantiate(obstacle_generator.game_object_list)
 
         if 1000 * Time.now() - self.last_power_up_time > 5000:
             self.generate_random_power_up()
 
         for power_up_generator in self.power_up_generators:
-            power_up_generator.update()
             self.game_object_list.extend(power_up_generator.game_object_list)
+            GameObject.instantiate(obstacle_generator.game_object_list)
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()
