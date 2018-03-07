@@ -9,12 +9,13 @@ from .draw import Draw
 
 class Scene:
 
-    def __init__(self, _normal_behaviors):
+    def __init__(self, init_normal_behaviors_list):
         """
         Set object's variables to start a new scene
         :param _normal_behaviors: list of all _normal_behaviors of the scene
         """
-        self.normal_behaviors = _normal_behaviors
+        self.init_normal_behaviors_list = init_normal_behaviors_list
+        self.normal_behaviors = []
         self.frame_events = []
         self.should_end_scene = False
 
@@ -22,6 +23,8 @@ class Scene:
         """
         Run methods to set the scene up
         """
+        self.should_end_scene = False
+        self.normal_behaviors = self.init_normal_behaviors_list
         self.run_events()
         Draw.update_background()
         self.run_all_starts()

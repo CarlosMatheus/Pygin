@@ -29,10 +29,10 @@ class Engine:
         """
         Start the first scene
         """
-        cls.current_running_scene = cls.scenes_list[0]
+        cls.current_running_scene = cls.scenes_list[0]()
         cls.current_running_scene_index = 0
-        cls.scenes_list[0].start()
-        cls.scenes_list[0].scene_loop()
+        cls.current_running_scene.start()
+        cls.current_running_scene.scene_loop()
 
     @classmethod
     def change_scene(cls, scene_index):
@@ -42,7 +42,7 @@ class Engine:
         """
         cls.current_running_scene.end_scene()
         cls.current_running_scene_index = scene_index
-        cls.current_running_scene = cls.scenes_list[scene_index]
+        cls.current_running_scene = cls.scenes_list[scene_index]()
 
     @classmethod
     def start_next_scene(cls):
@@ -59,4 +59,3 @@ class Engine:
         """
         pygame.quit()
         quit()
-
