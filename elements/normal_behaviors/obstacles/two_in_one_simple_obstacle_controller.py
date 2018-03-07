@@ -4,6 +4,7 @@ from random import randint as rand
 from game_engine.engine import Engine
 from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.game_objects.rectangle import Rectangle
+from game_engine.game_object import GameObject
 from game_engine.components.material import Material
 
 class TwoInOneSimpleObstacleController(NormalBehavior):
@@ -19,6 +20,7 @@ class TwoInOneSimpleObstacleController(NormalBehavior):
                 if obstacle.transform.position.y > 2 * Engine.screen_height:
                     self.game_object_list.remove(obstacle)
                     obstacle.destroy(obstacle)
+                    GameObject.destroy(obstacle)
                 else:
                     self.fall(obstacle, index)
 
@@ -54,3 +56,5 @@ class TwoInOneSimpleObstacleController(NormalBehavior):
                           Material((255, 255, 255)))
 
         self.game_object_list.extend([rect1, rect2])
+        GameObject.instantiate([rect1, rect2])
+
