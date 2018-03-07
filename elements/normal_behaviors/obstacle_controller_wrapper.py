@@ -6,6 +6,7 @@ from game_engine.normal_behavior import NormalBehavior
 from elements.normal_behaviors.obstacles.simple_obstacle_controller import SimpleObstacleController
 from elements.normal_behaviors.obstacles.middle_rect_obstacle_controller import MiddleRectObstacleController
 from elements.normal_behaviors.obstacles.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
+from elements.normal_behaviors.obstacles.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
 from elements.normal_behaviors.obstacles.star_score_controller import StarScoreController
 
 
@@ -15,7 +16,8 @@ class ObstacleControllerWrapper(NormalBehavior):
         self.obstacle_generators = [
             SimpleObstacleController(),
             MiddleRectObstacleController(),
-            TwoInOneSimpleObstacleController()
+            TwoInOneSimpleObstacleController(),
+            TwoSideBySideSimpleObstacleController()
         ]
 
         self.power_up_generators = [StarScoreController()]
