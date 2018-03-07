@@ -6,6 +6,9 @@ from elements.normal_behaviors.game_objects.main_menu_rectangle import Rectangle
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
+from game_engine.components.material import Material
+from pygame.math import Vector2
+
 
 class MainMenuController(NormalBehavior):
 
@@ -32,8 +35,8 @@ class MainMenuController(NormalBehavior):
         Spawn a random block
         """
         parameters = self.generate_random_parameters()
-        GameObject.instantiate(Rectangle(parameters[0], parameters[1], parameters[2],
-                                         parameters[3], parameters[4]))
+        GameObject.instantiate(Rectangle(Vector2(parameters[0], parameters[1]),
+                                         Vector2(parameters[2], parameters[3]), Material(parameters[4])))
 
     def generate_random_parameters(self):
         """
