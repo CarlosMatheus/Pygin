@@ -45,7 +45,7 @@ class Draw:
         pygame.draw.circle(cls.game_display, color, [int(position.x), int(position.y)], int(radius))
 
     @classmethod
-    def text(cls, position_x, position_y, message, color, size, font):
+    def text(cls, position_x, position_y, message, color, size, font_path):
         """
         Draws text
         :param position_x: text's x position
@@ -53,7 +53,10 @@ class Draw:
         :param message: the text's content. The message attached to it
         :param color: text's color
         :param size: text's size
-        :param font: the path for a .ttf file representing the desired font. Can be none
+        :param font_path: the path for a .ttf file representing the desired font. Can be none
         :return:
         """
-        label = font.render("Some text!", 1, (255, 255, 0))
+        font = pygame.font.Font(font_path, size)
+        # render text
+        label = font.render(message, 1, color)
+        cls.game_display.blit(label, (position_x, position_y))

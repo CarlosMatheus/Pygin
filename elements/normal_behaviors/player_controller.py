@@ -1,31 +1,27 @@
 from game_engine.input import Input
 from game_engine.time import Time
 from game_engine.normal_behavior import NormalBehavior
-from game_engine.color import Color
 from elements.normal_behaviors.game_objects.circle import Circle
 from pygame.math import Vector2
 from game_engine.components.material import Material
 from elements.normal_behaviors.game_objects.text import Text
 
 import math
-import pygame.font
+
 
 class PlayerController(NormalBehavior):
 
     def start(self):
 
         self.circCenter_x = 180
-        self.circCenter_y = 480
+        self.circCenter_y = 520
         self.circRadius = 80
         self.angle = 0.0
-        self.angularSpeed = 4.0
-
-        myfont = pygame.font.SysFont("monospace", 15)
+        self.angularSpeed = 5.0
 
         self.game_object_list = [
             Circle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
-            Circle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255))),
-            Text(Vector2(100, 100), "Hello World", Color.white, 12, myfont)
+            Circle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255)))
         ]
 
     def update(self):

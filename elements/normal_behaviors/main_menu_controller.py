@@ -6,6 +6,7 @@ from elements.normal_behaviors.game_objects.main_menu_rectangle import Rectangle
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
+from elements.normal_behaviors.game_objects.text import Text
 from game_engine.components.material import Material
 from pygame.math import Vector2
 
@@ -19,6 +20,21 @@ class MainMenuController(NormalBehavior):
         """
         self.time = Time.now()
         self.period = 1
+
+        font_path = "assets/fonts/neuropolxrg.ttf"
+
+        message_x = 10
+        message_y = 270
+        message_size = 14
+
+        title_x = 37
+        title_y = 200
+        title_size = 50
+
+        self.game_object_list = [
+            Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Color.white, message_size, font_path),
+            Text(Vector2(title_x, title_y), "Balance", Color.white, title_size, font_path)
+        ]
 
     def update(self):
         """
