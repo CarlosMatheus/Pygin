@@ -7,6 +7,7 @@ from elements.game_objects.game_objects.star_circle import StarCircle
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from elements.game_objects.game_objects.player_circle import PlayerCircle
+from elements.normal_behaviors.game_objects.star import Star
 from random import uniform as randfloat
 from game_engine.components.constants import Constants
 
@@ -15,7 +16,7 @@ class StarScoreController(GameObject):
     def start(self):
         self.fall_velocity = 250
         self.game_object_list = []
-        self.radius = Constants.screen_width*0.03
+        self.size = Constants.screen_width * 0.03
 
     def update(self):
         for obstacle in self.game_object_list:
@@ -31,10 +32,10 @@ class StarScoreController(GameObject):
                                               + self.fall_velocity * Time.delta_time())
 
     def generate_obstacle(self):
-        random_pos = int(randfloat(self.radius/2+Constants.circCenter_x-Constants.circRadius,
-                                   Constants.screen_width-
-                                   (self.radius/2+Constants.circCenter_x-Constants.circRadius)))
+        random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,
+                                   Constants.screen_width -
+                                   (self.size / 2 + Constants.circCenter_x - Constants.circRadius)))
 
-        star = StarCircle(Vector2(random_pos, - 0.06 * Constants.screen_height),
-                          self.radius, Material(Color.yellow))
+        star = Star(Vector2(random_pos, 100), self.size,
+                    Material(Color.yellow))
         self.game_object_list.append(star)

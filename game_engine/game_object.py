@@ -47,7 +47,7 @@ class GameObject:
             Draw.circle(self.transform.position, self.circle_mash.radius, self.circle_mash.material.color)
 
         elif hasattr(self, 'polygon_mash'):
-            Draw.circle(self.transform.position, self.polygon_mash.radius, self.polygon_mash.material.color)
+            Draw.polygon(self.polygon_mash.material.color, self.polygon_mash.point_list)
 
         elif hasattr(self, 'text_mash'):
             Draw.text(self.transform.position.x, self.transform.position.y, self.text_mash.message,
