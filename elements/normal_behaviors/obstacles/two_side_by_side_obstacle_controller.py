@@ -28,7 +28,7 @@ class TwoSideBySideSimpleObstacleController(NormalBehavior):
 
         if visible_condition:
             obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
-                                                  + 4 * self.fall_velocity * Time.delta_time())
+                                                  + 6 * self.fall_velocity * Time.delta_time())
         elif invisible_condition and ind < len(self.game_object_list)-1:
             obstacle.transform.position.x = self.game_object_list[ind+1].transform.position.x
             obstacle.transform.position.y = self.game_object_list[ind+1].transform.position.y

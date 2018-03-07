@@ -5,6 +5,7 @@ from elements.normal_behaviors.game_objects.circle import Circle
 from pygame.math import Vector2
 from game_engine.components.material import Material
 from elements.normal_behaviors.game_objects.text import Text
+from game_engine.engine import Engine
 
 import math
 
@@ -13,15 +14,12 @@ class PlayerController(NormalBehavior):
 
     def start(self):
 
-        self.circCenter_x = 180
-        self.circCenter_y = 520
-        self.circRadius = 80
         self.angle = 0.0
         self.angularSpeed = 5.0
 
         self.game_object_list = [
-            Circle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
-            Circle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255)))
+            Circle(Vector2(Engine.circCenter_x + Engine.circRadius, Engine.circCenter_y), 15, Material((253, 102, 0))),
+            Circle(Vector2(Engine.circCenter_x - Engine.circRadius, Engine.circCenter_y), 15, Material((0, 120, 255)))
         ]
 
     def update(self):
@@ -43,9 +41,9 @@ class PlayerController(NormalBehavior):
 
     def update_circles(self):
         self.game_object_list[0].transform.\
-            translate(Vector2(self.circCenter_x + self.circRadius * math.cos(self.angle),
-                              self.circCenter_y + self.circRadius * math.sin(self.angle)))
+            translate(Vector2(Engine.circCenter_x + Engine.circRadius * math.cos(self.angle),
+                              Engine.circCenter_y + Engine.circRadius * math.sin(self.angle)))
 
         self.game_object_list[1].transform.\
-            translate(Vector2(self.circCenter_x + self.circRadius * math.cos(self.angle + math.pi),
-                              self.circCenter_y + self.circRadius * math.sin(self.angle + math.pi)))
+            translate(Vector2(Engine.circCenter_x + Engine.circRadius * math.cos(self.angle + math.pi),
+                              Engine.circCenter_y + Engine.circRadius * math.sin(self.angle + math.pi)))

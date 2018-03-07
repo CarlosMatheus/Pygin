@@ -9,6 +9,9 @@ class Engine:
     screen_height = 640
     game_display = 0
     scenes_list = []
+    circCenter_x = 180
+    circCenter_y = 520
+    circRadius = 85
 
     @classmethod
     def start_game(cls, game_name, scenes):
