@@ -52,10 +52,6 @@ class Scene:
         for normal_behavior in self.normal_behaviors:
             if isinstance(normal_behavior, GameObject):
                 normal_behavior.draw_game_object()
-            elif hasattr(normal_behavior, 'game_object_list'):
-                if len(normal_behavior.game_object_list) > 0:
-                    for game_object in normal_behavior.game_object_list:
-                        game_object.draw_game_object()
 
     def scene_loop(self):
         """
@@ -85,6 +81,7 @@ class Scene:
         :param game_object: the game_object to be removed
         """
         if game_object in self.normal_behaviors:
+            print("asdf")
             self.normal_behaviors.remove(game_object)
             Collider.remove(game_object)
 

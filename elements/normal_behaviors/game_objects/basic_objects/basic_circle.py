@@ -3,7 +3,7 @@ from game_engine.game_object import GameObject
 from pygame.math import Vector2
 
 
-class Circle(GameObject):
+class BasicCircle(GameObject):
 
     def __init__(self, position, radius, material):
         """
@@ -15,4 +15,10 @@ class Circle(GameObject):
         :param color: initial color of the circle
         """
         self.circle_mash = CircleMash(radius, material)
-        super(Circle, self).__init__(position, 0, Vector2(1, 1))
+        super(BasicCircle, self).__init__(position, 0, Vector2(1, 1))
+
+    def start(self):
+        pass
+
+    def update(self):
+        pass

@@ -5,13 +5,13 @@ from pygame.math import Vector2
 
 class CircleCollider(Collider):
 
-    def __init__(self, circle_obj_ref):
+    def __init__(self, game_obj_ref):
         """
         initiate collider
-        :param circle_obj_ref: The reference to the object that contains the collider
+        :param game_obj_ref: The reference to the object that contains the collider
         """
         Collider.add_collider(self)
-        self.circle = circle_obj_ref
+        self.game_obj_ref = game_obj_ref
 
     def is_vertex_inside(self, point):
         """
@@ -25,23 +25,23 @@ class CircleCollider(Collider):
         """
         :return: Get the center point of the circle
         """
-        return self.circle.transform.position
+        return self.game_obj_ref.transform.position
 
     def get_radius(self):
         """
         :return: Get the radius of the circle
         """
-        return self.circle.circle_mash.radius
+        return self.game_obj_ref.circle_mash.radius
 
     def get_main_points(self):
         """
         The main points are the up, down, left and right extremities borders of the circle
         :return: An array that contains each of the four points
         """
-        return [Vector2(self.circle.transform.position.x - self.get_radius(), self.get_center().y),
-                Vector2(self.get_center().x, self.circle.transform.position.y + self.get_radius()),
-                Vector2(self.circle.transform.position.x + self.get_radius(), self.get_center().y),
-                Vector2(self.get_center().x, self.circle.transform.position.y - self.get_radius())]
+        return [Vector2(self.game_obj_ref.transform.position.x - self.get_radius(), self.get_center().y),
+                Vector2(self.get_center().x, self.game_obj_ref.transform.position.y + self.get_radius()),
+                Vector2(self.game_obj_ref.transform.position.x + self.get_radius(), self.get_center().y),
+                Vector2(self.get_center().x, self.game_obj_ref.transform.position.y - self.get_radius())]
 
     def on_collision(self):
         """
@@ -55,8 +55,8 @@ class CircleCollider(Collider):
             elif isinstance(collider, CircleCollider):
                 collided = self.__circle_collision(collider)
             if collided:
-                return True
-        return False
+                return True, collider.game_obj_ref
+        return False, None
 
     def __box_collision(self, box):
         """
