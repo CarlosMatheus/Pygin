@@ -1,12 +1,9 @@
 from game_engine.input import Input
 from game_engine.time import Time
 from game_engine.normal_behavior import NormalBehavior
-from game_engine.color import Color
 from elements.normal_behaviors.game_objects.circle import Circle
-from elements.normal_behaviors.game_objects.text import Text
-
 import math
-import pygame.font
+
 
 class PlayerController(NormalBehavior):
 
@@ -18,12 +15,9 @@ class PlayerController(NormalBehavior):
         self.angle = 0.0
         self.angularSpeed = 4.0
 
-        font_path = "assets/fonts/neuropolxrg.ttf"
-
         self.game_object_list = [
             Circle(self.circCenter_x + self.circRadius, self.circCenter_y, 15, (253, 102, 0)),
-            Circle(self.circCenter_x - self.circRadius, self.circCenter_y, 15, (0, 120, 255)),
-            Text(100, 100, "Hello World", Color.white, 120, myfont)
+            Circle(self.circCenter_x - self.circRadius, self.circCenter_y, 15, (0, 120, 255))
         ]
 
     def update(self):

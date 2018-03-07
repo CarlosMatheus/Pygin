@@ -6,6 +6,8 @@ from elements.normal_behaviors.game_objects.main_menu_rectangle import Rectangle
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
+from elements.normal_behaviors.game_objects.text import Text
+
 
 class MainMenuController(NormalBehavior):
 
@@ -16,6 +18,15 @@ class MainMenuController(NormalBehavior):
         """
         self.time = Time.now()
         self.period = 1
+
+        font_path = "assets/fonts/neuropolxrg.ttf"
+        font_x = 10
+        font_y = 100
+        font_size = 14
+
+        self.game_object_list = [
+            Text(font_x, font_y, "Press arrows keys to start playing", Color.white, font_size, font_path)
+        ]
 
     def update(self):
         """
