@@ -24,8 +24,8 @@ class PlayerController(NormalBehavior):
 
         self.game_object_list = [
             Circle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
-            Circle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255)))
-            Text(100, 100, "Hello World", Color.white, 12, myfont)
+            Circle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255))),
+            Text(Vector2(100, 100), "Hello World", Color.white, 12, myfont)
         ]
 
     def update(self):
