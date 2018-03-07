@@ -20,12 +20,18 @@ class MainMenuController(NormalBehavior):
         self.period = 1
 
         font_path = "assets/fonts/neuropolxrg.ttf"
-        font_x = 10
-        font_y = 100
-        font_size = 14
+
+        message_x = 10
+        message_y = 270
+        message_size = 14
+
+        title_x = 37
+        title_y = 200
+        title_size = 50
 
         self.game_object_list = [
-            Text(font_x, font_y, "Press arrows keys to start playing", Color.white, font_size, font_path)
+            Text(message_x, message_y, "Press arrows keys to start playing", Color.white, message_size, font_path),
+            Text(title_x, title_y, "Balance", Color.white, title_size, font_path)
         ]
 
     def update(self):
