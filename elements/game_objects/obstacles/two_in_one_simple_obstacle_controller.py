@@ -26,7 +26,7 @@ class TwoInOneSimpleObstacleController(GameObject):
                     self.fall(obstacle_pair)
 
     def fall(self, obstacle_pair):
-        visible_condition = 0.1*Constants.screen_height<obstacle_pair[1].transform.position.y and obstacle_pair[1].transform.position.y<0.45*Constants.screen_height
+        visible_condition = 0.1 * Constants.screen_height < obstacle_pair[1].transform.position.y < 0.45 * Constants.screen_height
         if visible_condition:
             obstacle_pair[1].transform.position = Vector2(obstacle_pair[1].transform.position.x,
                                                           obstacle_pair[1].transform.position.y
