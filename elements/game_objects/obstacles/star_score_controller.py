@@ -1,13 +1,12 @@
 from pygame.math import Vector2
+
+from elements.normal_behaviors.game_objects.star import Star
 from game_engine.time import Time
-from game_engine.engine import Engine
-from game_engine.game_object import GameObject
 from game_engine.components.material import Material
 from elements.game_objects.game_objects.star_circle import StarCircle
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from elements.game_objects.game_objects.player_circle import PlayerCircle
-from elements.normal_behaviors.game_objects.star import Star
 from random import uniform as randfloat
 from game_engine.components.constants import Constants
 
@@ -28,8 +27,7 @@ class StarScoreController(GameObject):
                 self.fall(obstacle)
 
     def fall(self, obstacle):
-        obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
-                                              + self.fall_velocity * Time.delta_time())
+        obstacle.fall(self.fall_velocity * Time.delta_time())
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,

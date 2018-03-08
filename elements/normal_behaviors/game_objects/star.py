@@ -12,15 +12,29 @@ class Star(GameObject):
         :param point_list:
         :param material:
         """
-        point_list = []
-        angle = math.pi/2 + math.pi
-
-        for i in range(5):
-            point_list.append(Vector2(center_position.x + size*math.cos(angle),
-                                      center_position.y + size*math.sin(angle)))
-            angle = angle + 144*math.pi/180
-
+        self.center_position = center_position
+        self.size = size
+        self.material = material
+        point_list = self.get_points()
         print(point_list)
 
         self.polygon_mash = PolygonMash(point_list, material)
         super(Star, self).__init__(Vector2(0, 0), 0, Vector2(1, 1))
+
+    def get_points(self):
+        point_list = []
+        angle = math.pi / 2 + math.pi
+
+        for i in range(5):
+            point_list.append(Vector2(self.center_position.x + self.size * math.cos(angle),
+                                      self.center_position.y + self.size * math.sin(angle)))
+            angle = angle + 144 * math.pi / 180
+
+        return point_list
+
+    def fall(self, distance):
+        self.center_position.y = self.center_position.y + distance
+
+        point_list = self.get_points()
+
+        self.polygon_mash = PolygonMash(point_list, self.material)
