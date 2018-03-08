@@ -6,7 +6,7 @@ from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
 from pygame.math import Vector2
-from game_engine.components.material import Material
+from elements.game_objects.material import Material
 
 
 class TestRectGenerator(GameObject):

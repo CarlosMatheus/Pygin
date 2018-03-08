@@ -4,7 +4,7 @@ from random import randint as rand
 from game_engine.engine import Engine
 from game_engine.game_object import GameObject
 from elements.game_objects.game_objects.rectangle import Rectangle
-from game_engine.components.material import Material
+from elements.game_objects.material import Material
 from game_engine.components.constants import Constants
 
 class TwoSideBySideSimpleObstacleController(GameObject):

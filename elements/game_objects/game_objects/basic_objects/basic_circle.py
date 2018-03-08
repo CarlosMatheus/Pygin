@@ -1,5 +1,6 @@
 from game_engine.components.circle_mash import CircleMash
 from game_engine.game_object import GameObject
+from game_engine.components.material import Material
 from pygame.math import Vector2
 
 
@@ -14,8 +15,9 @@ class BasicCircle(GameObject):
         :param radius: initial radius of the circle
         :param color: initial color of the circle
         """
-        self.circle_mash = CircleMash(radius, material)
         super(BasicCircle, self).__init__(position, 0, Vector2(1, 1), layer)
+        self.material = Material(self, material.color)
+        self.circle_mash = CircleMash(self, radius, self.material)
 
     def start(self):
         pass

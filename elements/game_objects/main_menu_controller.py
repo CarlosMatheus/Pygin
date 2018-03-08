@@ -8,7 +8,7 @@ from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
 from elements.game_objects.game_objects.text import Text
-from game_engine.components.material import Material
+from elements.game_objects.material import Material
 from pygame.math import Vector2
 from game_engine.components.constants import Constants
 
@@ -54,7 +54,7 @@ class MainMenuController(GameObject):
         """
         parameters = self.generate_random_parameters()
         Rectangle(Vector2(parameters[0], parameters[1]),
-                                         Vector2(parameters[2], parameters[3]), Material(parameters[4]))
+                  Vector2(parameters[2], parameters[3]), Material(parameters[4]))
 
     def generate_random_parameters(self):
         """

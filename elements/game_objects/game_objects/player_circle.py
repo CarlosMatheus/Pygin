@@ -9,9 +9,8 @@ from game_engine.components.circle_collider import CircleCollider
 class PlayerCircle(BasicCircle):
 
     def __init__(self, position, radius, material):
+        super(PlayerCircle, self).__init__(position, radius, material, layer = -2)
         self.circle_collider = CircleCollider(self)
-        layer = -2
-        super(PlayerCircle, self).__init__(position, radius, material, layer)
 
     def start(self):
         pass

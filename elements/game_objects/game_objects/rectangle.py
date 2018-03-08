@@ -6,6 +6,5 @@ from pygame.math import Vector2
 class Rectangle(BasicRectangle):
 
     def __init__(self, position, dimension, material):
+        super(Rectangle, self).__init__(position, dimension, material, layer = 0)
         self.box_collider = BoxCollider(self)
-        layer = 0
-        super(Rectangle, self).__init__(position, dimension, material, layer)

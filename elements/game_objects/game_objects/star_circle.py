@@ -5,9 +5,8 @@ from game_engine.components.circle_collider import CircleCollider
 class StarCircle(BasicCircle):
 
     def __init__(self, position, radius, material):
+        super(StarCircle, self).__init__(position, radius, material, layer = -1)
         self.circle_collider = CircleCollider(self)
-        layer = -1
-        super(StarCircle, self).__init__(position, radius, material, layer)
 
     def start(self):
         pass
