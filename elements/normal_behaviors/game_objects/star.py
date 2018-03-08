@@ -16,7 +16,6 @@ class Star(GameObject):
         self.size = size
         self.material = material
         point_list = self.get_points()
-        print(point_list)
 
         self.polygon_mash = PolygonMash(point_list, material)
         super(Star, self).__init__(Vector2(0, 0), 0, Vector2(1, 1))
@@ -28,7 +27,11 @@ class Star(GameObject):
         for i in range(5):
             point_list.append(Vector2(self.center_position.x + self.size * math.cos(angle),
                                       self.center_position.y + self.size * math.sin(angle)))
-            angle = angle + 144 * math.pi / 180
+            angle = angle + 36 * math.pi / 180
+
+            point_list.append(Vector2(self.center_position.x + self.size/2 * math.cos(angle),
+                                      self.center_position.y + self.size/2 * math.sin(angle)))
+            angle = angle + 36 * math.pi / 180
 
         return point_list
 
