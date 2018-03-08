@@ -1,7 +1,6 @@
 import pygame
 from .collider import Collider
-from .game_object import GameObject
-from .engine import Engine
+from pygame.math import Vector2
 from .time import Time
 from .input import Input
 from .draw import Draw
@@ -9,14 +8,23 @@ from .draw import Draw
 
 class Scene:
 
-    def __init__(self, init_game_objects_list):
+    current_running_scene_index = 0
+    current_running_scene = 0
+    scenes_list = []
+
+    def __init__(self, init_game_objects_controllers_reference_list):
         """
         Set object's variables to start a new scene
-        :param init_game_objects_list: list of all game_objects of the scene
+        :param init_game_objects_controllers_reference_list: list of all game_objects of the scene
         """
+        init_game_objects_list = []
         self.init_game_objects_list = init_game_objects_list
         self.game_objects = []
         self.frame_events = []
+        if Scene.current_running_scene == 0:
+            Scene.current_running_scene = self
+        for reference in init_game_objects_controllers_reference_list:
+            init_game_objects_list.append(reference(Vector2(0, 0), 0, Vector2(0, 0)))
         self.should_end_scene = False
 
     def start(self):
@@ -123,4 +131,32 @@ class Scene:
         """
         self.game_objects = []
         Collider.collider_list = []
-        Engine.start_next_scene()
+        Scene.start_next_scene()
+
+    @classmethod
+    def start_first_scene(cls):
+        """
+        Start the first scene
+        """
+        cls.current_running_scene = cls.scenes_list[0]()
+        cls.current_running_scene_index = 0
+        cls.current_running_scene.start()
+        cls.current_running_scene.scene_loop()
+
+    @classmethod
+    def change_scene(cls, scene_index):
+        """
+        End the current scene to start the next scene
+        :param scene_index: the index on scene_list of the next scene
+        """
+        cls.current_running_scene.end_scene()
+        cls.current_running_scene_index = scene_index
+        cls.current_running_scene = cls.scenes_list[scene_index]()
+
+    @classmethod
+    def start_next_scene(cls):
+        """
+        Start next scene
+        """
+        cls.current_running_scene.start()
+        cls.current_running_scene.scene_loop()
