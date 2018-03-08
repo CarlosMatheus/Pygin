@@ -16,13 +16,13 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0)),
-            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0)),
-            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0)),
-            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0))
+            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
-        self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0))]
+        self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0), 0)]
 
         self.last_generation_time = 1000 * Time.now()
         self.last_power_up_time = 1000 * Time.now()

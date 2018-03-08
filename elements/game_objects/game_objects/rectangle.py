@@ -7,4 +7,5 @@ class Rectangle(BasicRectangle):
 
     def __init__(self, position, dimension, material):
         self.box_collider = BoxCollider(self)
-        super(Rectangle, self).__init__(position, dimension, material)
+        layer = 0
+        super(Rectangle, self).__init__(position, dimension, material, layer)

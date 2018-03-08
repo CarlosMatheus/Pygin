@@ -10,7 +10,8 @@ class PlayerCircle(BasicCircle):
 
     def __init__(self, position, radius, material):
         self.circle_collider = CircleCollider(self)
-        super(PlayerCircle, self).__init__(position, radius, material)
+        layer = -2
+        super(PlayerCircle, self).__init__(position, radius, material, layer)
 
     def start(self):
         pass

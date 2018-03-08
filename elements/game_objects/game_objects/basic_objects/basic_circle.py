@@ -5,7 +5,7 @@ from pygame.math import Vector2
 
 class BasicCircle(GameObject):
 
-    def __init__(self, position, radius, material):
+    def __init__(self, position, radius, material, layer):
         """
         Add the circle mash component
         Call the superclass constructor passing basic game_object parameters
@@ -15,7 +15,7 @@ class BasicCircle(GameObject):
         :param color: initial color of the circle
         """
         self.circle_mash = CircleMash(radius, material)
-        super(BasicCircle, self).__init__(position, 0, Vector2(1, 1))
+        super(BasicCircle, self).__init__(position, 0, Vector2(1, 1), layer)
 
     def start(self):
         pass

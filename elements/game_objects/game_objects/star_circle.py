@@ -6,7 +6,8 @@ class StarCircle(BasicCircle):
 
     def __init__(self, position, radius, material):
         self.circle_collider = CircleCollider(self)
-        super(StarCircle, self).__init__(position, radius, material)
+        layer = -1
+        super(StarCircle, self).__init__(position, radius, material, layer)
 
     def start(self):
         pass

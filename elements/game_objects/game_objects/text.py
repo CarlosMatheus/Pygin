@@ -9,4 +9,5 @@ class Text(GameObject):
     def __init__(self, position, message, color, size, font):
         pygame.font.init()
         self.text_mash = TextMash(message, color, size, font)
-        super(Text, self).__init__(position, 0, Vector2(1, 1))
+        layer = 10
+        super(Text, self).__init__(position, 0, Vector2(1, 1), layer)

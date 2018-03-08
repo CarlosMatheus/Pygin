@@ -18,8 +18,9 @@ class Rectangle(BasicRectangle):
         :param height: initial height of the rectangle
         :param color: initial color of the rectangle
         """
+        layer = 1
         self.box_collider = BoxCollider(self)
-        super(Rectangle, self).__init__(position, dimension, material)
+        super(Rectangle, self).__init__(position, dimension, material, layer)
 
     def start(self):
         """

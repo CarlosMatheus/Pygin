@@ -5,7 +5,7 @@ from pygame.math import Vector2
 
 class BasicRectangle(GameObject):
 
-    def __init__(self, position, dimension, material):
+    def __init__(self, position, dimension, material, layer):
         """
         Add the rectangle mash component
         Call the superclass constructor passing basic game_object parameters
@@ -16,4 +16,4 @@ class BasicRectangle(GameObject):
         :param color: initial color of the rectangle
         """
         self.rectangle_mash = RectangleMash(dimension, material)
-        super(BasicRectangle, self).__init__(position, 0, Vector2(1, 1))
+        super(BasicRectangle, self).__init__(position, 0, Vector2(1, 1), layer)
