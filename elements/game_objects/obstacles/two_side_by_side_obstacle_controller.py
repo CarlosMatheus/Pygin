@@ -25,15 +25,15 @@ class TwoSideBySideSimpleObstacleController(GameObject):
                     self.fall(obstacle, index)
 
     def fall(self, obstacle, ind):
-        visible_condition = 0.1*Constants.screen_height<obstacle.transform.position.y and obstacle.transform.position.y<0.35*Constants.screen_height and ind%2 == 1
+        visible_condition = 0.1*Constants.screen_height<obstacle.transform.position.y and obstacle.transform.position.y<0.45*Constants.screen_height and ind%2 == 1
         invisible_condition = 1.0*Constants.screen_height<obstacle.transform.position.y and ind%2 == 0
 
         if visible_condition:
             obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
-                                                  + 5 * self.fall_velocity * Time.delta_time())
-        elif invisible_condition and ind < len(self.game_object_list)-1:
-            obstacle.transform.position.x = self.game_object_list[ind+1].transform.position.x
-            obstacle.transform.position.y = self.game_object_list[ind+1].transform.position.y
+                                                  + 5.0 * self.fall_velocity * Time.delta_time())
+        elif invisible_condition:
+            obstacle.transform.position.x = self.game_object_list[(ind+1)%len(self.game_object_list)].transform.position.x
+            obstacle.transform.position.y = self.game_object_list[(ind+1)%len(self.game_object_list)].transform.position.y
         else:
             obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                         + self.fall_velocity * Time.delta_time())
@@ -54,13 +54,15 @@ class TwoSideBySideSimpleObstacleController(GameObject):
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
 
-        rect2 = Rectangle(Vector2(rect1.transform.position.x, rect1.transform.position.y),
+        rect2_x = rect1.transform.position.x
+
+        if rect2_x == 0:
+            rect2_x = 0.5 * Constants.screen_width
+        else:
+            rect2_x = 0.0
+
+        rect2 = Rectangle(Vector2(rect2_x, rect1.transform.position.y),
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
-
-        if rect2.transform.position.x == 0:
-            rect2.transform.position.x = 0.5 * Constants.screen_width
-        else:
-            rect2.transform.position.x = 0.0
 
         self.game_object_list.extend([rect1, rect2])
