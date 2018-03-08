@@ -8,18 +8,17 @@ class GameObject:
 
     current_running_scene = 0
 
-    def __init__(self, position, rotation, scale):
+    def __init__(self, position, rotation, scale, layer):
         """
         set basics game_objects parameters
-        :param position_x: game_object's x initial position
-        :param position_y: game_object's y initial position
+        :param position.x: game_object's x initial position
+        :param position.y: game_object's y initial position
         :param rotation: game_object's initial rotation in degrees
-        :param scale_x: game_object's x initial scale
-        :param scale_y: game_object's y initial scale
-        :param color: game_object's initial material color
-        :param type: string representing the object type (Circle or Rectangle)
+        :param scale.x: game_object's x initial scale
+        :param scale.y: game_object's y initial scale
+        :param layer: the layer in the order of screen
         """
-        self.transform = Transform(position, rotation, scale)
+        self.transform = Transform(position, rotation, scale, layer)
         self.__instantiate(self)
 
     def start(self):
@@ -68,7 +67,7 @@ class GameObject:
     def destroy(cls, game_object):
         """
         Destroy the game_object, remove it from scene
-        :param game_object: the game_object to be removed
+        :param game_object: the game_object to be removed (Can be a list)
         """
         if isinstance(game_object, list) or isinstance(game_object, tuple):
             for game_obj in game_object:

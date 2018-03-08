@@ -1,6 +1,6 @@
 class Transform:
 
-    def __init__(self, position, rotation, scale):
+    def __init__(self, position, rotation, scale, layer):
         """
         Set the initial parameters
         :param position.x: game_object's x initial position
@@ -8,10 +8,12 @@ class Transform:
         :param rotation: game_object's initial rotation in degrees
         :param scale.x: game_object's x initial scale
         :param scale.y: game_object's y initial scale
+        :param layer: the layer in the order of screen
         """
         self.position = position
         self.rotate = rotation
         self.scale = scale
+        self.layer = layer
 
     def translate(self, new_position):
         """

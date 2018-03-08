@@ -24,7 +24,7 @@ class Scene:
         if Scene.current_running_scene == 0:
             Scene.current_running_scene = self
         for reference in init_game_objects_controllers_reference_list:
-            init_game_objects_list.append(reference(Vector2(0, 0), 0, Vector2(0, 0)))
+            init_game_objects_list.append(reference(Vector2(0, 0), 0, Vector2(0, 0), 0))
         self.should_end_scene = False
 
     def start(self):
@@ -55,8 +55,10 @@ class Scene:
 
     def draw_all_game_objects(self):
         """
-        Run draw method of each game_object of the scene
+        Sort the game_objects list based on layer and then
+        run draw method of each game_object of the scene
         """
+        self.game_objects.sort(key=lambda x: x.transform.layer)
         for game_object in self.game_objects:
             game_object.draw_game_object()
 
