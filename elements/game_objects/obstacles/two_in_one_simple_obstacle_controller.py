@@ -55,5 +55,4 @@ class TwoInOneSimpleObstacleController(GameObject):
                           Material((255, 255, 255)))
 
         self.game_object_list.extend([rect1, rect2])
-        GameObject.instantiate([rect1, rect2])
 

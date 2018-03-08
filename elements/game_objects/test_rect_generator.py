@@ -32,8 +32,8 @@ class TestRectGenerator(GameObject):
         Spawn a random block
         """
         parameters = self.generate_random_parameters()
-        GameObject.instantiate(Rectangle(Vector2(parameters[0], parameters[1]),
-                                         Vector2(parameters[2], parameters[3]), Material(parameters[4])))
+        Rectangle(Vector2(parameters[0], parameters[1]),
+                                         Vector2(parameters[2], parameters[3]), Material(parameters[4]))
 
     def generate_random_parameters(self):
         """

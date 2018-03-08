@@ -1,5 +1,6 @@
 from game_engine.time import Time
 from random import randint as rand
+from pygame.math import Vector2
 from game_engine.game_object import GameObject
 
 #Controllers
@@ -15,13 +16,13 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            SimpleObstacleController(),
-            MiddleRectObstacleController(),
-            TwoInOneSimpleObstacleController(),
-            TwoSideBySideSimpleObstacleController()
+            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0)),
+            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0)),
+            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0)),
+            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0))
         ]
 
-        self.power_up_generators = [StarScoreController()]
+        self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0))]
 
         self.last_generation_time = 1000 * Time.now()
         self.last_power_up_time = 1000 * Time.now()
@@ -41,7 +42,6 @@ class ObstacleControllerWrapper(GameObject):
         for obstacle_generator in self.obstacle_generators:
             game_objs = obstacle_generator.game_object_list
             self.game_object_list.extend(game_objs)
-            GameObject.instantiate(game_objs)
 
         if 1000 * Time.now() - self.last_power_up_time > 5000:
             self.generate_random_power_up()
@@ -49,7 +49,6 @@ class ObstacleControllerWrapper(GameObject):
         for power_up_generator in self.power_up_generators:
             game_objs = obstacle_generator.game_object_list
             self.game_object_list.extend(game_objs)
-            GameObject.instantiate(game_objs)
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()

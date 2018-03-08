@@ -32,4 +32,3 @@ class SimpleObstacleController(GameObject):
                          Vector2(0.5 * Engine.screen_width,0.06 * Engine.screen_height),
                          Material((255, 255, 255)))
         self.game_object_list.append(rect)
-        GameObject.instantiate(rect)

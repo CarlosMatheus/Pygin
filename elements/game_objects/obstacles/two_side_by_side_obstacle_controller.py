@@ -63,4 +63,3 @@ class TwoSideBySideSimpleObstacleController(GameObject):
             rect2.transform.position.x = 0.0
 
         self.game_object_list.extend([rect1, rect2])
-        GameObject.instantiate([rect1, rect2])

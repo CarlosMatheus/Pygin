@@ -1,5 +1,4 @@
 import pygame
-from .engine import Engine
 
 
 class Input:
@@ -52,4 +51,3 @@ class Input:
         call the engine's method to quit
         """
         Engine.end_game()
-

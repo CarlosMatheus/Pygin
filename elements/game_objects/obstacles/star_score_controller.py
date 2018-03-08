@@ -34,6 +34,4 @@ class StarScoreController(GameObject):
 
         star = StarCircle(Vector2(random_pos, - 0.06 * Engine.screen_height),
                           self.radius, Material(Color.yellow))
-        GameObject.instantiate(star)
         self.game_object_list.append(star)
-        GameObject.instantiate(star)

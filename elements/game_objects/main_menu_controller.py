@@ -2,6 +2,7 @@ from game_engine.engine import Engine
 from random import randint as rand
 from game_engine.game_object import GameObject
 from elements.game_objects.game_objects.main_menu_rectangle import Rectangle
+from game_engine.scene import Scene
 from game_engine.game_object import GameObject
 from game_engine.input import Input
 from game_engine.color import Color
@@ -35,7 +36,6 @@ class MainMenuController(GameObject):
             Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Color.white, message_size, font_path),
             Text(Vector2(title_x, title_y), "Balance", Color.white, title_size, font_path)
         ]
-        GameObject.instantiate(self.game_object_list)
 
     def update(self):
         """
@@ -45,15 +45,15 @@ class MainMenuController(GameObject):
         if self.should_spawn():
             self.spawn_block()
         if self.pressed_button():
-            Engine.change_scene(1)
+            Scene.change_scene(1)
 
     def spawn_block(self):
         """
         Spawn a random block
         """
         parameters = self.generate_random_parameters()
-        GameObject.instantiate(Rectangle(Vector2(parameters[0], parameters[1]),
-                                         Vector2(parameters[2], parameters[3]), Material(parameters[4])))
+        Rectangle(Vector2(parameters[0], parameters[1]),
+                                         Vector2(parameters[2], parameters[3]), Material(parameters[4]))
 
     def generate_random_parameters(self):
         """

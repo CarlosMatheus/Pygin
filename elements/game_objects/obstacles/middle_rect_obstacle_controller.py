@@ -32,4 +32,3 @@ class MiddleRectObstacleController(GameObject):
                          Vector2(obstacle_width, obstacle_height),
                          Material((255, 255, 255)))
         self.game_object_list.append(rect)
-        GameObject.instantiate(rect)

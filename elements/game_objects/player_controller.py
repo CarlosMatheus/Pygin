@@ -24,7 +24,6 @@ class PlayerController(GameObject):
             PlayerCircle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
             PlayerCircle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255)))
         ]
-        GameObject.instantiate(self.game_object_list)
 
     def update(self):
         if Input.is_pressing_left:
