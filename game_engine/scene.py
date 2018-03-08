@@ -72,7 +72,6 @@ class Scene:
             self.draw_all_game_objects()
             pygame.display.flip()
             Time.end_of_loop()
-            self.debug_objs()
         self.exit_scene()
 
     def add_game_object(self, game_object):
