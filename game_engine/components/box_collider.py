@@ -4,13 +4,13 @@ from pygame.math import Vector2
 
 class BoxCollider(Collider):
 
-    def __init__(self, game_obj_ref):
+    def __init__(self, game_object):
         """
         initiate collider
         :param rectangle_obj_ref: The reference to the object that contains the collider
         """
+        super(BoxCollider, self).__init__(game_object)
         Collider.add_collider(self)
-        self.game_obj_ref = game_obj_ref
 
     def is_point_inside(self, point):
         """
@@ -25,25 +25,25 @@ class BoxCollider(Collider):
         """
         :return: left side position x
         """
-        return self.game_obj_ref.transform.position.x
+        return self.transform.position.x
 
     def get_right_side(self):
         """
         :return: right side position x
         """
-        return self.game_obj_ref.transform.position.x + self.game_obj_ref.rectangle_mash.dimension.x
+        return self.transform.position.x + self.game_object.rectangle_mash.dimension.x
 
     def get_up_side(self):
         """
         :return: up side position y
         """
-        return self.game_obj_ref.transform.position.y
+        return self.transform.position.y
 
     def get_down_side(self):
         """
         :return: down side position y
         """
-        return self.game_obj_ref.transform.position.y + self.game_obj_ref.rectangle_mash.dimension.y
+        return self.transform.position.y + self.game_object.rectangle_mash.dimension.y
 
     def get_vertexes(self):
         """

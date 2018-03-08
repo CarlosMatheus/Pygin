@@ -1,6 +1,9 @@
-class Transform:
+from game_engine.component import Component
 
-    def __init__(self, position, rotation, scale, layer):
+
+class Transform(Component):
+
+    def __init__(self, game_object, position, rotation, scale, layer):
         """
         Set the initial parameters
         :param position.x: game_object's x initial position
@@ -10,6 +13,7 @@ class Transform:
         :param scale.y: game_object's y initial scale
         :param layer: the layer in the order of screen
         """
+        super(Transform, self).__init__(game_object)
         self.position = position
         self.rotate = rotation
         self.scale = scale

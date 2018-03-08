@@ -1,4 +1,7 @@
-class Collider:
+from game_engine.component import Component
+
+
+class Collider(Component):
 
     collider_list = []
 
