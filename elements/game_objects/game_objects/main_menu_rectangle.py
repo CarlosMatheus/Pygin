@@ -1,5 +1,5 @@
 from game_engine.components.box_collider import BoxCollider
-from elements.normal_behaviors.game_objects.basic_objects.basic_rectangle import BasicRectangle
+from elements.game_objects.game_objects.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.game_object import GameObject
 from game_engine.engine import Engine
 from game_engine.time import Time

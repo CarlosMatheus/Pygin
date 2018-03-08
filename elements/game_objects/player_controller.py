@@ -1,16 +1,16 @@
 from game_engine.input import Input
 from game_engine.time import Time
-from game_engine.normal_behavior import NormalBehavior
-from elements.normal_behaviors.game_objects.player_circle import PlayerCircle
+from game_engine.game_object import GameObject
+from elements.game_objects.game_objects.player_circle import PlayerCircle
 from pygame.math import Vector2
 from game_engine.components.material import Material
-from elements.normal_behaviors.game_objects.text import Text
+from elements.game_objects.game_objects.text import Text
 from game_engine.game_object import GameObject
 
 import math
 
 
-class PlayerController(NormalBehavior):
+class PlayerController(GameObject):
 
     def start(self):
 

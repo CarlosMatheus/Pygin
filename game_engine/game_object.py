@@ -1,11 +1,10 @@
-from .normal_behavior import NormalBehavior
 from .draw import Draw
 from .components.transform import Transform
 from .engine import Engine
 from pygame.math import Vector2
 
 
-class GameObject(NormalBehavior):
+class GameObject:
 
     current_running_scene = 0
 
@@ -21,6 +20,19 @@ class GameObject(NormalBehavior):
         :param type: string representing the object type (Circle or Rectangle)
         """
         self.transform = Transform(position, rotation, scale)
+        self.__instantiate(self)
+
+    def start(self):
+        """
+        Will be called just once when the GameObject is instantiate on scene
+        """
+        pass
+
+    def update(self):
+        """
+        Will be call every frame
+        """
+        pass
 
     def draw_game_object(self):
         """
@@ -38,18 +50,16 @@ class GameObject(NormalBehavior):
         elif hasattr(self, 'text_mash'):
             Draw.text(self.transform.position.x, self.transform.position.y, self.text_mash.message,
                       self.text_mash.color, self.text_mash.size, self.text_mash.font)
+        else:
+            pass
 
     @classmethod
-    def instantiate(cls, game_object):
+    def __instantiate(cls, game_object):
         """
         Instantiate a new game_object on scene
         :param game_object: game_object to be instantiated
         """
-        if isinstance(game_object, list) or isinstance(game_object, tuple):
-            for game_obj in game_object:
-                Engine.current_running_scene.add_game_object(game_obj)
-        else:
-            Engine.current_running_scene.add_game_object(game_object)
+        Engine.current_running_scene.add_game_object(game_object)
 
     @classmethod
     def destroy(cls, game_object):

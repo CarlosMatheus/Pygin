@@ -1,5 +1,5 @@
-from elements.normal_behaviors.game_objects.basic_objects.basic_circle import BasicCircle
-from elements.normal_behaviors.game_objects.basic_objects.basic_rectangle import BasicRectangle
+from elements.game_objects.game_objects.basic_objects.basic_circle import BasicCircle
+from elements.game_objects.game_objects.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.game_object import GameObject
 from game_engine.engine import Engine
 from game_engine.components.circle_collider import CircleCollider

@@ -1,16 +1,15 @@
 from pygame.math import Vector2
 from game_engine.time import Time
 from game_engine.engine import Engine
-from game_engine.normal_behavior import NormalBehavior
 from game_engine.game_object import GameObject
 from game_engine.components.material import Material
-from elements.normal_behaviors.game_objects.star_circle import StarCircle
+from elements.game_objects.game_objects.star_circle import StarCircle
 from game_engine.game_object import GameObject
 from game_engine.color import Color
-from elements.normal_behaviors.game_objects.player_circle import PlayerCircle
+from elements.game_objects.game_objects.player_circle import PlayerCircle
 from random import uniform as randfloat
 
-class StarScoreController(NormalBehavior):
+class StarScoreController(GameObject):
 
     def start(self):
         self.fall_velocity = 250
