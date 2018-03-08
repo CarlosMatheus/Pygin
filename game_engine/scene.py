@@ -58,7 +58,7 @@ class Scene:
         Sort the game_objects list based on layer and then
         run draw method of each game_object of the scene
         """
-        self.game_objects.sort(key=lambda x: x.transform.layer)
+        self.game_objects.sort(key=lambda game_object: game_object.transform.layer)
         for game_object in self.game_objects:
             game_object.draw_game_object()
 
@@ -73,6 +73,7 @@ class Scene:
             self.run_all_updates()
             self.draw_all_game_objects()
             pygame.display.flip()
+            self.run_debugs()
             Time.end_of_loop()
         self.exit_scene()
 
@@ -108,9 +109,19 @@ class Scene:
         for event in self.frame_events:
             print(event)
 
+    def run_debugs(self):
+        """
+        DEBUG: Run debugs in scene
+        They Are commented by default
+        Only uncomment them to debug
+        """
+        # self.debug_objs()
+        # self.debug_event()
+        # self.debug_fps()
+
     def debug_fps(self):
         """
-        DEBUG print the game fps each frame
+        DEBUG: print the game fps each frame
         """
         print(Time.clock.get_fps())
 
