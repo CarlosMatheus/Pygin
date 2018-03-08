@@ -21,7 +21,7 @@ class MainMenuController(GameObject):
         will be called when the object is instantiate on scene
         """
         self.time = Time.now()
-        self.period = 1
+        self.period = 0.9
 
         font_path = "assets/fonts/neuropolxrg.ttf"
 
