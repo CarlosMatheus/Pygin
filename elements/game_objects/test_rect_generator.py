@@ -43,7 +43,7 @@ class TestRectGenerator(GameObject):
         width = rand(20, 100)
         height = rand(10, 90)
         color = Color.random_color()
-        position_x = rand(10, Engine.screen_width - width - 10)
+        position_x = rand(10, Constants.screen_width - width - 10)
         position_y = -height
         return position_x, position_y, width, height, color
 

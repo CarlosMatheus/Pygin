@@ -1,9 +1,9 @@
 from game_engine.components.box_collider import BoxCollider
 from elements.game_objects.game_objects.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.game_object import GameObject
-from game_engine.engine import Engine
 from game_engine.time import Time
 from pygame.math import Vector2
+from game_engine.components.constants import Constants
 
 
 class Rectangle(BasicRectangle):
@@ -39,7 +39,7 @@ class Rectangle(BasicRectangle):
 
 
     def is_out_of_screen(self):
-        return self.transform.position.y > Engine.screen_height
+        return self.transform.position.y > Constants.screen_height
 
 
     def fall(self):

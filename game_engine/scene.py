@@ -31,10 +31,10 @@ class Scene:
         """
         Run methods to set the scene up
         """
+        Draw.update_background()
         self.should_end_scene = False
         self.game_objects = self.init_game_objects_list
         self.run_events()
-        Draw.update_background()
         self.run_all_starts()
         pygame.display.flip()
         Time.end_of_start()
@@ -66,8 +66,8 @@ class Scene:
         The scene occurs while in the loop
         """
         while not self.should_end_scene:
-            self.run_events()
             Draw.update_background()
+            self.run_events()
             self.run_all_updates()
             self.draw_all_game_objects()
             pygame.display.flip()

@@ -6,6 +6,7 @@ from pygame.math import Vector2
 from game_engine.components.material import Material
 from elements.game_objects.game_objects.text import Text
 from game_engine.game_object import GameObject
+from game_engine.components.constants import Constants
 
 import math
 
@@ -14,15 +15,12 @@ class PlayerController(GameObject):
 
     def start(self):
 
-        self.circCenter_x = 180
-        self.circCenter_y = 520
-        self.circRadius = 80
         self.angle = 0.0
         self.angularSpeed = 5.0
 
         self.game_object_list = [
-            PlayerCircle(Vector2(self.circCenter_x + self.circRadius, self.circCenter_y), 15, Material((253, 102, 0))),
-            PlayerCircle(Vector2(self.circCenter_x - self.circRadius, self.circCenter_y), 15, Material((0, 120, 255)))
+            PlayerCircle(Vector2(Constants.circCenter_x + Constants.circRadius, Constants.circCenter_y), 15, Material((253, 102, 0))),
+            PlayerCircle(Vector2(Constants.circCenter_x - Constants.circRadius, Constants.circCenter_y), 15, Material((0, 120, 255)))
         ]
 
     def update(self):
@@ -41,9 +39,9 @@ class PlayerController(GameObject):
 
     def update_circles(self):
         self.game_object_list[0].transform.\
-            translate(Vector2(self.circCenter_x + self.circRadius * math.cos(self.angle),
-                              self.circCenter_y + self.circRadius * math.sin(self.angle)))
+            translate(Vector2(Constants.circCenter_x + Constants.circRadius * math.cos(self.angle),
+                              Constants.circCenter_y + Constants.circRadius * math.sin(self.angle)))
 
         self.game_object_list[1].transform.\
-            translate(Vector2(self.circCenter_x + self.circRadius * math.cos(self.angle + math.pi),
-                              self.circCenter_y + self.circRadius * math.sin(self.angle + math.pi)))
+            translate(Vector2(Constants.circCenter_x + Constants.circRadius * math.cos(self.angle + math.pi),
+                              Constants.circCenter_y + Constants.circRadius * math.sin(self.angle + math.pi)))

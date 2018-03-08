@@ -3,6 +3,7 @@ from game_engine.time import Time
 from game_engine.engine import Engine
 from game_engine.game_object import GameObject
 from elements.game_objects.game_objects.rectangle import Rectangle
+from game_engine.components.constants import Constants
 from game_engine.components.material import Material
 
 class MiddleRectObstacleController(GameObject):
@@ -14,7 +15,7 @@ class MiddleRectObstacleController(GameObject):
     def update(self):
 
         for obstacle in self.game_object_list:
-            if obstacle.transform.position.y > Engine.screen_height:
+            if obstacle.transform.position.y > Constants.screen_height:
                 self.game_object_list.remove(obstacle)
                 obstacle.destroy(obstacle)
                 GameObject.destroy(obstacle)
@@ -26,9 +27,9 @@ class MiddleRectObstacleController(GameObject):
                                               + self.fall_velocity * Time.delta_time())
 
     def generate_obstacle(self):
-        obstacle_width = 0.3 * Engine.screen_width
-        obstacle_height = 0.06 * Engine.screen_height
-        rect = Rectangle(Vector2(0.5 * Engine.screen_width - 0.5 * obstacle_width, - obstacle_height),
+        obstacle_width = 0.3 * Constants.screen_width
+        obstacle_height = 0.06 * Constants.screen_height
+        rect = Rectangle(Vector2(0.5 * Constants.screen_width - 0.5 * obstacle_width, - obstacle_height),
                          Vector2(obstacle_width, obstacle_height),
                          Material((255, 255, 255)))
         self.game_object_list.append(rect)
