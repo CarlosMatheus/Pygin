@@ -1,7 +1,7 @@
-from game_engine.component import Component
+from game_engine.mash import Mash
 
 
-class PolygonMash(Component):
+class PolygonMash(Mash):
 
     def __init__(self, game_object, point_list, material):
         super(PolygonMash, self).__init__(game_object)

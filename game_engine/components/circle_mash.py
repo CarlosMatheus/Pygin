@@ -1,7 +1,7 @@
-from game_engine.component import Component
+from game_engine.mash import Mash
 
 
-class CircleMash(Component):
+class CircleMash(Mash):
 
     def __init__(self, game_object, radius, material):
         super(CircleMash, self).__init__(game_object)

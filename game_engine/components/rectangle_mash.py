@@ -1,7 +1,7 @@
-from game_engine.component import Component
+from game_engine.mash import Mash
 
 
-class RectangleMash(Component):
+class RectangleMash(Mash):
 
     def __init__(self, game_object, dimension, material):
         super(RectangleMash, self).__init__(game_object)
