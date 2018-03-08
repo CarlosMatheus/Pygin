@@ -18,7 +18,9 @@ class GameObject:
         :param scale.y: game_object's y initial scale
         :param layer: the layer in the order of screen
         """
-        self.transform = Transform(position, rotation, scale, layer)
+        self.transform = 0
+        self.transform = Transform(self, position, rotation, scale, layer)
+        self.transform.transform = self.transform
         self.__instantiate(self)
 
     def start(self):
