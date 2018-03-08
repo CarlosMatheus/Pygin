@@ -18,7 +18,7 @@ class Star(GameObject):
         point_list = self.get_points()
 
         self.polygon_mash = PolygonMash(point_list, material)
-        super(Star, self).__init__(Vector2(0, 0), 0, Vector2(1, 1))
+        super(Star, self).__init__(Vector2(0, 0), 0, Vector2(1, 1), 10)
 
     def get_points(self):
         point_list = []
