@@ -1,4 +1,6 @@
 from game_engine.components.polygon_mash import PolygonMash
+from game_engine.components.circle_mash import CircleMash
+from game_engine.components.circle_collider import CircleCollider
 from game_engine.game_object import GameObject
 from pygame.math import Vector2
 import math
@@ -10,29 +12,24 @@ class Star(GameObject):
         """
         Add the polygon mash component
         Call the superclass constructor passing basic game_object parameters
-        :param point_list:
-        :param color:
         """
-        self.center_position = center_position
-        self.size = size
-        self.material = material
-        point_list = self.get_points()
-        super(Star, self).__init__(Vector2(0, 0), 0, Vector2(1, 1), 2)
-        self.polygon_mash = PolygonMash(self, point_list, material)
+        super(Star, self).__init__(center_position, 0, Vector2(1, 1), 2)
+        self.circle_collider = CircleCollider(self)
+        self.circle_mash = CircleMash(self, size, material)
+        self.polygon_mash = PolygonMash(self, self.get_points(), material)
 
     def get_points(self):
         point_list = []
         angle = math.pi / 2 + math.pi
         for i in range(5):
-            point_list.append(Vector2(self.center_position.x + self.size * math.cos(angle),
-                                      self.center_position.y + self.size * math.sin(angle)))
+            point_list.append(Vector2(self.transform.position.x + self.circle_collider.get_radius() * math.cos(angle),
+                                      self.transform.position.y + self.circle_collider.get_radius() * math.sin(angle)))
             angle = angle + 36 * math.pi / 180
-            point_list.append(Vector2(self.center_position.x + self.size/2 * math.cos(angle),
-                                      self.center_position.y + self.size/2 * math.sin(angle)))
+            point_list.append(Vector2(self.transform.position.x + self.circle_collider.get_radius()/2 * math.cos(angle),
+                                      self.transform.position.y + self.circle_collider.get_radius()/2 * math.sin(angle)))
             angle = angle + 36 * math.pi / 180
         return point_list
 
     def fall(self, distance):
-        self.center_position.y = self.center_position.y + distance
-        point_list = self.get_points()
-        self.polygon_mash = PolygonMash(self, point_list, self.material)
+        self.transform.translate(Vector2(self.transform.position.x, self.transform.position.y + distance))
+        self.polygon_mash.update_point_list(self.get_points())
