@@ -21,7 +21,7 @@ class Transform(Component):
 
     def translate(self, new_position):
         """
-        Set the new position of the game_object
+        Set the new position of the game_object (Vector2)
         :param new_position: where the game_object will go to
         """
         self.position = new_position

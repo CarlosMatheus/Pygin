@@ -7,3 +7,6 @@ class PolygonMash(Mash):
         super(PolygonMash, self).__init__(game_object)
         self.point_list = point_list
         self.material = material
+
+    def update_point_list(self, point_list):
+        self.point_list = point_list
