@@ -1,9 +1,9 @@
-from game_engine.mash import Mash
+from game_engine.mesh import Mesh
 
 
-class CircleMash(Mash):
+class CircleMesh(Mesh):
 
     def __init__(self, game_object, radius, material):
-        super(CircleMash, self).__init__(game_object)
+        super(CircleMesh, self).__init__(game_object)
         self.radius = radius
         self.material = material

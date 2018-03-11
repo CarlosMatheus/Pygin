@@ -10,7 +10,7 @@ class Rectangle(BasicRectangle):
 
     def __init__(self, position, dimension, material):
         """
-        Add the rectangle mash component
+        Add the rectangle mesh component
         Call the superclass constructor passing basic game_object parameters
         :param position.x: initial position x of the rectangle
         :param position.y: initial position y of the rectangle

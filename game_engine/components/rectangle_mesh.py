@@ -1,9 +1,9 @@
-from game_engine.mash import Mash
+from game_engine.mesh import Mesh
 
 
-class RectangleMash(Mash):
+class RectangleMesh(Mesh):
 
     def __init__(self, game_object, dimension, material):
-        super(RectangleMash, self).__init__(game_object)
+        super(RectangleMesh, self).__init__(game_object)
         self.dimension = dimension
         self.material = material

@@ -31,7 +31,7 @@ class BoxCollider(Collider):
         """
         :return: right side position x
         """
-        return self.transform.position.x + self.game_object.rectangle_mash.dimension.x
+        return self.transform.position.x + self.game_object.rectangle_mesh.dimension.x
 
     def get_up_side(self):
         """
@@ -43,7 +43,7 @@ class BoxCollider(Collider):
         """
         :return: down side position y
         """
-        return self.transform.position.y + self.game_object.rectangle_mash.dimension.y
+        return self.transform.position.y + self.game_object.rectangle_mesh.dimension.y
 
     def get_vertexes(self):
         """

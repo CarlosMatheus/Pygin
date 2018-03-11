@@ -1,5 +1,5 @@
-from game_engine.components.polygon_mash import PolygonMash
-from game_engine.components.circle_mash import CircleMash
+from game_engine.components.polygon_mesh import PolygonMesh
+from game_engine.components.circle_mesh import CircleMesh
 from game_engine.components.circle_collider import CircleCollider
 from game_engine.game_object import GameObject
 from pygame.math import Vector2
@@ -10,13 +10,13 @@ class Star(GameObject):
 
     def __init__(self, center_position, size, material):
         """
-        Add the polygon mash component
+        Add the polygon mesh component
         Call the superclass constructor passing basic game_object parameters
         """
         super(Star, self).__init__(center_position, 0, Vector2(1, 1), 2)
         self.circle_collider = CircleCollider(self)
-        self.circle_mash = CircleMash(self, size, material)
-        self.polygon_mash = PolygonMash(self, self.get_points(), material)
+        self.circle_mesh = CircleMesh(self, size, material)
+        self.polygon_mesh = PolygonMesh(self, self.get_points(), material)
 
     def get_points(self):
         point_list = []
@@ -32,4 +32,4 @@ class Star(GameObject):
 
     def fall(self, distance):
         self.transform.translate(Vector2(self.transform.position.x, self.transform.position.y + distance))
-        self.polygon_mash.update_point_list(self.get_points())
+        self.polygon_mesh.update_point_list(self.get_points())

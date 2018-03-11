@@ -26,4 +26,4 @@ class ScoreController(GameObject):
     def update(self):
         self.score = self.score + 1 / self.step_delta
 
-        self.game_object_list[0].text_mash.message = str(int(self.score))
+        self.game_object_list[0].text_mesh.message = str(int(self.score))

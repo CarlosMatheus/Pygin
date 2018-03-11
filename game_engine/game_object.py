@@ -39,21 +39,21 @@ class GameObject:
         """
         Draw the game_object on screen
         """
-        if hasattr(self, 'rectangle_mash'):
+        if hasattr(self, 'rectangle_mesh'):
             Draw.rect(Vector2(self.transform.position.x, self.transform.position.y),
-                      Vector2(self.transform.scale.x * self.rectangle_mash.dimension.x,
-                              self.transform.scale.y * self.rectangle_mash.dimension.y),
-                      self.rectangle_mash.material.color)
+                      Vector2(self.transform.scale.x * self.rectangle_mesh.dimension.x,
+                              self.transform.scale.y * self.rectangle_mesh.dimension.y),
+                      self.rectangle_mesh.material.color)
 
-        elif hasattr(self, 'polygon_mash'):
-            Draw.polygon(self.polygon_mash.material.color, self.get_points())
+        elif hasattr(self, 'polygon_mesh'):
+            Draw.polygon(self.polygon_mesh.material.color, self.get_points())
 
-        elif hasattr(self, 'circle_mash'):
-            Draw.circle(self.transform.position, self.circle_mash.radius, self.circle_mash.material.color)
+        elif hasattr(self, 'circle_mesh'):
+            Draw.circle(self.transform.position, self.circle_mesh.radius, self.circle_mesh.material.color)
 
-        elif hasattr(self, 'text_mash'):
-            Draw.text(self.transform.position.x, self.transform.position.y, self.text_mash.message,
-                      self.text_mash.color, self.text_mash.size, self.text_mash.font)
+        elif hasattr(self, 'text_mesh'):
+            Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.message,
+                      self.text_mesh.color, self.text_mesh.size, self.text_mesh.font)
         else:
             pass
 

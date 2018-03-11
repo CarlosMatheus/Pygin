@@ -31,7 +31,7 @@ class CircleCollider(Collider):
         """
         :return: Get the radius of the circle
         """
-        return self.game_object.circle_mash.radius
+        return self.game_object.circle_mesh.radius
 
     def get_main_points(self):
         """
