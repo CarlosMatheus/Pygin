@@ -6,10 +6,10 @@ from elements.game_objects.game_objects.rectangle import Rectangle
 from game_engine.components.constants import Constants
 from elements.game_objects.material import Material
 
-class MiddleRectObstacleController(GameObject):
+class RectTranslateXObstacleController(GameObject):
 
     def start(self):
-        self.fall_velocity = 550
+        self.fall_velocity = 350
         self.game_object_list = []
 
     def update(self):
