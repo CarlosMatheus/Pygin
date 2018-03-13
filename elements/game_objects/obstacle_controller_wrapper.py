@@ -17,10 +17,10 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            # SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 

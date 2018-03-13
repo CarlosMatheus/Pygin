@@ -10,8 +10,8 @@ from random import randint
 class RectTranslateXObstacleController(GameObject):
 
     def start(self):
-        self.fall_velocity = 300
-        self.translate_velocity = 300
+        self.fall_velocity = 400
+        self.translate_velocity = 500
         self.game_object_list = []
 
     def update(self):
@@ -29,21 +29,21 @@ class RectTranslateXObstacleController(GameObject):
         new_x = obstacle.transform.position.x + self.translate_velocity \
                 * Time.delta_time() * obstacle.vel
 
-        if new_x.__abs__() > Constants.screen_width - obstacle.rectangle_mesh.dimension.x/2 \
+        if new_x > Constants.screen_width - obstacle.rectangle_mesh.dimension.x/2 \
                 or new_x < -obstacle.rectangle_mesh.dimension.x/2:
             obstacle.vel *= -1
         obstacle.transform.position = Vector2(new_x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
 
     def generate_obstacle(self):
-        obstacle_width = 0.25 * Constants.screen_width
-        obstacle_height = 0.06 * Constants.screen_height
+        obstacle_size = 0.05 * Constants.screen_height
+        # obstacle_width = 0.25 * Constants.screen_width
 
-        random_pos = int(randfloat(Constants.screen_width - obstacle_width / 2-1,
-                                   -obstacle_width / 2+1))
+        random_pos = int(randfloat(Constants.screen_width - obstacle_size / 2-1,
+                                   -obstacle_size / 2+1))
 
-        rect = Rectangle(Vector2(random_pos, - obstacle_height),
-                         Vector2(obstacle_width, obstacle_height),
+        rect = Rectangle(Vector2(random_pos, - obstacle_size),
+                         Vector2(obstacle_size, obstacle_size),
                          Material((255, 255, 255)))
 
         direction = randint(0, 1)
