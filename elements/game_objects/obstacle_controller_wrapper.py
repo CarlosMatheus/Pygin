@@ -6,6 +6,7 @@ from game_engine.game_object import GameObject
 #Controllers
 from elements.game_objects.obstacles.simple_obstacle_controller import SimpleObstacleController
 from elements.game_objects.obstacles.middle_rect_obstacle_controller import MiddleRectObstacleController
+from elements.game_objects.obstacles.rect_translate_x_obstacle_cotroller import RectTranslateXObstacleController
 from elements.game_objects.obstacles.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 from elements.game_objects.obstacles.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
 from elements.game_objects.obstacles.star_score_controller import StarScoreController
@@ -16,10 +17,11 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            # SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
         self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0), 0)]

@@ -1,13 +1,9 @@
 from pygame.math import Vector2
 from elements.game_objects.game_objects.star import Star
 from game_engine.time import Time
-from game_engine.engine import Engine
-from game_engine.game_object import GameObject
 from elements.game_objects.material import Material
-from elements.game_objects.game_objects.star_circle import StarCircle
 from game_engine.game_object import GameObject
 from game_engine.color import Color
-from elements.game_objects.game_objects.player_circle import PlayerCircle
 from random import uniform as randfloat
 from game_engine.components.constants import Constants
 

@@ -1,15 +1,17 @@
 from pygame.math import Vector2
 from game_engine.time import Time
-from game_engine.engine import Engine
 from game_engine.game_object import GameObject
 from elements.game_objects.game_objects.rectangle import Rectangle
 from game_engine.components.constants import Constants
 from elements.game_objects.material import Material
+from random import uniform as randfloat
+from random import randint
 
 class RectTranslateXObstacleController(GameObject):
 
     def start(self):
-        self.fall_velocity = 350
+        self.fall_velocity = 300
+        self.translate_velocity = 300
         self.game_object_list = []
 
     def update(self):
@@ -23,13 +25,29 @@ class RectTranslateXObstacleController(GameObject):
                 self.fall(obstacle)
 
     def fall(self, obstacle):
-        obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
+
+        new_x = obstacle.transform.position.x + self.translate_velocity \
+                * Time.delta_time() * obstacle.vel
+
+        if new_x.__abs__() > Constants.screen_width - obstacle.rectangle_mesh.dimension.x/2 \
+                or new_x < -obstacle.rectangle_mesh.dimension.x/2:
+            obstacle.vel *= -1
+        obstacle.transform.position = Vector2(new_x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
 
     def generate_obstacle(self):
-        obstacle_width = 0.3 * Constants.screen_width
+        obstacle_width = 0.25 * Constants.screen_width
         obstacle_height = 0.06 * Constants.screen_height
-        rect = Rectangle(Vector2(0.5 * Constants.screen_width - 0.5 * obstacle_width, - obstacle_height),
+
+        random_pos = int(randfloat(Constants.screen_width - obstacle_width / 2-1,
+                                   -obstacle_width / 2+1))
+
+        rect = Rectangle(Vector2(random_pos, - obstacle_height),
                          Vector2(obstacle_width, obstacle_height),
                          Material((255, 255, 255)))
+
+        direction = randint(0, 1)
+        if direction == 0:
+            direction = -1
+        rect.vel = direction  # Checks if going left or right. Can be 1 for right or -1 for left
         self.game_object_list.append(rect)
