@@ -1,5 +1,6 @@
 from elements.scenes.scenes_list.main_scene import MainScene
 from elements.scenes.scenes_list.main_menu import MainMenu
+from elements.scenes.scenes_list.retry_scene import RetryScene
 
 
 class ScenesController:
@@ -9,4 +10,4 @@ class ScenesController:
         """
         :return: the scene list with the references to the scenes classes
         """
-        return [MainMenu, MainScene]
+        return [MainMenu, MainScene, RetryScene]
