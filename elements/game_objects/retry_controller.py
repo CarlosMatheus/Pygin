@@ -21,7 +21,7 @@ class RetryController(GameObject):
         will be called when the object is instantiate on scene
         """
         self.time = Time.now()
-        self.period = 0.9
+        self.period = 1.5
 
         font_path = "assets/fonts/neuropolxrg.ttf"
 
