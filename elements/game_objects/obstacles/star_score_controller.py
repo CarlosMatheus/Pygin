@@ -35,6 +35,6 @@ class StarScoreController(GameObject):
                                    Constants.screen_width -
                                    (self.size / 2 + Constants.circCenter_x - Constants.circRadius)))
 
-        star = Star(Vector2(random_pos, 100), self.size,
+        star = Star(Vector2(random_pos, -self.size), self.size,
                     Material(Color.yellow))
         self.game_object_list.append(star)

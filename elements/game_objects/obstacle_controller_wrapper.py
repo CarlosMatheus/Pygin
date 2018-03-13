@@ -43,7 +43,7 @@ class ObstacleControllerWrapper(GameObject):
             game_objs = obstacle_generator.game_object_list
             self.game_object_list.extend(game_objs)
 
-        if 1000 * Time.now() - self.last_power_up_time > 5000:
+        if 1000 * Time.now() - self.last_power_up_time > 4000:
             self.generate_random_power_up()
 
         for power_up_generator in self.power_up_generators:

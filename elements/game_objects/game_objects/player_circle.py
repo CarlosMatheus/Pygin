@@ -20,6 +20,6 @@ class PlayerCircle(BasicCircle):
         (collided, game_obj) = self.circle_collider.on_collision()
         if collided:
             if issubclass(type(game_obj), BasicRectangle):
-                Scene.change_scene(1)
+                Scene.change_scene(0)
             elif issubclass(type(game_obj), Star):
                 GameObject.destroy(game_obj)
