@@ -9,7 +9,7 @@ from elements.game_objects.material import Material
 class MiddleRectObstacleController(GameObject):
 
     def start(self):
-        self.fall_velocity = 550
+        self.fall_velocity = 600
         self.game_object_list = []
 
     def update(self):
