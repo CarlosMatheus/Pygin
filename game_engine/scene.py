@@ -10,6 +10,7 @@ class Scene:
 
     current_running_scene_index = 0
     current_running_scene = 0
+    changing_scene = True
     scenes_list = []
 
     def __init__(self, init_game_objects_controllers_reference_list):
@@ -17,6 +18,7 @@ class Scene:
         Set object's variables to start a new scene
         :param init_game_objects_controllers_reference_list: list of all game_objects of the scene
         """
+        Scene.changing_scene = True
         init_game_objects_list = []
         self.init_game_objects_list = init_game_objects_list
         self.game_objects = []
@@ -26,6 +28,7 @@ class Scene:
         for reference in init_game_objects_controllers_reference_list:
             init_game_objects_list.append(reference(Vector2(0, 0), 0, Vector2(0, 0), 0))
         self.should_end_scene = False
+        Scene.changing_scene = False
 
     def start(self):
         """
@@ -83,7 +86,9 @@ class Scene:
         :param game_object: new game_object to add to scene
         """
         self.game_objects.append(game_object)
-        game_object.start()
+        if not Scene.changing_scene:
+            game_object.awake()
+            game_object.start()
 
     def remove_game_object(self, game_object):
         """
@@ -115,7 +120,8 @@ class Scene:
         They Are commented by default
         Only uncomment them to debug
         """
-        # self.debug_objs()
+        # self.debug_objs_len()
+        # self.debug_objs_list()
         # self.debug_event()
         # self.debug_fps()
 
@@ -125,7 +131,16 @@ class Scene:
         """
         print(Time.clock.get_fps())
 
-    def debug_objs(self):
+    def debug_objs_list(self):
+        """
+        DEBUG print the game_object list each frame
+        """
+        object_list = []
+        for game_object in self.game_objects:
+            object_list.append(self.get_type_str(game_object))
+        print(object_list)
+
+    def debug_objs_len(self):
         """
         DEBUG print the number of game_object each frame
         """
@@ -143,6 +158,7 @@ class Scene:
         """
         self.game_objects = []
         Collider.collider_list = []
+        Scene.current_running_scene = Scene.scenes_list[Scene.current_running_scene_index]()
         Scene.start_next_scene()
 
     @classmethod
@@ -163,7 +179,6 @@ class Scene:
         """
         cls.current_running_scene.end_scene()
         cls.current_running_scene_index = scene_index
-        cls.current_running_scene = cls.scenes_list[scene_index]()
 
     @classmethod
     def start_next_scene(cls):
