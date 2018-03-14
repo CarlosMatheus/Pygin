@@ -38,9 +38,17 @@ class Scene:
         self.should_end_scene = False
         self.game_objects = self.init_game_objects_list
         self.run_events()
+        self.run_all_awake()
         self.run_all_starts()
         pygame.display.flip()
         Time.end_of_start()
+
+    def run_all_awake(self):
+        """
+        Run the awake method of each game_object
+        """
+        for game_object in self.game_objects:
+            game_object.awake()
 
     def run_all_starts(self):
         """
@@ -98,6 +106,38 @@ class Scene:
         if game_object in self.game_objects:
             self.game_objects.remove(game_object)
             Collider.remove(game_object)
+
+    def find_game_object_by_type(self, type_of_game_obj):
+        """
+        Return a list with all game object in the current scene that
+        is instance of the class type_of_game_obj
+        :param type_of_game_obj: the name of the class of the game object that you wat to find
+        :return: a list of game_objects of that type
+        """
+        return_list = []
+        for game_object in self.game_objects:
+            if self.get_type_str(game_object) == type_of_game_obj:
+                return_list.append(game_object)
+        print(return_list)
+        return return_list
+
+    def get_type_str(self, object):
+        strings = str(type(object))[::-1].split(".")[0][::-1]
+        type_string = strings.split("'")[0]
+        return type_string
+
+    def find_game_object_by_tag(self, tag):
+        """
+        Return a list with all game object in the current scene that
+        has a tag string equals to the tag you want
+        :param tag: the tag of the game_objects you want
+        :return: a list with the game object with that tag
+        """
+        return_list = []
+        for game_object in self.game_objects:
+            if game_object.tag == tag:
+                return_list.append(game_object)
+        return return_list
 
     def run_events(self):
         """
