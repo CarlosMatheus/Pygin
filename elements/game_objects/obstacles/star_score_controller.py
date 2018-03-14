@@ -30,6 +30,9 @@ class StarScoreController(GameObject):
     def fall(self, obstacle):
         obstacle.fall(self.fall_velocity * Time.delta_time())
 
+    def get_star(self):
+        print("Point!")
+
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,
                                    Constants.screen_width -
