@@ -118,7 +118,6 @@ class Scene:
         for game_object in self.game_objects:
             if self.get_type_str(game_object) == type_of_game_obj:
                 return_list.append(game_object)
-        print(return_list)
         return return_list
 
     def get_type_str(self, object):
