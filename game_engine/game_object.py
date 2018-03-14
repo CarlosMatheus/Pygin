@@ -21,7 +21,14 @@ class GameObject:
         self.transform = 0
         self.transform = Transform(self, position, rotation, scale, layer)
         self.transform.transform = self.transform
+        self.tag = None
         self.__instantiate(self)
+
+    def awake(self):
+        """
+        Will be called just once when the GameObject is instantiate on scene and will be called before start
+        """
+        pass
 
     def start(self):
         """
@@ -56,6 +63,24 @@ class GameObject:
                       self.text_mesh.color, self.text_mesh.size, self.text_mesh.font)
         else:
             pass
+
+    @classmethod
+    def find_by_type(cls, game_object_type_string):
+        """
+        Find all the game_objects of that type in the current running scene
+        :param game_object_type_string: a string with the game_object type(Class)
+        :return: a list with all the game_objects of that type
+        """
+        return Scene.current_running_scene.find_game_object_by_type(game_object_type_string)
+
+    @classmethod
+    def find_by_tag(cls, game_object_tag_string):
+        """
+        Find all the game_objects with that tag in the current running scene
+        :param game_object_tag_string: the tag name
+        :return: a list with all game_object in the scene with that tag
+        """
+        return Scene.current_running_scene.find_game_object_by_tag(game_object_tag_string)
 
     @classmethod
     def __instantiate(cls, game_object):
