@@ -14,7 +14,7 @@ class PlayerCircle(BasicCircle):
         self.circle_collider = CircleCollider(self)
 
     def start(self):
-        pass
+        self.star_score_controller = GameObject.find_by_type("StarScoreController")[0]
 
     def update(self):
         (collided, game_obj) = self.circle_collider.on_collision()
@@ -23,3 +23,4 @@ class PlayerCircle(BasicCircle):
                 Scene.change_scene(1)
             elif issubclass(type(game_obj), Star):
                 GameObject.destroy(game_obj)
+                self.star_score_controller.get_star()
