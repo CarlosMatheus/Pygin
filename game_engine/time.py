@@ -1,12 +1,31 @@
 import pygame
+import asyncio
 
 
 class Time:
+    ioloop = asyncio.get_event_loop()
     last_frame_tick = pygame.time.get_ticks()
     clock = pygame.time.Clock()
+    tasks = []
 
     @classmethod
-    def end_of_loop(cls):
+    def start_game(cls):
+        """
+        Run the coroutine tasks list
+        """
+        cls.ioloop.run_until_complete(asyncio.wait(cls.tasks))
+        cls.ioloop.close()
+
+    @classmethod
+    def start_coroutine(cls, method):
+        """
+        Add a method to be run simultaneously along the game
+        :param method: The async method that will be added to the task list
+        """
+        cls.tasks.append(cls.ioloop.create_task(method()))
+
+    @classmethod
+    def end_of_start(cls):
         """
         Set the time at the moment to get_ticks_last_frame
         """
@@ -14,7 +33,7 @@ class Time:
         cls.clock.tick(200)
 
     @classmethod
-    def end_of_start(cls):
+    def end_of_loop(cls):
         """
         Set the time at the moment to get_ticks_last_frame
         """
