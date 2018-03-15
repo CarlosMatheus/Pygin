@@ -153,17 +153,6 @@ class Scene:
         for event in self.frame_events:
             print(event)
 
-    def run_debugs(self):
-        """
-        DEBUG: Run debugs in scene
-        They Are commented by default
-        Only uncomment them to debug
-        """
-        # self.debug_objs_len()
-        # self.debug_objs_list()
-        # self.debug_event()
-        # self.debug_fps()
-
     def debug_fps(self):
         """
         DEBUG: print the game fps each frame
@@ -226,3 +215,14 @@ class Scene:
         """
         cls.current_running_scene.start()
         cls.current_running_scene.scene_loop()
+
+    def run_debugs(self):
+        """
+        DEBUG: Run debugs in scene
+        They Are commented by default
+        Only uncomment them to debug
+        """
+        # self.debug_objs_len()
+        # self.debug_objs_list()
+        # self.debug_event()
+        # self.debug_fps()
