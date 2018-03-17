@@ -24,7 +24,7 @@ class ObstacleControllerWrapper(GameObject):
             MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            #RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
         self.last_generation_time = 1000 * Time.now()

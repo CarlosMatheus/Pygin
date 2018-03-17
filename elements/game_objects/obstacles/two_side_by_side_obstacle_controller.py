@@ -42,24 +42,27 @@ class TwoSideBySideSimpleObstacleController(GameObject):
                                               obstacle_pair[0].transform.position.y
                                               + self.fall_velocity * Time.delta_time())
 
+        self.rect1.polygon_mesh.update_point_list(self.rect1.get_points())
+        self.rect2.polygon_mesh.update_point_list(self.rect2.get_points())
+
     def generate_obstacle(self):
         direction = rand(0, 1) < 0.5
         obstacle_width = 0.5 * Constants.screen_width
         obstacle_height = 0.06 * Constants.screen_height
 
-        rect1 = Rectangle(Vector2(direction * 0.5 * Constants.screen_width, - obstacle_height),
+        self.rect1 = Rectangle(Vector2(direction * 0.5 * Constants.screen_width, - obstacle_height),
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
 
-        rect2_x = rect1.transform.position.x
+        rect2_x = self.rect1.transform.position.x
 
         if rect2_x == 0:
             rect2_x = 0.5 * Constants.screen_width
         else:
             rect2_x = 0.0
 
-        rect2 = Rectangle(Vector2(rect2_x, rect1.transform.position.y),
+        self.rect2 = Rectangle(Vector2(rect2_x, self.rect1.transform.position.y),
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
 
-        self.game_object_list.append([rect1, rect2])
+        self.game_object_list.append([self.rect1, self.rect2])

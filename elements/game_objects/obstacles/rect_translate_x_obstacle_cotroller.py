@@ -26,12 +26,12 @@ class RectTranslateXObstacleController(GameObject):
 
     def fall(self, obstacle):
 
-        new_x = obstacle.transform.position.x + self.translate_velocity \
-                * Time.delta_time() * obstacle.vel
-
-        if new_x > Constants.screen_width - obstacle.rectangle_mesh.dimension.x/2 \
-                or new_x < -obstacle.rectangle_mesh.dimension.x/2:
-            obstacle.vel *= -1
+        # new_x = obstacle.transform.position.x + self.translate_velocity \
+        #         * Time.delta_time() * obstacle.vel
+        #
+        # if new_x > Constants.screen_width - obstacle.rectangle_mesh.dimension.x/2 \
+        #         or new_x < -obstacle.rectangle_mesh.dimension.x/2:
+        #     obstacle.vel *= -1
         obstacle.transform.position = Vector2(new_x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
 
@@ -50,4 +50,4 @@ class RectTranslateXObstacleController(GameObject):
         if direction == 0:
             direction = -1
         rect.vel = direction  # Checks if going left or right. Can be 1 for right or -1 for left
-        self.game_object_list.append(rect)
+        self.game_object_list.append(self.rect)
