@@ -19,7 +19,7 @@ class PolygonCollider(Collider):
         :return: True if it is inside
         """
 
-        return Geometry.polygonPointIntersection(self.get_point_list(), point)
+        return Geometry.polygon_point_intersection(self.get_point_list(), point)
 
     def get_point_list(self):
         """

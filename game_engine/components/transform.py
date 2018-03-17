@@ -1,4 +1,5 @@
 from game_engine.component import Component
+from game_engine.geometry import Geometry
 
 
 class Transform(Component):
@@ -26,10 +27,13 @@ class Transform(Component):
         """
         self.position = new_position
 
-    def rotate(self, rotation):
+    def rotate(self, rotation, point_list, pivot):
         """
-
+        Assuming the game_object is a polygon (Does not make sense for a circle to be rotated)
         :param rotation:
         :return:
         """
         self.rotation += rotation
+        for i in range(point_list):
+            point_list[i] = Geometry.rotate_point(pivot, point_list[i], self.rotation)
+

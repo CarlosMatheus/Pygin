@@ -20,7 +20,7 @@ class CircleCollider(Collider):
         :param point: the point to verify
         :return: True if it is inside
         """
-        return Geometry.circlePointIntersection(self.get_center(), self.get_radius(), point)
+        return Geometry.circle_point_intersection(self.get_center(), self.get_radius(), point)
 
     def get_center(self):
         """
