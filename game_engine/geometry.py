@@ -26,7 +26,11 @@ class Geometry:
         return inside
 
     @classmethod
-    def pointLineIntersects(cls, segment, point):
+    def circlePointIntersection(cls, circle_center, circle_radius, point):
+        return point.distance_to(circle_center) <= circle_radius
+
+    @classmethod
+    def linePointIntersection(cls, segment, point):
         p1x, p1y = segment[0]
         p2x, p2y = segment[1]
         valor = (p2.y - p1.y)*point.x + (p1.x - p2.x)*point.y - p1.x*(p2.y - p1.y) - p1.y*(p1.x - p2.x)

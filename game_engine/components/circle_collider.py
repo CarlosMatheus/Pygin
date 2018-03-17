@@ -1,6 +1,7 @@
 from game_engine.collider import Collider
 from game_engine.components.polygon_collider import PolygonCollider
 from pygame.math import Vector2
+from game_engine.geometry import Geometry
 
 
 class CircleCollider(Collider):
@@ -19,7 +20,7 @@ class CircleCollider(Collider):
         :param point: the point to verify
         :return: True if it is inside
         """
-        return point.distance_to(self.get_center()) <= self.get_radius()
+        return Geometry.circlePointIntersection(self.get_center(), self.get_radius(), point)
 
     def get_center(self):
         """
