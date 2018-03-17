@@ -1,5 +1,6 @@
 from game_engine.collider import Collider
 from game_engine.components.box_collider import BoxCollider
+from game_engine.components.polygon_collider import PolygonCollider
 from pygame.math import Vector2
 
 
@@ -54,6 +55,8 @@ class CircleCollider(Collider):
                 collided = self.__box_collision(collider)
             elif isinstance(collider, CircleCollider):
                 collided = self.__circle_collision(collider)
+            elif isinstance(collider, PolygonCollider):
+                collided = self.__polygon_collision(collider)
             if collided:
                 return True, collider.game_object
         return False, None
@@ -84,3 +87,18 @@ class CircleCollider(Collider):
             return False
         else:
             return True
+
+    def __polygon_collision(self, polygon):
+        """
+        Check a collision between this collider and a polygon collider
+        :param circle: the polygon collider reference
+        :return: True if collided
+        """
+
+        for vertex in polygon.get_point_list():
+            if self.is_vertex_inside(vertex):
+                return True
+        for point in self.get_main_points():
+            if polygon.is_vertex_inside(point):
+                return True
+        return False
