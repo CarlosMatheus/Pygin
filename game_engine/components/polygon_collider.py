@@ -1,7 +1,5 @@
 from game_engine.collider import Collider
-from game_engine.components.box_collider import BoxCollider
 from game_engine.geometry import Geometry
-from pygame.math import Vector2
 
 
 class PolygonCollider(Collider):
@@ -36,16 +34,6 @@ class PolygonCollider(Collider):
         print("testing ", p1, "-", p2, " with point ", point)    loop on the collider list to check if this collider have collided with other
         :return: True if collided
         """
-
-
-    def __box_collision(self, box):
-        """
-        Check a collision between this collider and a box_collider
-        :param box: the box collider reference
-        :return: True if collided
-        """
-
-        raise Exception('--- This methods have not been implemented yet! Use circle_collider instead ---')
 
     def __circle_collision(self, circle):
         """

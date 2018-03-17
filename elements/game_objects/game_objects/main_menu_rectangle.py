@@ -1,4 +1,4 @@
-from game_engine.components.box_collider import BoxCollider
+from game_engine.components.polygon_collider import PolygonCollider
 from elements.game_objects.game_objects.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.game_object import GameObject
 from game_engine.time import Time
@@ -19,7 +19,7 @@ class Rectangle(BasicRectangle):
         :param material: initial color of the rectangle
         """
         super(Rectangle, self).__init__(position, dimension, material, layer=1)
-        self.box_collider = BoxCollider(self)
+        self.polygon_collider = PolygonCollider(self)
 
     def start(self):
         """
