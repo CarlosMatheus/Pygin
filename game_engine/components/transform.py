@@ -15,7 +15,7 @@ class Transform(Component):
         """
         super(Transform, self).__init__(game_object)
         self.position = position
-        self.rotate = rotation
+        self.rotation = rotation
         self.scale = scale
         self.layer = layer
 
@@ -25,3 +25,11 @@ class Transform(Component):
         :param new_position: where the game_object will go to
         """
         self.position = new_position
+
+    def rotate(self, rotation):
+        """
+
+        :param rotation:
+        :return:
+        """
+        self.rotation += rotation
