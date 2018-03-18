@@ -3,6 +3,8 @@ from .draw import Draw
 from game_engine.components.constants import Constants
 from game_engine.scene import Scene
 from game_engine.time import Time
+from game_engine.input import Input
+
 
 class Engine:
 
@@ -31,7 +33,8 @@ class Engine:
         cls.game_display = pygame.display.set_mode((Constants.screen_width, Constants.screen_height))
         pygame.display.set_caption(cls.game_name)
         Scene.scenes_list = cls.scenes
-        Draw.set_game_display(Engine.game_display)
+        Draw.set_game_display(cls.game_display, cls.screen_width, cls.screen_height)
+        Input.set_engine_reference(cls)
         Scene.start_first_scene()
 
     @classmethod

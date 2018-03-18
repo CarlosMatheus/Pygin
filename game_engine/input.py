@@ -3,6 +3,7 @@ import pygame
 
 class Input:
 
+    engine = None
     is_pressing_left = False
     is_pressing_right = False
 
@@ -19,6 +20,10 @@ class Input:
                 cls.__key_up(event)
             elif event.type == pygame.QUIT:
                 cls.__quit_game()
+
+    @classmethod
+    def set_engine_reference(cls, class_ref):
+        cls.engine = class_ref
 
     @classmethod
     def __key_down(cls, event):
@@ -50,4 +55,4 @@ class Input:
         if pressed quit key
         call the engine's method to quit
         """
-        Engine.end_game()
+        cls.engine.end_game()
