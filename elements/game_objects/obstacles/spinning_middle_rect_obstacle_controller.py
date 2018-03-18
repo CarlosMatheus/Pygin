@@ -1,14 +1,19 @@
 from pygame.math import Vector2
 from game_engine.time import Time
+from random import randint as rand
 from game_engine.game_object import GameObject
 from elements.game_objects.game_objects.rectangle import Rectangle
 from game_engine.components.constants import Constants
 from elements.game_objects.material import Material
 
-class MiddleRectObstacleController(GameObject):
+class SpinningMiddleRectObstacleController(GameObject):
 
     def start(self):
-        self.fall_velocity = 600
+        self.fall_velocity = 160
+        direction = rand(0, 1) < 0.5
+        if direction == 0:
+            direction = -1
+        self.angular_speed = direction * 0.02
         self.game_object_list = []
 
     def update(self):
@@ -24,10 +29,11 @@ class MiddleRectObstacleController(GameObject):
     def fall(self, obstacle):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
+        obstacle.transform.rotate(self.angular_speed)
         obstacle.polygon_mesh.update_point_list(obstacle.get_points())
 
     def generate_obstacle(self):
-        self.obstacle_width = 0.3 * Constants.screen_width
+        self.obstacle_width = 0.5 * Constants.screen_width
         self.obstacle_height = 0.06 * Constants.screen_height
         rect = Rectangle(Vector2(0.5 * Constants.screen_width - 0.5 * self.obstacle_width, - self.obstacle_height),
                          Vector2(self.obstacle_width, self.obstacle_height),

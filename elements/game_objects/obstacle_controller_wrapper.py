@@ -10,6 +10,7 @@ from elements.game_objects.obstacles.rect_translate_x_obstacle_cotroller import 
 from elements.game_objects.obstacles.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 from elements.game_objects.obstacles.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
 from elements.game_objects.obstacles.star_score_controller import StarScoreController
+from elements.game_objects.obstacles.spinning_middle_rect_obstacle_controller import SpinningMiddleRectObstacleController
 from game_engine.game_object import GameObject
 
 
@@ -24,7 +25,8 @@ class ObstacleControllerWrapper(GameObject):
             MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            #RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
         self.last_generation_time = 1000 * Time.now()
@@ -43,14 +45,14 @@ class ObstacleControllerWrapper(GameObject):
         if(generation_obstacle_dificuty < 0.8):
             generation_obstacle_dificuty = 0.8
 
-        if 1000 * Time.now() - self.last_generation_time > 1500 * generation_obstacle_dificuty:
+        if 800 * Time.now() - self.last_generation_time > 1500 * generation_obstacle_dificuty:
             self.generate_random_obstacle()
 
         for obstacle_generator in self.obstacle_generators:
             game_objs = obstacle_generator.game_object_list
             self.game_object_list.extend(game_objs)
 
-        if 1000 * Time.now() - self.last_power_up_time > 4000:
+        if 800 * Time.now() - self.last_power_up_time > 4000:
             self.generate_random_power_up()
 
         for power_up_generator in self.power_up_generators:
