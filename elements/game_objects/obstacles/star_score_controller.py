@@ -11,6 +11,7 @@ class StarScoreController(GameObject):
 
     def start(self):
         self.fall_velocity = 250
+        self.angular_speed = 0
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
 
@@ -24,7 +25,7 @@ class StarScoreController(GameObject):
                 self.fall(obstacle)
 
     def fall(self, obstacle):
-        obstacle.fall(self.fall_velocity * Time.delta_time())
+        obstacle.fall(self.fall_velocity * Time.delta_time(), self.angular_speed * Time.delta_time())
 
     def get_star(self):
         print("Point!")
