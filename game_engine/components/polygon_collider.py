@@ -18,7 +18,6 @@ class PolygonCollider(Collider):
         :param point: the point to verify
         :return: True if it is inside
         """
-
         return Geometry.polygon_point_intersection(self.get_point_list(), point)
 
     def get_point_list(self):
