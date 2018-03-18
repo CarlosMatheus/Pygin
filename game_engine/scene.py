@@ -27,6 +27,7 @@ class Scene:
             Scene.current_running_scene = self
         for reference in init_game_objects_controllers_reference_list:
             init_game_objects_list.append(reference(Vector2(0, 0), 0, Vector2(0, 0), 0))
+        self.run_on_next_frame_list = list()
         self.should_end_scene = False
         Scene.changing_scene = False
 
@@ -36,7 +37,9 @@ class Scene:
         """
         Draw.update_background()
         self.should_end_scene = False
-        self.game_objects = self.init_game_objects_list
+        self.game_objects = list()
+        for game_object in self.init_game_objects_list:
+            self.game_objects.append(game_object)
         self.run_events()
         self.run_all_awake()
         self.run_all_starts()
@@ -47,14 +50,15 @@ class Scene:
         """
         Run the awake method of each game_object
         """
-        for game_object in self.game_objects:
+        for game_object in self.init_game_objects_list:
             game_object.awake()
 
     def run_all_starts(self):
         """
         Run the start method of each game_object
         """
-        for game_object in self.game_objects:
+        print(self.init_game_objects_list)
+        for game_object in self.init_game_objects_list:
             game_object.start()
 
     def run_all_updates(self):
@@ -62,7 +66,13 @@ class Scene:
         Runs the update of each game_object of the scene
         """
         for game_object in self.game_objects:
+            game_object.protected_update()
             game_object.update()
+
+    def run_next_frame_list(self):
+        for method in self.run_on_next_frame_list:
+            method()
+        self.run_on_next_frame_list = list()
 
     def draw_all_game_objects(self):
         """
@@ -80,6 +90,7 @@ class Scene:
         """
         while not self.should_end_scene:
             Draw.update_background()
+            self.run_next_frame_list()
             self.run_events()
             self.run_all_updates()
             self.draw_all_game_objects()
@@ -93,10 +104,10 @@ class Scene:
         Add a new game object to the scene's game_objects list
         :param game_object: new game_object to add to scene
         """
-        self.game_objects.append(game_object)
+        self.game_objects = [game_object] + self.game_objects
         if not Scene.changing_scene:
-            game_object.awake()
-            game_object.start()
+            self.run_on_next_frame_list.append(game_object.awake)
+            self.run_on_next_frame_list.append(game_object.start)
 
     def remove_game_object(self, game_object):
         """
