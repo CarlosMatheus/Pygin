@@ -8,7 +8,7 @@ class GameObject:
 
     current_running_scene = 0
 
-    def __init__(self, position, rotation, scale, layer):
+    def __init__(self, position=Vector2(0, 0), rotation=0, scale=Vector2(1, 1), layer=0):
         """
         set basics game_objects parameters
         :param position.x: game_object's x initial position
@@ -22,6 +22,9 @@ class GameObject:
         self.transform = Transform(self, position, rotation, scale, layer)
         self.transform.transform = self.transform
         self.tag = None
+        self.animator = None
+        self.animation = None
+        self.material = None
         self.__instantiate(self)
 
     def awake(self):
@@ -42,6 +45,10 @@ class GameObject:
         """
         pass
 
+    def protected_update(self):
+        if self.animator is not None:
+            self.animator.update()
+
     def draw_game_object(self):
         """
         Draw the game_object on screen
@@ -50,7 +57,7 @@ class GameObject:
             Draw.rect(Vector2(self.transform.position.x, self.transform.position.y),
                       Vector2(self.transform.scale.x * self.rectangle_mesh.dimension.x,
                               self.transform.scale.y * self.rectangle_mesh.dimension.y),
-                      self.rectangle_mesh.material.color)
+                      self.rectangle_mesh.material.color, self.rectangle_mesh.material.alpha)
 
         elif hasattr(self, 'polygon_mesh'):
             Draw.polygon(self.polygon_mesh.material.color, self.get_points())
