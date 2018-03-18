@@ -1,3 +1,6 @@
+import math
+from pygame.math import Vector2
+
 class Geometry:
 
     @classmethod
@@ -61,10 +64,10 @@ class Geometry:
         px -= cx
         py -= cy
 
-        pxnew = px * cos(angle) - py * sin(angle)
-        pynew = x * sin(angle) + py * cos(angle)
+        pxnew = px * math.cos(angle) - py * math.sin(angle)
+        pynew = px * math.sin(angle) + py * math.cos(angle)
 
         px = pxnew + cx
         py = pynew + cy
 
-        return [px, py]
+        return Vector2(px, py)

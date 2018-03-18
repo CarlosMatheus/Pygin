@@ -1,5 +1,5 @@
 from game_engine.mesh import Mesh
-
+from game_engine.geometry import Geometry
 
 class PolygonMesh(Mesh):
 

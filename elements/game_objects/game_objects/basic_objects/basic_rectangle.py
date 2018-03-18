@@ -1,6 +1,7 @@
 from game_engine.components.polygon_mesh import PolygonMesh
 from game_engine.components.material import Material
 from game_engine.game_object import GameObject
+from game_engine.geometry import Geometry
 from pygame.math import Vector2
 
 
@@ -27,4 +28,10 @@ class BasicRectangle(GameObject):
                       Vector2(self.transform.position.x + self.dimension.x,
                               self.transform.position.y + self.dimension.y),
                       Vector2(self.transform.position.x + self.dimension.x, self.transform.position.y)]
+
+        for i in range(len(point_list)):
+            point = point_list[i]
+            point_list[i] = Geometry.rotate_point(Vector2(self.transform.position.x + self.dimension.x/2, self.transform.position.y + self.dimension.y/2),
+                                                  point, self.transform.rotation)
+
         return point_list
