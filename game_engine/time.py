@@ -7,6 +7,7 @@ class Time:
     last_frame_tick = pygame.time.get_ticks()
     clock = pygame.time.Clock()
     tasks = []
+    time_scale = 1.0
 
     @classmethod
     def start_game(cls):
@@ -41,12 +42,15 @@ class Time:
         cls.clock.tick(200)
 
     @classmethod
-    def delta_time(cls):
+    def delta_time(cls, unscaled=False):
         """
         :return: the duration of that frame in seconds
         """
         if cls.clock.get_fps() != 0:
-            return 1/cls.clock.get_fps()
+            if unscaled:
+                return 1 / cls.clock.get_fps()
+            else:
+                return (1/cls.clock.get_fps())*cls.time_scale
         else:
             return 0
 
