@@ -46,8 +46,11 @@ class GameObject:
         pass
 
     def protected_update(self):
+        """
+        This method will run every frame, but it is not intended to be implemented inside a game_object
+        """
         if self.animator is not None:
-            self.animator.update()
+            self.animator._Animator__update()
 
     def draw_game_object(self):
         """
