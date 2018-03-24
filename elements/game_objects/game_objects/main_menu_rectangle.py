@@ -37,7 +37,6 @@ class Rectangle(BasicRectangle):
             GameObject.destroy(self)
         self.fall()
 
-
     def is_out_of_screen(self):
         return self.transform.position.y > Constants.screen_height
 

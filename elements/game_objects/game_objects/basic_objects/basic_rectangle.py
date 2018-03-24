@@ -17,5 +17,5 @@ class BasicRectangle(GameObject):
         :param color: initial color of the rectangle
         """
         super(BasicRectangle, self).__init__(position, 0, Vector2(1, 1), layer)
-        self.material = Material(self, material.color)
+        self.material = Material(self, material.color, material.alpha)
         self.rectangle_mesh = RectangleMesh(self, dimension, self.material)

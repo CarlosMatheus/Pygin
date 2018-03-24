@@ -1,7 +1,7 @@
 from elements.game_objects.game_objects.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.components.animation import Animation
 from game_engine.components.animator import Animator
-from game_engine.key_frames import KeyFrame
+from game_engine.key_frame import KeyFrame
 from pygame.math import Vector2
 from game_engine.engine import Engine
 from elements.game_objects.material import Material
@@ -12,12 +12,13 @@ from game_engine.time import Time
 
 class ScreenFader(BasicRectangle):
 
-    def __init__(self, fade="in"):
+    def __init__(self, fade="in", fade_duration=0.7):
         """
         Constructor, will decide whether to fade in or fade out
         :param fade: string telling fade in or out
         """
         self.fade = fade
+        self.fade_duration = fade_duration
         if fade == "in":
             alp = 255
         else:
@@ -33,11 +34,11 @@ class ScreenFader(BasicRectangle):
         key_frames = list()
         if self.fade == "in":
             key_frames.append(KeyFrame(0.0, alpha=255))
-            key_frames.append(KeyFrame(1.0, alpha=0))
+            key_frames.append(KeyFrame(self.fade_duration, alpha=0))
         else:
             key_frames.append(KeyFrame(0.0, alpha=0))
-            key_frames.append(KeyFrame(1.0, alpha=255))
-        self.animation = Animation(self, key_frames, should_loop=False)
+            key_frames.append(KeyFrame(self.fade_duration, alpha=255))
+        self.animation = Animation(self, key_frames, should_loop=False, unscaled="True")
         self.animator = Animator(self, animation_list=[self.animation])
         self.animator.play()
         self.creation_time = Time.now()

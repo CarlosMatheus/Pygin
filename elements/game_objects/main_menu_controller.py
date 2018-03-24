@@ -63,7 +63,7 @@ class MainMenuController(GameObject):
             self.should_timer = False
             self.should_change_scene = True
         if self.should_change_scene:
-            if Time.now() - self.timer > 1.0:
+            if Time.now() - self.timer > 0.68:
                 Scene.change_scene(1)
 
     def spawn_block(self):

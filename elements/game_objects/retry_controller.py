@@ -11,6 +11,7 @@ from elements.game_objects.game_objects.text import Text
 from elements.game_objects.material import Material
 from pygame.math import Vector2
 from game_engine.components.constants import Constants
+from elements.game_objects.game_objects.screen_fader import ScreenFader
 
 
 class RetryController(GameObject):
@@ -43,6 +44,16 @@ class RetryController(GameObject):
             Text(Vector2(score_x, score_y), "Score: " + score, Color.white, score_size, font_path),
             Text(Vector2(message_x, message_y), "Press arrows keys to try again", Color.white, message_size, font_path)
         ]
+        self.setup_fader()
+
+    def setup_fader(self):
+        """
+        Start fade in and set variables to fade out
+        """
+        ScreenFader(fade="in")
+        self.should_timer = False
+        self.should_change_scene = False
+        self.can_press_button = True
 
     def update(self):
         """
@@ -51,8 +62,17 @@ class RetryController(GameObject):
         """
         if self.should_spawn():
             self.spawn_block()
-        if self.pressed_button():
-            Scene.change_scene(1)
+        if self.pressed_button() and self.can_press_button:
+            self.should_timer = True
+            self.can_press_button = False
+        if self.should_timer:
+            ScreenFader(fade="out")
+            self.timer = Time.now()
+            self.should_timer = False
+            self.should_change_scene = True
+        if self.should_change_scene:
+            if Time.now() - self.timer > 0.68:
+                Scene.change_scene(1)
 
     def spawn_block(self):
         """

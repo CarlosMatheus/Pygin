@@ -57,7 +57,6 @@ class Scene:
         """
         Run the start method of each game_object
         """
-        print(self.init_game_objects_list)
         for game_object in self.init_game_objects_list:
             game_object.start()
 
