@@ -14,7 +14,7 @@ class StarScoreController(GameObject):
         self.angular_speed = 0
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
-        self.points_per_start = 200
+        self.points_per_start = 100
 
     def update(self):
         for obstacle in self.game_object_list:

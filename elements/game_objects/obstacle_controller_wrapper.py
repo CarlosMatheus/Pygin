@@ -22,19 +22,21 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            #RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            # SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            # SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
         self.last_generation_time = 1000 * Time.now()
         self.last_power_up_time = 1000 * Time.now()
         self.game_object_list = []
-        self.begin_time = Time.now()
+        self.last_increases_dificculty_time = Time.now()
+        self.game_difficuty = 1
+        self.time_to_increase_difficult = 10
 
         for obstacle_generator in self.obstacle_generators:
             obstacle_generator.start()
@@ -42,7 +44,9 @@ class ObstacleControllerWrapper(GameObject):
             power_up_generator.start()
 
     def update(self):
-        generation_obstacle_dificuty = (1 / (1 + 0.002*(Time.now()- self.begin_time)))
+        if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult:
+            print("Difficulty Increase!")
+        generation_obstacle_dificuty = (1 / (1 + 0.002 * (Time.now() - self.last_increases_dificculty_time)))
 
         if(generation_obstacle_dificuty < 0.8):
             generation_obstacle_dificuty = 0.8
