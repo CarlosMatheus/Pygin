@@ -3,6 +3,7 @@ from game_engine.components.circle_mesh import CircleMesh
 from game_engine.components.circle_collider import CircleCollider
 from game_engine.game_object import GameObject
 from pygame.math import Vector2
+from game_engine.geometry import Geometry
 import math
 
 
@@ -28,8 +29,15 @@ class Star(GameObject):
             point_list.append(Vector2(self.transform.position.x + self.circle_collider.get_radius()/2 * math.cos(angle),
                                       self.transform.position.y + self.circle_collider.get_radius()/2 * math.sin(angle)))
             angle = angle + 36 * math.pi / 180
+
+        for i in range(5):
+            point = point_list[i]
+            point_list[i] = Geometry.rotate_point(Vector2(self.transform.position.x, self.transform.position.y),
+                                                  point, self.transform.rotation)
+
         return point_list
 
-    def fall(self, distance):
+    def fall(self, distance, angular_distance):
         self.transform.translate(Vector2(self.transform.position.x, self.transform.position.y + distance))
+        self.transform.rotate(angular_distance)
         self.polygon_mesh.update_point_list(self.get_points())

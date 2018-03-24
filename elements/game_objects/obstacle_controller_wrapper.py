@@ -10,6 +10,8 @@ from elements.game_objects.obstacles.rect_translate_x_obstacle_cotroller import 
 from elements.game_objects.obstacles.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 from elements.game_objects.obstacles.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
 from elements.game_objects.obstacles.star_score_controller import StarScoreController
+from elements.game_objects.obstacles.spinning_middle_rect_obstacle_controller import SpinningMiddleRectObstacleController
+from elements.game_objects.obstacles.half_moon_spinning_rect_obstacle_controller import HalfMoonSpinningRectObstacleController
 from game_engine.game_object import GameObject
 
 
@@ -24,7 +26,9 @@ class ObstacleControllerWrapper(GameObject):
             MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            #RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
         self.last_generation_time = 1000 * Time.now()

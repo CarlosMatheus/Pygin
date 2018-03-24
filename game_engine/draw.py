@@ -26,23 +26,23 @@ class Draw:
         """
         cls.game_display.fill(Color.black)
 
-    @classmethod
-    def rect(cls, position, dimension, color, alpha=None):
-        """
-        Draw a rectangle
-        :param position: rect's position
-        :param dimension: rect's scale
-        :param color: rect's color
-        :param alpha: rect's alpha value
-        :return:
-        """
-        if alpha is not None:
-            s = pygame.Surface((int(dimension.x), int(dimension.y)))
-            s.set_alpha(alpha)
-            pygame.draw.rect(s, color, [int(position.x), int(position.y), int(dimension.x), int(dimension.y)])
-            cls.game_display.blit(s, (int(position.x), int(position.y)))
-        else:
-            pygame.draw.rect(cls.game_display, color, [int(position.x), int(position.y), int(dimension.x), int(dimension.y)])
+    # @classmethod
+    # def rect(cls, position, dimension, color, alpha=None):
+    #     """
+    #     Draw a rectangle
+    #     :param position: rect's position
+    #     :param dimension: rect's scale
+    #     :param color: rect's color
+    #     :param alpha: rect's alpha value
+    #     :return:
+    #     """
+    #     if alpha is not None:
+    #         s = pygame.Surface((int(dimension.x), int(dimension.y)))
+    #         s.set_alpha(alpha)
+    #         pygame.draw.rect(s, color, [int(position.x), int(position.y), int(dimension.x), int(dimension.y)])
+    #         cls.game_display.blit(s, (int(position.x), int(position.y)))
+    #     else:
+    #         pygame.draw.rect(cls.game_display, color, [int(position.x), int(position.y), int(dimension.x), int(dimension.y)])
 
     @classmethod
     def circle(cls, position, radius, color, alpha=None):
@@ -61,7 +61,13 @@ class Draw:
         :param color:
         :param point_list:
         """
-        pygame.draw.polygon(cls.game_display, color, point_list)
+        if alpha is not None:
+            s = pygame.Surface((cls.screen_width, cls.screen_height))
+            s.set_alpha(alpha)
+            pygame.draw.polygon(s, color, point_list)
+            cls.game_display.blit(s, (0, 0))
+        else:
+            pygame.draw.polygon(cls.game_display, color, point_list)
 
     @classmethod
     def text(cls, position_x, position_y, message, color, size, font_path):

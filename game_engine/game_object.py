@@ -56,14 +56,8 @@ class GameObject:
         """
         Draw the game_object on screen
         """
-        if hasattr(self, 'rectangle_mesh'):
-            Draw.rect(Vector2(self.transform.position.x, self.transform.position.y),
-                      Vector2(self.transform.scale.x * self.rectangle_mesh.dimension.x,
-                              self.transform.scale.y * self.rectangle_mesh.dimension.y),
-                      self.rectangle_mesh.material.color, self.rectangle_mesh.material.alpha)
-
-        elif hasattr(self, 'polygon_mesh'):
-            Draw.polygon(self.polygon_mesh.material.color, self.get_points())
+        if hasattr(self, 'polygon_mesh'):
+            Draw.polygon(self.polygon_mesh.material.color, self.get_points(), self.polygon_mesh.material.alpha)
 
         elif hasattr(self, 'circle_mesh'):
             Draw.circle(self.transform.position, self.circle_mesh.radius, self.circle_mesh.material.color)

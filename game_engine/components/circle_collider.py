@@ -1,6 +1,7 @@
 from game_engine.collider import Collider
-from game_engine.components.box_collider import BoxCollider
+from game_engine.components.polygon_collider import PolygonCollider
 from pygame.math import Vector2
+from game_engine.geometry import Geometry
 
 
 class CircleCollider(Collider):
@@ -19,7 +20,7 @@ class CircleCollider(Collider):
         :param point: the point to verify
         :return: True if it is inside
         """
-        return point.distance_to(self.get_center()) <= self.get_radius()
+        return Geometry.circle_point_intersection(self.get_center(), self.get_radius(), point)
 
     def get_center(self):
         """
@@ -50,27 +51,13 @@ class CircleCollider(Collider):
         :return: True if collided
         """
         for collider in Collider.collider_list:
-            if isinstance(collider, BoxCollider):
-                collided = self.__box_collision(collider)
-            elif isinstance(collider, CircleCollider):
+            if isinstance(collider, CircleCollider):
                 collided = self.__circle_collision(collider)
+            elif isinstance(collider, PolygonCollider):
+                collided = self.__polygon_collision(collider)
             if collided:
                 return True, collider.game_object
         return False, None
-
-    def __box_collision(self, box):
-        """
-        Check a collision between this collider and a box_collider
-        :param box: the box collider reference
-        :return: True if collided
-        """
-        for vertex in box.get_vertexes():
-            if self.is_vertex_inside(vertex):
-                return True
-        for point in self.get_main_points():
-            if box.is_point_inside(point):
-                return True
-        return False
 
     def __circle_collision(self, circle):
         """
@@ -84,3 +71,18 @@ class CircleCollider(Collider):
             return False
         else:
             return True
+
+    def __polygon_collision(self, polygon):
+        """
+        Check a collision between this collider and a polygon collider
+        :param circle: the polygon collider reference
+        :return: True if collided
+        """
+
+        for vertex in polygon.get_point_list():
+            if self.is_vertex_inside(vertex):
+                return True
+        for point in self.get_main_points():
+            if polygon.is_vertex_inside(point):
+                return True
+        return False

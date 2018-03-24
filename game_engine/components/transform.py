@@ -1,4 +1,5 @@
 from game_engine.component import Component
+from game_engine.geometry import Geometry
 
 
 class Transform(Component):
@@ -28,7 +29,7 @@ class Transform(Component):
 
     def rotate(self, rotation):
         """
-
+        Assuming the game_object is a polygon (Does not make sense for a circle to be rotated)
         :param rotation:
         :return:
         """

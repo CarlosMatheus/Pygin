@@ -23,6 +23,8 @@ class Collider(Component):
             cls.collider_list.remove(game_object.box_collider)
         elif hasattr(game_object, "circle_collider"):
             cls.collider_list.remove(game_object.circle_collider)
+        elif hasattr(game_object, "polygon_collider"):
+            cls.collider_list.remove(game_object.polygon_collider)
 
     def on_collision(self):
         """
