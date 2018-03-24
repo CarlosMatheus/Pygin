@@ -22,16 +22,16 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            # SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
-        self.power_up_generation_delta = 5000
+        self.power_up_generation_delta = 6000
         self.obstacle_geneation_delta = 1500
         self.last_generation_time = 1000 * Time.now()
         self.last_power_up_time = 1000 * Time.now()
