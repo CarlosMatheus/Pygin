@@ -26,17 +26,21 @@ class ObstacleControllerWrapper(GameObject):
             # MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             # TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             # TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            # RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             # SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
 
+        self.power_up_generation_delta = 5000
+        self.obstacle_geneation_delta = 1500
         self.last_generation_time = 1000 * Time.now()
         self.last_power_up_time = 1000 * Time.now()
         self.game_object_list = []
         self.last_increases_dificculty_time = Time.now()
         self.game_difficuty = 1
-        self.time_to_increase_difficult = 10
+        self.time_to_increase_difficult = 1
+        self.generation_obstacle_difficult = 1
+        self.max_difficult = 10
 
         for obstacle_generator in self.obstacle_generators:
             obstacle_generator.start()
@@ -44,21 +48,23 @@ class ObstacleControllerWrapper(GameObject):
             power_up_generator.start()
 
     def update(self):
-        if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult:
+        if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult \
+                and self.game_difficuty <= self.max_difficult:
             print("Difficulty Increase!")
-        generation_obstacle_dificuty = (1 / (1 + 0.002 * (Time.now() - self.last_increases_dificculty_time)))
+            self.game_difficuty += 1
+            self.last_increases_dificculty_time = Time.now()
+            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
 
-        if(generation_obstacle_dificuty < 0.8):
-            generation_obstacle_dificuty = 0.8
-
-        if 1000 * Time.now() - self.last_generation_time > 1500 * generation_obstacle_dificuty:
+        if 1000 * Time.now() - self.last_generation_time > self.obstacle_geneation_delta * \
+                self.generation_obstacle_difficult:
             self.generate_random_obstacle()
 
         for obstacle_generator in self.obstacle_generators:
             game_objs = obstacle_generator.game_object_list
             self.game_object_list.extend(game_objs)
 
-        if 1000 * Time.now() - self.last_power_up_time > 4000:
+        if 1000 * Time.now() - self.last_power_up_time > self.power_up_generation_delta * \
+                self.generation_obstacle_difficult:
             self.generate_random_power_up()
 
         for power_up_generator in self.power_up_generators:
@@ -68,7 +74,11 @@ class ObstacleControllerWrapper(GameObject):
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()
 
-        random_ind = rand(0, len(self.obstacle_generators))%len(self.obstacle_generators)
+        number_of_obstacles = min(self.game_difficuty, len(self.obstacle_generators))
+
+        print(number_of_obstacles)
+
+        random_ind = rand(0, number_of_obstacles)% number_of_obstacles
         random_obstacle_generator = self.obstacle_generators[random_ind]
         random_obstacle_generator.generate_obstacle()
 
