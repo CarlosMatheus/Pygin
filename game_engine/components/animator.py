@@ -11,6 +11,7 @@ class Animator(Component):
         self.animation_list = animation_list
         self.current_playing_animation = None
         self.animation_idx = 0
+        self.is_paused = False
         for animation in self.animation_list:
             animation.set_animator(self)
         super().__init__(game_object)
@@ -24,6 +25,7 @@ class Animator(Component):
         self.current_loop = 0
         self.animation_idx = animation_idx
         self.current_playing_animation = self.animation_list[self.animation_idx]
+        self.animation_list[self.animation_idx].reset()
 
     def play_next_animation(self):
         """
@@ -37,12 +39,17 @@ class Animator(Component):
         else:
             self.stop()
 
-    def play_first_animation(self):
+    def pause(self):
         """
-        Play the first animation of the animation list of this animator
+        pause animation
         """
-        self.animation_idx = 0
-        self.animation_list[self.animation_idx].play(self.animation_idx)
+        self.is_paused = True
+
+    def resume(self):
+        """
+        Resume animation from where it stopped
+        """
+        self.is_paused = False
 
     def stop(self):
         """
@@ -55,18 +62,19 @@ class Animator(Component):
         play next animation
         """
         self.animation_idx += 1
-        self.animation_list[self.animation_idx].play(self.animation_idx)
+        self.current_playing_animation = self.animation_list[self.animation_idx]
+        self.animation_list[self.animation_idx].reset()
 
     def __loop(self):
         """
         loop in animation list
         """
         if self.loops is "inf":
-            self.play_first_animation()
+            self.play()
         else:
             if self.loops > self.current_loop:
                 self.current_loop += 1
-                self.play_first_animation()
+                self.play()
             else:
                 self.stop()
 
@@ -75,5 +83,5 @@ class Animator(Component):
         This will run every frame
         Will update the current animation
         """
-        if self.current_playing_animation is not None:
+        if (self.current_playing_animation is not None) and (not self.is_paused):
             self.current_playing_animation.update()
