@@ -14,6 +14,7 @@ class StarScoreController(GameObject):
         self.angular_speed = 0
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
+        self.points_per_start = 200
 
     def update(self):
         for obstacle in self.game_object_list:
@@ -28,7 +29,7 @@ class StarScoreController(GameObject):
         obstacle.fall(self.fall_velocity * Time.delta_time(), self.angular_speed * Time.delta_time())
 
     def get_star(self):
-        print("Point!")
+        GameObject.find_by_type("ScoreController")[0].score += self.points_per_start
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,

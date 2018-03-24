@@ -29,7 +29,7 @@ class RetryController(GameObject):
         message_y = 300
         message_size = 14
 
-        score = str(100)
+        score = str(int(Constants.current_score))
         score_size = 28
         score_x = 30
         score_y = 240
