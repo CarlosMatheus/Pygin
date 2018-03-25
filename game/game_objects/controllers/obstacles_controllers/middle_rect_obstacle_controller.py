@@ -28,7 +28,7 @@ class MiddleRectObstacleController(GameObject):
     def generate_obstacle(self):
         self.obstacle_width = 0.3 * Constants.screen_width
         self.obstacle_height = 0.06 * Constants.screen_height
-        rect = Rectangle(Vector2(0.5 * Constants.screen_width - 0.5 * self.obstacle_width, - self.obstacle_height),
+        rect = Rectangle(Vector2(0.5 * Constants.screen_width - 0.5 * self.obstacle_width, - 3*self.obstacle_height),
                          Vector2(self.obstacle_width, self.obstacle_height),
                          Material((255, 255, 255)))
         self.game_object_list.append(rect)

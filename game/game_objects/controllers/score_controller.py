@@ -10,7 +10,7 @@ class ScoreController(GameObject):
 
         font_path = "game/assets/fonts/neuropolxrg.ttf"
 
-        self.number_of_steps_to_update_score = 20
+        self.number_of_steps_to_update_score = 30
         self.score_per_step = 1  # Number of steps of the game required to update the score
         self.current_step = 0
 

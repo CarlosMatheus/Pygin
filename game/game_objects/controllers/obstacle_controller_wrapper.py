@@ -5,19 +5,18 @@ from pygame.math import Vector2
 #Controllers
 from game.game_objects.controllers.obstacles_controllers.simple_obstacle_controller import SimpleObstacleController
 from game.game_objects.controllers.obstacles_controllers.middle_rect_obstacle_controller import MiddleRectObstacleController
+from game.game_objects.controllers.obstacles_controllers.random_x_final_obstacle_controller import RandomXFinalObstacleController
 from game.game_objects.controllers.obstacles_controllers.rect_translate_x_obstacle_cotroller import RectTranslateXObstacleController
 from game.game_objects.controllers.obstacles_controllers.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 from game.game_objects.controllers.obstacles_controllers.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
-from game.game_objects.controllers.obstacles_controllers.star_score_controller import StarScoreController
+from game.game_objects.controllers.items_controller.star_score_controller import StarScoreController
+from game.game_objects.controllers.items_controller.invencible_power_up_controller import InvenciblePowerUpController
 from game.game_objects.controllers.obstacles_controllers.spinning_middle_rect_obstacle_controller import SpinningMiddleRectObstacleController
 from game.game_objects.controllers.obstacles_controllers.half_moon_spinning_rect_obstacle_controller import HalfMoonSpinningRectObstacleController
 from game_engine.game_object import GameObject
 
 
 class ObstacleControllerWrapper(GameObject):
-
-    def awake(self):
-        self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0), 0)]
 
     def start(self):
         self.obstacle_generators = [
@@ -29,22 +28,18 @@ class ObstacleControllerWrapper(GameObject):
             RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
-
-        self.power_up_generation_delta = 6000
+        self.rect_x_controller = RandomXFinalObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         self.obstacle_geneation_delta = 1500
         self.last_generation_time = 1000 * Time.now()
-        self.last_power_up_time = 1000 * Time.now()
         self.game_object_list = []
         self.last_increases_dificculty_time = Time.now()
         self.game_difficuty = 1
-        self.time_to_increase_difficult = 10
+        self.time_to_increase_difficult = 6
         self.generation_obstacle_difficult = 1
         self.max_difficult = 10
 
         for obstacle_generator in self.obstacle_generators:
             obstacle_generator.start()
-        for power_up_generator in self.power_up_generators:
-            power_up_generator.start()
 
     def update(self):
         self.increase_difficult()
@@ -57,17 +52,9 @@ class ObstacleControllerWrapper(GameObject):
             game_objs = obstacle_generator.game_object_list
             self.game_object_list.extend(game_objs)
 
-        if 1000 * Time.now() - self.last_power_up_time > self.power_up_generation_delta * \
-                self.generation_obstacle_difficult:
-            self.generate_random_power_up()
-
-        for power_up_generator in self.power_up_generators:
-            game_objs = obstacle_generator.game_object_list
-            self.game_object_list.extend(game_objs)
-
     def increase_difficult(self):
         if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult \
-                and self.game_difficuty <= self.max_difficult:
+                and self.game_difficuty < self.max_difficult:
 
             title_x = 20
             title_y = 180
@@ -77,26 +64,27 @@ class ObstacleControllerWrapper(GameObject):
 
             self.game_difficuty += 1
             self.last_increases_dificculty_time = Time.now()
-            self.time_to_increase_difficult *= 1.05
+            self.time_to_increase_difficult *= 1.01
             self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
 
-            if(self.game_difficuty == 5):
+            if(self.game_difficuty == 5 and len(self.obstacle_generators) > 3):
                 self.obstacle_generators.pop(0)
-            print("Difficulty Increases to " + str(self.game_difficuty))
+
+            if(self.game_difficuty == self.max_difficult):
+                print("Max difficult!")
+            else:
+                print("Difficulty Increases to " + str(self.game_difficuty))
 
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()
 
         number_of_obstacles = int(min(self.game_difficuty, len(self.obstacle_generators)))
-
-        random_ind = rand(0, number_of_obstacles)% number_of_obstacles
+        random_ind = rand(0, number_of_obstacles-1)
         random_obstacle_generator = self.obstacle_generators[random_ind]
-        random_obstacle_generator.generate_obstacle()
+        if type(random_obstacle_generator) == RectTranslateXObstacleController:
+            self.last_generation_time -= 300
 
-    def generate_random_power_up(self):
-        self.last_power_up_time = 1000 * Time.now()
-
-        random_ind = rand(0, len(self.power_up_generators))%len(self.power_up_generators)
-        random_obstacle_generator = self.power_up_generators[random_ind]
+        if self.game_difficuty == self.max_difficult:
+            self.rect_x_controller.generate_obstacle()
         random_obstacle_generator.generate_obstacle()

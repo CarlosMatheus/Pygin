@@ -29,6 +29,7 @@ class GameObject:
         self.polygon_mesh = None
         self.circle_mesh = None
         self.text_mesh = None
+        self.collidable = True
         self.__instantiate(self)
 
     def awake(self):

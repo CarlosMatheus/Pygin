@@ -8,7 +8,7 @@ from game.scripts.constants import Constants
 
 class Rectangle(BasicRectangle):
 
-    def __init__(self, position, dimension, material):
+    def __init__(self, position, dimension, material, layer=0):
         """
         Add the rectangle mesh component
         Call the superclass constructor passing basic game_object parameters
@@ -18,7 +18,7 @@ class Rectangle(BasicRectangle):
         :param dimension.y: initial height of the rectangle
         :param material: initial color of the rectangle
         """
-        super(Rectangle, self).__init__(position, dimension, material, layer=1)
+        super(Rectangle, self).__init__(position, dimension, material, layer=layer)
         self.polygon_collider = PolygonCollider(self)
 
     def start(self):

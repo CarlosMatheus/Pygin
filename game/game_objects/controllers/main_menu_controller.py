@@ -10,6 +10,7 @@ from game.scripts.material import Material
 from pygame.math import Vector2
 from game.scripts.constants import Constants
 from game.game_objects.mesh_objects.screen_fader import ScreenFader
+from pygame import mixer
 
 
 class MainMenuController(GameObject):
@@ -32,11 +33,19 @@ class MainMenuController(GameObject):
         title_y = 200
         title_size = 50
 
+        self.setup_soundtrack()
+
         self.game_object_list = [
             Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Color.white, message_size, font_path),
             Text(Vector2(title_x, title_y), "Balance", Color.white, title_size, font_path)
         ]
         self.setup_fader()
+
+    def setup_soundtrack(self):
+        sound_path = "game/assets/soundtrack/balance-main-theme.mp3"
+
+        mixer.music.load(sound_path)
+        mixer.music.play(-1)
 
     def setup_fader(self):
         """

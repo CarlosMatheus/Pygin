@@ -45,6 +45,7 @@ class Engine:
         """
         Async method that will be the coroutine where the game will run in
         """
+        pygame.mixer.pre_init(44100, -16, 1, 512)
         pygame.init()
         cls.game_display = pygame.display.set_mode((cls.screen_width, cls.screen_height))
         pygame.display.set_caption(cls.game_name)

@@ -1,11 +1,13 @@
 from pygame.math import Vector2
 from game.game_objects.mesh_objects.star import Star
+from pygame import mixer
 from game_engine.time import Time
 from game.scripts.material import Material
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from random import uniform as randfloat
 from game.scripts.constants import Constants
+
 
 class StarScoreController(GameObject):
 
@@ -14,7 +16,11 @@ class StarScoreController(GameObject):
         self.angular_speed = 0
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
-        self.points_per_start = 100
+        self.points_per_star = 50
+        self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+
+    def awake(self):
+        self.score_controller = GameObject.find_by_type("ScoreController")[0]
 
     def update(self):
         for obstacle in self.game_object_list:
@@ -29,7 +35,8 @@ class StarScoreController(GameObject):
         obstacle.fall(self.fall_velocity * Time.delta_time(), self.angular_speed * Time.delta_time())
 
     def get_star(self):
-        GameObject.find_by_type("ScoreController")[0].score += self.points_per_start
+        self.sound_collect.play()
+        self.score_controller.score += self.points_per_star
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,
