@@ -4,6 +4,7 @@ from game_engine.time import Time
 from game.game_objects.mesh_objects.screen_fader import ScreenFader
 from game.game_objects.controllers.player_controller import PlayerController
 from game.game_objects.controllers.score_controller import ScoreController
+from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 from game.game_objects.controllers.obstacle_controller_wrapper import ObstacleControllerWrapper
 
 
@@ -46,6 +47,7 @@ class MainSceneController(GameObject):
             PlayerController()
             ObstacleControllerWrapper()
             ScoreController()
+            BackgroundParticlesController()
 
     def change_scene(self):
         """
