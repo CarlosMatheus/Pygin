@@ -83,7 +83,7 @@ class Animation(Component):
                 max_rotation = self.key_frames[self.current_kf_idx + 1].rotation
                 min_rotation = self.key_frames[self.current_kf_idx].rotation
                 dist_rotation = self.__play(min_rotation, max_rotation, "rotation")
-                self.game_object.material.alpha += dist_rotation
+                self.transform.rotation += dist_rotation
 
             if self.key_frames[self.current_kf_idx].scale is not None:
                 max_x = self.key_frames[self.current_kf_idx + 1].scale.x
@@ -92,8 +92,8 @@ class Animation(Component):
                 min_y = self.key_frames[self.current_kf_idx].scale.y
                 dist_scale_x = self.__play(min_x, max_x, "scale_x")
                 dist_scale_y = self.__play(min_y, max_y, "scale_y")
-                self.transform.translate(Vector2(self.transform.position.x + dist_scale_x,
-                                                 self.transform.position.y + dist_scale_y))
+                self.transform.scale.x = self.transform.scale.x + dist_scale_x
+                self.transform.scale.y = self.transform.scale.y + dist_scale_y
 
             if self.key_frames[self.current_kf_idx].alpha is not None:
                 max_alpha = self.key_frames[self.current_kf_idx + 1].alpha
