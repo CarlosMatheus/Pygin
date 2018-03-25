@@ -8,7 +8,7 @@ from game_engine.time import Time
 from elements.game_objects.game_objects.text import Text
 from elements.game_objects.material import Material
 from pygame.math import Vector2
-from game_engine.components.constants import Constants
+from elements.game_objects.constants import Constants
 from elements.game_objects.game_objects.screen_fader import ScreenFader
 
 

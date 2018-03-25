@@ -5,7 +5,7 @@ from elements.game_objects.material import Material
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from random import uniform as randfloat
-from game_engine.components.constants import Constants
+from elements.game_objects.constants import Constants
 
 class StarScoreController(GameObject):
 

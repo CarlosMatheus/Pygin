@@ -4,10 +4,7 @@ from elements.game_objects.game_objects.player_circle import PlayerCircle
 from pygame.math import Vector2
 from elements.game_objects.material import Material
 from game_engine.game_object import GameObject
-from game_engine.components.constants import Constants
-from game_engine.key_frame import KeyFrame
-from game_engine.components.animator import Animator
-from game_engine.components.animation import Animation
+from elements.game_objects.constants import Constants
 import math
 
 

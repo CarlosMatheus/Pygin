@@ -1,6 +1,6 @@
 import pygame
 from .draw import Draw
-from game_engine.components.constants import Constants
+from elements.game_objects.constants import Constants
 from game_engine.scene import Scene
 from game_engine.time import Time
 from game_engine.input import Input
