@@ -7,16 +7,19 @@ from game_engine.game_object import GameObject
 from game_engine.color import Color
 from random import uniform as randfloat
 from game.scripts.constants import Constants
+from game.game_objects.mesh_objects.circle import Circle
+from game_engine.basic_objects.basic_circle import BasicCircle
 
-class StarScoreController(GameObject):
+
+class InvenciblePowerUpController(GameObject):
 
     def start(self):
         self.fall_velocity = 250
-        self.angular_speed = 0
+        self.radius = Constants.screen_width * 0.03
         self.game_object_list = []
-        self.size = Constants.screen_width * 0.03
-        self.points_per_star = 100
+        self.frames_invencible = 100
         self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+
 
     def update(self):
         for obstacle in self.game_object_list:
@@ -28,17 +31,19 @@ class StarScoreController(GameObject):
                 self.fall(obstacle)
 
     def fall(self, obstacle):
-        obstacle.fall(self.fall_velocity * Time.delta_time(), self.angular_speed * Time.delta_time())
+        obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
+                                              + self.fall_velocity * Time.delta_time())
 
-    def get_star(self):
+    def get_power_up(self):
         self.sound_collect.play()
-        GameObject.find_by_type("ScoreController")[0].score += self.points_per_star
+        print("Invencible!")
 
     def generate_obstacle(self):
-        random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,
+        random_pos = int(randfloat(self.radius + Constants.circCenter_x - Constants.circRadius,
                                    Constants.screen_width -
-                                   (self.size / 2 + Constants.circCenter_x - Constants.circRadius)))
+                                   (self.radius + Constants.circCenter_x - Constants.circRadius)))
 
-        star = Star(Vector2(random_pos, -self.size), self.size,
-                    Material(Color.yellow))
-        self.game_object_list.append(star)
+        circle = Circle(Vector2(random_pos, -2 * self.radius), self.radius,
+                        Material(Color.blue))
+
+        self.game_object_list.append(circle)

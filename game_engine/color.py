@@ -5,6 +5,7 @@ class Color:
     black = (0, 0, 0)
     red = (255, 0, 0)
     yellow = (247, 251, 0)
+    blue = (36, 127, 244)#247FF4
 
     @classmethod
     def random_color(cls):

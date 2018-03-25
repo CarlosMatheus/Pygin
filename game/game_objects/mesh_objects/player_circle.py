@@ -17,6 +17,7 @@ class PlayerCircle(BasicCircle):
     def start(self):
         self.star_score_controller = GameObject.find_by_type("StarScoreController")[0]
         self.main_scene_controller = GameObject.find_by_type("MainSceneController")[0]
+        self.invencible_power_up_controller = GameObject.find_by_type("InvenciblePowerUpController")[0]
         self.animation = CirclePlayerInitialAnimation(self)
         self.animator = Animator(self, [self.animation])
         self.death_sound = mixer.Sound('game/assets/soundtrack/ball_death.wav')
@@ -24,9 +25,13 @@ class PlayerCircle(BasicCircle):
     def update(self):
         (collided, game_obj) = self.circle_collider.on_collision()
         if collided:
+            print(str(type(game_obj)))
             self.death_sound.play()
             if issubclass(type(game_obj), BasicRectangle):
                 self.main_scene_controller.game_over()
             elif issubclass(type(game_obj), Star):
                 GameObject.destroy(game_obj)
                 self.star_score_controller.get_star()
+            elif issubclass(type(game_obj), BasicCircle):
+                GameObject.destroy(game_obj)
+                self.invencible_power_up_controller.get_power_up()
