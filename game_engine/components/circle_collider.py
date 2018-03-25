@@ -32,7 +32,7 @@ class CircleCollider(Collider):
         """
         :return: Get the radius of the circle
         """
-        return self.game_object.circle_mesh.radius
+        return self.game_object.circle_mesh.get_radius()
 
     def get_main_points(self):
         """
