@@ -6,6 +6,7 @@ from game.game_objects.controllers.player_controller import PlayerController
 from game.game_objects.controllers.score_controller import ScoreController
 from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 from game.game_objects.controllers.obstacle_controller_wrapper import ObstacleControllerWrapper
+from game.game_objects.controllers.items_controller_wrapper import ItemsControllerWrapper
 
 
 class MainSceneController(GameObject):
@@ -47,6 +48,7 @@ class MainSceneController(GameObject):
             BackgroundParticlesController()
             PlayerController()
             ObstacleControllerWrapper()
+            ItemsControllerWrapper()
             ScoreController()
 
     def change_scene(self):
