@@ -18,7 +18,7 @@ class InvenciblePowerUpController(GameObject):
         self.radius = Constants.screen_width * 0.03
         self.game_object_list = []
         self.frames_invencible = 100
-        self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+        self.sound_collect = mixer.Sound('game/assets/soundtrack/powerup_collect.wav')
         self.time_of_last_invencibily = 0
         self.invecible_time = 3
 
