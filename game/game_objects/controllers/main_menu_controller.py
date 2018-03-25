@@ -8,9 +8,10 @@ from game_engine.time import Time
 from game.game_objects.mesh_objects.text import Text
 from game.scripts.material import Material
 from pygame.math import Vector2
+from game.scripts.constants import Constants
+from game.game_objects.mesh_objects.screen_fader import ScreenFader
 from pygame import mixer
-from elements.game_objects.constants import Constants
-from elements.game_objects.game_objects.screen_fader import ScreenFader
+
 
 class MainMenuController(GameObject):
 
