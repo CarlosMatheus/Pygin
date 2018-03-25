@@ -16,6 +16,7 @@ class StarScoreController(GameObject):
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
         self.points_per_start = 100
+        self.sound_collect = mixer.Sound('assets/soundtrack/star_collect.wav')
 
     def update(self):
         for obstacle in self.game_object_list:
@@ -30,11 +31,8 @@ class StarScoreController(GameObject):
         obstacle.fall(self.fall_velocity * Time.delta_time(), self.angular_speed * Time.delta_time())
 
     def get_star(self):
-        self.play_star_collect_sound()
+        self.sound_collect.play()
         GameObject.find_by_type("ScoreController")[0].score += self.points_per_start
-
-    def play_star_collect_sound(self):
-        mixer.Sound('assets/soundtrack/star_collect.wav').play()
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,
