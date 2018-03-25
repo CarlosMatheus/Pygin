@@ -31,7 +31,6 @@ class HalfMoonSpinningRectObstacleController(GameObject):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
         obstacle.transform.rotate(self.angular_speed * Time.delta_time() * obstacle.side)
-        obstacle.polygon_mesh.update_point_list(obstacle.get_points())
 
     def generate_obstacle(self):
         side = randint(0, 1)

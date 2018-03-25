@@ -34,7 +34,6 @@ class RectTranslateXObstacleController(GameObject):
             obstacle.vel *= -1
         obstacle.transform.position = Vector2(new_x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
-        obstacle.polygon_mesh.update_point_list(obstacle.get_points())
 
     def generate_obstacle(self):
 

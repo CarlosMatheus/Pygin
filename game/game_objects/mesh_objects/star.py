@@ -17,10 +17,10 @@ class Star(GameObject):
         super(Star, self).__init__(center_position, 0, Vector2(1, 1), 2)
         self.circle_collider = CircleCollider(self)
         self.circle_mesh = CircleMesh(self, size, material)
-        self.polygon_mesh = PolygonMesh(self, self.get_points(), material)
+        self.polygon_mesh = PolygonMesh(self, material)
 
-    def get_points(self):
-        point_list = []
+    def _get_points(self):
+        point_list = list()
         angle = math.pi / 2 + math.pi
         for i in range(5):
             point_list.append(Vector2(self.transform.position.x + self.circle_collider.get_radius() * math.cos(angle),
@@ -34,10 +34,8 @@ class Star(GameObject):
             point = point_list[i]
             point_list[i] = Geometry.rotate_point(Vector2(self.transform.position.x, self.transform.position.y),
                                                   point, self.transform.rotation)
-
         return point_list
 
     def fall(self, distance, angular_distance):
         self.transform.translate(Vector2(self.transform.position.x, self.transform.position.y + distance))
         self.transform.rotate(angular_distance)
-        self.polygon_mesh.update_point_list(self.get_points())

@@ -1,6 +1,7 @@
 import math
 from pygame.math import Vector2
 
+
 class Geometry:
 
     @classmethod

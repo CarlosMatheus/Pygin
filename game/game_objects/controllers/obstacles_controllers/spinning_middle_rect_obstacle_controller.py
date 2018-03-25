@@ -28,7 +28,6 @@ class SpinningMiddleRectObstacleController(GameObject):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
         obstacle.transform.rotate(self.angular_speed * Time.delta_time() * obstacle.direction)
-        obstacle.polygon_mesh.update_point_list(obstacle.get_points())
 
     def generate_obstacle(self):
         self.obstacle_width = 0.45 * Constants.screen_width

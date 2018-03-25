@@ -41,9 +41,6 @@ class TwoSideBySideSimpleObstacleController(GameObject):
                                               obstacle_pair[0].transform.position.y
                                               + self.fall_velocity * Time.delta_time())
 
-        obstacle_pair[0].polygon_mesh.update_point_list(obstacle_pair[0].get_points())
-        obstacle_pair[1].polygon_mesh.update_point_list(obstacle_pair[1].get_points())
-
     def generate_obstacle(self):
         direction = rand(0, 1) < 0.5
         obstacle_width = 0.5 * Constants.screen_width

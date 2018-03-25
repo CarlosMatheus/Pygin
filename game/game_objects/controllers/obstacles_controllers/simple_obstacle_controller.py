@@ -25,7 +25,6 @@ class SimpleObstacleController(GameObject):
     def fall(self, obstacle):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
-        obstacle.polygon_mesh.update_point_list(obstacle.get_points())
 
     def generate_obstacle(self):
         direction = rand(0, 1) < 0.5

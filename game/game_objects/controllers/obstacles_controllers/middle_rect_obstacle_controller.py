@@ -24,7 +24,6 @@ class MiddleRectObstacleController(GameObject):
     def fall(self, obstacle):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
                                               + self.fall_velocity * Time.delta_time())
-        obstacle.polygon_mesh.update_point_list(obstacle.get_points())
 
     def generate_obstacle(self):
         self.obstacle_width = 0.3 * Constants.screen_width

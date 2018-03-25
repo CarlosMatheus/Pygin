@@ -24,7 +24,7 @@ class PolygonCollider(Collider):
         """
         :return: Get the point list of a polygon
         """
-        return self.game_object.polygon_mesh.point_list
+        return self.game_object.polygon_mesh.get_points()
 
     def on_collision(self):
         """
