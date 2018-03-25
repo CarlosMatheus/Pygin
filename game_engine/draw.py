@@ -1,4 +1,5 @@
 import pygame
+from pygame import gfxdraw
 from .color import Color
 
 
@@ -34,7 +35,7 @@ class Draw:
         :param radius: circle's radius
         :param color: circle's color
         """
-        pygame.draw.circle(cls.game_display, color, [int(position.x), int(position.y)], int(radius))
+        pygame.gfxdraw.filled_circle(cls.game_display, int(position.x), int(position.y), int(radius), color)
 
     @classmethod
     def polygon(cls, color, point_list, alpha=None):
@@ -49,7 +50,7 @@ class Draw:
             pygame.draw.polygon(s, color, point_list)
             cls.game_display.blit(s, (0, 0))
         else:
-            pygame.draw.polygon(cls.game_display, color, point_list)
+            pygame.gfxdraw.filled_polygon(cls.game_display, point_list, color)
 
     @classmethod
     def text(cls, position_x, position_y, message, color, size, font_path):
