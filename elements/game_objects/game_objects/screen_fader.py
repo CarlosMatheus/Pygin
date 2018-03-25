@@ -1,4 +1,4 @@
-from elements.game_objects.game_objects.basic_objects.basic_rectangle import BasicRectangle
+from game_engine.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.components.animation import Animation
 from game_engine.components.animator import Animator
 from game_engine.key_frame import KeyFrame

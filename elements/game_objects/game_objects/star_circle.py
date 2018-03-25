@@ -1,4 +1,4 @@
-from elements.game_objects.game_objects.basic_objects.basic_circle import BasicCircle
+from game_engine.basic_objects.basic_circle import BasicCircle
 from game_engine.components.circle_collider import CircleCollider
 
 
