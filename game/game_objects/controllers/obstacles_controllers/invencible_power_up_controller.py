@@ -7,7 +7,7 @@ from game_engine.game_object import GameObject
 from game_engine.color import Color
 from random import uniform as randfloat
 from game.scripts.constants import Constants
-from game.game_objects.mesh_objects.circle import Circle
+from game.game_objects.mesh_objects.invencible_circle import InvencibleCircle
 from game_engine.basic_objects.basic_circle import BasicCircle
 
 
@@ -19,9 +19,18 @@ class InvenciblePowerUpController(GameObject):
         self.game_object_list = []
         self.frames_invencible = 100
         self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+        self.time_of_last_invencibily = 0
+        self.invecible_time = 3
 
+    def awake(self):
+        self.player_controller = GameObject.find_by_type("PlayerController")[0]
 
     def update(self):
+        if Time.now() - self.time_of_last_invencibily > self.invecible_time:
+            for i in range(2):
+                # print("Not invencible")
+                self.player_controller.game_object_list[i].is_invencible = False
+
         for obstacle in self.game_object_list:
             if obstacle.transform.position.y > Constants.screen_height:
                 self.game_object_list.remove(obstacle)
@@ -36,14 +45,17 @@ class InvenciblePowerUpController(GameObject):
 
     def get_power_up(self):
         self.sound_collect.play()
-        print("Invencible!")
+        # print("Invencible!")
+        for i in range(2):
+            self.player_controller.game_object_list[i].is_invencible = True
+        self.time_of_last_invencibily = Time.now()
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.radius + Constants.circCenter_x - Constants.circRadius,
                                    Constants.screen_width -
                                    (self.radius + Constants.circCenter_x - Constants.circRadius)))
 
-        circle = Circle(Vector2(random_pos, -2 * self.radius), self.radius,
-                        Material(Color.blue))
+        circle = InvencibleCircle(Vector2(random_pos, -2 * self.radius), self.radius,
+                                  Material(Color.green))
 
         self.game_object_list.append(circle)

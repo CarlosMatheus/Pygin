@@ -20,6 +20,7 @@ class PlayerController(GameObject):
         self.in_initial_animation = True
         self.should_play = True
         self.initial_time = Time.now()
+        self.is_invencible = True
 
     def update(self):
         self.initial_animation()

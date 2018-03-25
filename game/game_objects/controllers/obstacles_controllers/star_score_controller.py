@@ -8,6 +8,7 @@ from game_engine.color import Color
 from random import uniform as randfloat
 from game.scripts.constants import Constants
 
+
 class StarScoreController(GameObject):
 
     def start(self):
@@ -17,6 +18,9 @@ class StarScoreController(GameObject):
         self.size = Constants.screen_width * 0.03
         self.points_per_star = 100
         self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+
+    def awake(self):
+        self.score_controller = GameObject.find_by_type("ScoreController")[0]
 
     def update(self):
         for obstacle in self.game_object_list:
@@ -32,7 +36,7 @@ class StarScoreController(GameObject):
 
     def get_star(self):
         self.sound_collect.play()
-        GameObject.find_by_type("ScoreController")[0].score += self.points_per_star
+        self.score_controller.score += self.points_per_star
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,
