@@ -9,3 +9,4 @@ class TextMesh(Mesh):
         self.color = color
         self.size = size
         self.font = font
+        self.label = font.render(self.message, 1, self.color)

@@ -53,17 +53,11 @@ class Draw:
             pygame.gfxdraw.filled_polygon(cls.game_display, point_list, color)
 
     @classmethod
-    def text(cls, position_x, position_y, message, color, size, font_path):
+    def text(cls, position_x, position_y, label):
         """
         Draws text
         :param position_x: text's x position
         :param position_y: text's y position
-        :param message: the text's content. The message attached to it
-        :param color: text's color
-        :param size: text's size
-        :param font_path: the path for a .ttf file representing the desired font. Can be none
-        :return:
+        :param label: its the pygame label necessary to draw the text
         """
-        font = pygame.font.Font(font_path, size)
-        label = font.render(message, 1, color)
         cls.game_display.blit(label, (position_x, position_y))

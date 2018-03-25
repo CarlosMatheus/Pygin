@@ -5,7 +5,7 @@ from game_engine.game_object import GameObject
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
-from game.game_objects.mesh_objects.text import Text
+from game_engine.basic_objects.text import Text
 from game.scripts.material import Material
 from pygame.math import Vector2
 from game.scripts.constants import Constants
@@ -43,7 +43,6 @@ class MainMenuController(GameObject):
 
     def setup_soundtrack(self):
         sound_path = "game/assets/soundtrack/balance-main-theme.mp3"
-
         mixer.music.load(sound_path)
         mixer.music.play(-1)
 
