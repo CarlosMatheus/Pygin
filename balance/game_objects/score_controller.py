@@ -8,7 +8,7 @@ class ScoreController(GameObject):
 
     def start(self):
 
-        font_path = "assets/fonts/neuropolxrg.ttf"
+        font_path = "balance/assets/fonts/neuropolxrg.ttf"
 
         self.number_of_steps_to_update_score = 20
         self.score_per_step = 1  # Number of steps of the game required to update the score

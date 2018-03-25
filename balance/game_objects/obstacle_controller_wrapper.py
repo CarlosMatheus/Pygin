@@ -74,7 +74,7 @@ class ObstacleControllerWrapper(GameObject):
             title_x = 20
             title_y = 180
             title_size = 50
-            font_path = "assets/fonts/neuropolxrg.ttf"
+            font_path = "balance/assets/fonts/neuropolxrg.ttf"
             # Text(Vector2(title_x, title_y), "Difficulty Increased!", Color.white, title_size, font_path)
 
             self.game_difficuty += 1

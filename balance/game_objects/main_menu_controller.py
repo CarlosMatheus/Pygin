@@ -22,7 +22,7 @@ class MainMenuController(GameObject):
         self.time = Time.now()
         self.period = 0.9
 
-        font_path = "assets/fonts/neuropolxrg.ttf"
+        font_path = "balance/assets/fonts/neuropolxrg.ttf"
 
         message_x = 10
         message_y = 270

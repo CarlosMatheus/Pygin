@@ -22,7 +22,7 @@ class RetryController(GameObject):
         self.time = Time.now()
         self.period = 1.5
 
-        font_path = "assets/fonts/neuropolxrg.ttf"
+        font_path = "balance/assets/fonts/neuropolxrg.ttf"
 
         message_x = 15
         message_y = 300
