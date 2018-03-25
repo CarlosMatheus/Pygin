@@ -1,7 +1,8 @@
 from game_engine.time import Time
 from random import randint as rand
 from pygame.math import Vector2
-from game_engine.game_object import GameObject
+from game_engine.color import Color
+from elements.game_objects.game_objects.text import Text
 
 #Controllers
 from elements.game_objects.obstacles.simple_obstacle_controller import SimpleObstacleController
@@ -69,15 +70,27 @@ class ObstacleControllerWrapper(GameObject):
     def increase_difficult(self):
         if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult \
                 and self.game_difficuty <= self.max_difficult:
-            print("Difficulty Increase!")
+
+            title_x = 20
+            title_y = 180
+            title_size = 50
+            font_path = "assets/fonts/neuropolxrg.ttf"
+            # Text(Vector2(title_x, title_y), "Difficulty Increased!", Color.white, title_size, font_path)
+
             self.game_difficuty += 1
             self.last_increases_dificculty_time = Time.now()
+            self.time_to_increase_difficult *= 1.05
             self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
+
+            if(self.game_difficuty == 5):
+                self.obstacle_generators.pop(0)
+            print("Difficulty Increases to " + str(self.game_difficuty))
+
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()
 
-        number_of_obstacles = min(self.game_difficuty, len(self.obstacle_generators))
+        number_of_obstacles = int(min(self.game_difficuty, len(self.obstacle_generators)))
 
         random_ind = rand(0, number_of_obstacles)% number_of_obstacles
         random_obstacle_generator = self.obstacle_generators[random_ind]
