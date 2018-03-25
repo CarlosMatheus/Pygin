@@ -1,10 +1,10 @@
 from game_engine.input import Input
 from game_engine.time import Time
-from elements.game_objects.game_objects.player_circle import PlayerCircle
+from balance.game_objects.game_objects.player_circle import PlayerCircle
 from pygame.math import Vector2
-from elements.game_objects.material import Material
+from balance.game_objects.material import Material
 from game_engine.game_object import GameObject
-from elements.game_objects.constants import Constants
+from balance.scripts.constants import Constants
 import math
 
 

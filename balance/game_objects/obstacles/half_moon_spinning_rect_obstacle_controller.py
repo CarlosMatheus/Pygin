@@ -2,9 +2,9 @@ from pygame.math import Vector2
 from game_engine.time import Time
 from random import randint
 from game_engine.game_object import GameObject
-from elements.game_objects.game_objects.rectangle import Rectangle
-from elements.game_objects.constants import Constants
-from elements.game_objects.material import Material
+from balance.game_objects.game_objects.rectangle import Rectangle
+from balance.scripts.constants import Constants
+from balance.game_objects.material import Material
 import math
 
 class HalfMoonSpinningRectObstacleController(GameObject):

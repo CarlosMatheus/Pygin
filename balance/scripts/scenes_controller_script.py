@@ -3,7 +3,7 @@ from balance.scenes.scenes_list.main_menu import MainMenu
 from balance.scenes.scenes_list.retry_scene import RetryScene
 
 
-class ScenesController:
+class ScenesControllerScript:
 
     @classmethod
     def get_scenes(cls):

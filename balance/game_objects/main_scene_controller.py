@@ -1,10 +1,10 @@
 from game_engine.scene import Scene
 from game_engine.game_object import GameObject
 from game_engine.time import Time
-from elements.game_objects.game_objects.screen_fader import ScreenFader
-from elements.game_objects.player_controller import PlayerController
-from elements.game_objects.score_controller import ScoreController
-from elements.game_objects.obstacle_controller_wrapper import ObstacleControllerWrapper
+from balance.game_objects.game_objects.screen_fader import ScreenFader
+from balance.game_objects.player_controller import PlayerController
+from balance.game_objects.score_controller import ScoreController
+from balance.game_objects.obstacle_controller_wrapper import ObstacleControllerWrapper
 
 
 class MainSceneController(GameObject):

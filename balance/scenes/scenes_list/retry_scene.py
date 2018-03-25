@@ -1,5 +1,5 @@
 from game_engine.scene import Scene
-from elements.game_objects.retry_controller import RetryController
+from balance.game_objects.retry_controller import RetryController
 
 
 class RetryScene(Scene):

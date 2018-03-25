@@ -1,5 +1,5 @@
 from game_engine.scene import Scene
-from elements.game_objects.main_menu_controller import MainMenuController
+from balance.game_objects.main_menu_controller import MainMenuController
 
 
 class MainMenu(Scene):

@@ -1,11 +1,11 @@
 from pygame.math import Vector2
-from elements.game_objects.game_objects.star import Star
+from balance.game_objects.game_objects.star import Star
 from game_engine.time import Time
-from elements.game_objects.material import Material
+from balance.game_objects.material import Material
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from random import uniform as randfloat
-from elements.game_objects.constants import Constants
+from balance.scripts.constants import Constants
 
 class StarScoreController(GameObject):
 

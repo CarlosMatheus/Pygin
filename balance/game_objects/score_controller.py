@@ -1,5 +1,5 @@
-from elements.game_objects.constants import Constants
-from elements.game_objects.game_objects.text import Text
+from balance.scripts.constants import Constants
+from balance.game_objects.game_objects.text import Text
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from pygame.math import Vector2

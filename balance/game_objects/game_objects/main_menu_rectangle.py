@@ -3,7 +3,7 @@ from game_engine.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.game_object import GameObject
 from game_engine.time import Time
 from pygame.math import Vector2
-from elements.game_objects.constants import Constants
+from balance.scripts.constants import Constants
 
 
 class Rectangle(BasicRectangle):

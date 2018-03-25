@@ -4,7 +4,7 @@ from game_engine.components.animator import Animator
 from game_engine.key_frame import KeyFrame
 from pygame.math import Vector2
 from game_engine.engine import Engine
-from elements.game_objects.material import Material
+from balance.game_objects.material import Material
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from game_engine.time import Time

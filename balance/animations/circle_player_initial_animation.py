@@ -1,6 +1,6 @@
 from game_engine.components.animation import Animation
 from game_engine.key_frame import KeyFrame
-from elements.game_objects.constants import Constants
+from balance.scripts.constants import Constants
 from pygame.math import Vector2
 
 

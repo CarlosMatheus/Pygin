@@ -1,12 +1,12 @@
 from game_engine.engine import Engine
 from random import randint as rand
 from game_engine.game_object import GameObject
-from elements.game_objects.game_objects.main_menu_rectangle import Rectangle
+from balance.game_objects.game_objects.main_menu_rectangle import Rectangle
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
 from pygame.math import Vector2
-from elements.game_objects.material import Material
+from balance.game_objects.material import Material
 
 
 class TestRectGenerator(GameObject):

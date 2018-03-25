@@ -1,5 +1,5 @@
 from game_engine.scene import Scene
-from elements.game_objects.main_scene_controller import MainSceneController
+from balance.game_objects.main_scene_controller import MainSceneController
 
 
 class MainScene(Scene):

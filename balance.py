@@ -1,6 +1,5 @@
 from game_engine.engine import Engine
-from elements.scenes.scenes_controller import ScenesController
+from balance.scripts.game_settings import GameSettings
 
-game_name = "Balance"
 
-Engine.start_game(game_name, ScenesController.get_scenes())
+Engine.start_game(GameSettings)

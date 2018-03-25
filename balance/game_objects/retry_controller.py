@@ -1,15 +1,15 @@
 from random import randint as rand
-from elements.game_objects.game_objects.main_menu_rectangle import Rectangle
+from balance.game_objects.game_objects.main_menu_rectangle import Rectangle
 from game_engine.scene import Scene
 from game_engine.game_object import GameObject
 from game_engine.input import Input
 from game_engine.color import Color
 from game_engine.time import Time
-from elements.game_objects.game_objects.text import Text
-from elements.game_objects.material import Material
+from balance.game_objects.game_objects.text import Text
+from balance.game_objects.material import Material
 from pygame.math import Vector2
-from elements.game_objects.constants import Constants
-from elements.game_objects.game_objects.screen_fader import ScreenFader
+from balance.scripts.constants import Constants
+from balance.game_objects.game_objects.screen_fader import ScreenFader
 
 
 class RetryController(GameObject):
