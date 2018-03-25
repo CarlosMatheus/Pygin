@@ -16,7 +16,7 @@ class StarScoreController(GameObject):
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
         self.points_per_start = 100
-        self.sound_collect = mixer.Sound('assets/soundtrack/star_collect.wav')
+        self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
 
     def update(self):
         for obstacle in self.game_object_list:
