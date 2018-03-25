@@ -25,6 +25,10 @@ class GameObject:
         self.animator = None
         self.animation = None
         self.material = None
+        self.physics = None
+        self.polygon_mesh = None
+        self.circle_mesh = None
+        self.text_mesh = None
         self.__instantiate(self)
 
     def awake(self):
@@ -51,22 +55,25 @@ class GameObject:
         """
         if self.animator is not None:
             self.animator._Animator__update()
+        if self.physics is not None:
+            self.physics._Physics__update()
+        if self.polygon_mesh is not None:
+            self.polygon_mesh._PolygonMesh__update()
 
     def draw_game_object(self):
         """
         Draw the game_object on screen
         """
-        if hasattr(self, 'polygon_mesh'):
-            Draw.polygon(self.polygon_mesh.material.color, self.get_points(), self.polygon_mesh.material.alpha)
-
-        elif hasattr(self, 'circle_mesh'):
-            Draw.circle(self.transform.position, self.circle_mesh.radius, self.circle_mesh.material.color)
-
-        elif hasattr(self, 'text_mesh'):
+        if self.polygon_mesh is not None:
+            Draw.polygon(self.polygon_mesh.material.color, self.polygon_mesh.get_points(), self.polygon_mesh.material.alpha)
+        elif self.circle_mesh is not None:
+            Draw.circle(self.transform.position, self.circle_mesh.get_radius(), self.circle_mesh.material.color)
+        elif self.text_mesh is not None:
             Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.message,
                       self.text_mesh.color, self.text_mesh.size, self.text_mesh.font)
-        else:
-            pass
+
+    def _get_points(self):
+        return None
 
     @classmethod
     def find_by_type(cls, game_object_type_string):
