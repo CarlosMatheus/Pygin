@@ -15,7 +15,6 @@ class HalfMoonSpinningRectObstacleController(GameObject):
         self.obstacle_height = 0.06 * Constants.screen_height
         self.angular_speed = (self.fall_velocity/(1.2* Constants.screen_height+self.obstacle_height)) * \
                              0.9 * math.pi / 2
-        print(self.angular_speed)
         self.game_object_list = []
 
     def update(self):
