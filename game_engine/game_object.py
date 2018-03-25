@@ -10,7 +10,7 @@ class GameObject:
 
     def __init__(self, position=Vector2(0, 0), rotation=0, scale=Vector2(1, 1), layer=0):
         """
-        set basics game_objects parameters
+        set basics mesh_objects parameters
         :param position.x: game_object's x initial position
         :param position.y: game_object's y initial position
         :param rotation: game_object's initial rotation in degrees
@@ -71,16 +71,16 @@ class GameObject:
     @classmethod
     def find_by_type(cls, game_object_type_string):
         """
-        Find all the game_objects of that type in the current running scene
+        Find all the mesh_objects of that type in the current running scene
         :param game_object_type_string: a string with the game_object type(Class)
-        :return: a list with all the game_objects of that type
+        :return: a list with all the mesh_objects of that type
         """
         return Scene.current_running_scene.find_game_object_by_type(game_object_type_string)
 
     @classmethod
     def find_by_tag(cls, game_object_tag_string):
         """
-        Find all the game_objects with that tag in the current running scene
+        Find all the mesh_objects with that tag in the current running scene
         :param game_object_tag_string: the tag name
         :return: a list with all game_object in the scene with that tag
         """

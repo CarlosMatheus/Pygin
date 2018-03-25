@@ -16,7 +16,7 @@ class Scene:
     def __init__(self, init_game_objects_controllers_reference_list):
         """
         Set object's variables to start a new scene
-        :param init_game_objects_controllers_reference_list: list of all game_objects of the scene
+        :param init_game_objects_controllers_reference_list: list of all mesh_objects of the scene
         """
         Scene.changing_scene = True
         init_game_objects_list = []
@@ -75,7 +75,7 @@ class Scene:
 
     def draw_all_game_objects(self):
         """
-        Sort the game_objects list based on layer and then
+        Sort the mesh_objects list based on layer and then
         run draw method of each game_object of the scene
         """
         self.game_objects.sort(key=lambda game_object: game_object.transform.layer)
@@ -100,7 +100,7 @@ class Scene:
 
     def add_game_object(self, game_object):
         """
-        Add a new game object to the scene's game_objects list
+        Add a new game object to the scene's mesh_objects list
         :param game_object: new game_object to add to scene
         """
         self.game_objects = [game_object] + self.game_objects
@@ -122,7 +122,7 @@ class Scene:
         Return a list with all game object in the current scene that
         is instance of the class type_of_game_obj
         :param type_of_game_obj: the name of the class of the game object that you wat to find
-        :return: a list of game_objects of that type
+        :return: a list of mesh_objects of that type
         """
         return_list = []
         for game_object in self.game_objects:
@@ -139,7 +139,7 @@ class Scene:
         """
         Return a list with all game object in the current scene that
         has a tag string equals to the tag you want
-        :param tag: the tag of the game_objects you want
+        :param tag: the tag of the mesh_objects you want
         :return: a list with the game object with that tag
         """
         return_list = []
@@ -192,7 +192,7 @@ class Scene:
 
     def exit_scene(self):
         """
-        empty the game_objects and the collider list and start next scene
+        empty the mesh_objects and the collider list and start next scene
         """
         self.game_objects = []
         Collider.collider_list = []
