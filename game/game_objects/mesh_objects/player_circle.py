@@ -5,6 +5,7 @@ from game.animations.circle_player_initial_animation import CirclePlayerInitialA
 from game_engine.components.animator import Animator
 from game_engine.game_object import GameObject
 from game_engine.components.circle_collider import CircleCollider
+from pygame import mixer
 
 
 class PlayerCircle(BasicCircle):
@@ -18,10 +19,12 @@ class PlayerCircle(BasicCircle):
         self.main_scene_controller = GameObject.find_by_type("MainSceneController")[0]
         self.animation = CirclePlayerInitialAnimation(self)
         self.animator = Animator(self, [self.animation])
+        self.death_sound = mixer.Sound('game/assets/soundtrack/ball_death.wav')
 
     def update(self):
         (collided, game_obj) = self.circle_collider.on_collision()
         if collided:
+            self.death_sound.play()
             if issubclass(type(game_obj), BasicRectangle):
                 self.main_scene_controller.game_over()
             elif issubclass(type(game_obj), Star):
