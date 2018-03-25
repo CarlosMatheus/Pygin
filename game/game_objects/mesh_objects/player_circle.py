@@ -26,7 +26,7 @@ class PlayerCircle(BasicCircle):
     def update(self):
         (collided, game_obj) = self.circle_collider.on_collision()
         if collided:
-            if issubclass(type(game_obj), BasicRectangle) and not self.is_invencible:
+            if issubclass(type(game_obj), BasicRectangle) and not self.is_invencible and game_obj.collidable:
                 self.main_scene_controller.game_over()
                 self.death_sound.play()
             elif issubclass(type(game_obj), Star):

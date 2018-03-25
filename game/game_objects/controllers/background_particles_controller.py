@@ -3,28 +3,22 @@ from game_engine.time import Time
 from game_engine.game_object import GameObject
 from game.game_objects.mesh_objects.rectangle import Rectangle
 from game.scripts.constants import Constants
+from game_engine.color import Color
 from game.scripts.material import Material
+from random import randint as rand
 
 class BackgroundParticlesController(GameObject):
 
     def start(self):
         self.fall_velocity = 60
         self.game_object_list = []
-        self.rect_position = [Vector2(0.20 * Constants.screen_width, 0.00 * Constants.screen_height),
-                              Vector2(0.35 * Constants.screen_width, 0.15 * Constants.screen_height),
-                              Vector2(0.43 * Constants.screen_width, 0.45 * Constants.screen_height),
-                              Vector2(0.69 * Constants.screen_width, 0.75 * Constants.screen_height),
-                              Vector2(0.88 * Constants.screen_width, 0.90 * Constants.screen_height)]
-        self.current_rect = 0
-
         self.generate_particles()
 
     def update(self):
 
         for obstacle in self.game_object_list:
             if obstacle.transform.position.y > Constants.screen_height:
-                obstacle.transform.position = self.rect_position[self.current_rect]
-                self.current_rect += 1
+                obstacle.transform.position = Vector2(rand(0, Constants.screen_width), 0)
             else:
                 self.fall(obstacle)
 
@@ -35,9 +29,17 @@ class BackgroundParticlesController(GameObject):
 
     def generate_particles(self):
         for i in range(5):
-            self.obstacle_x, self.obstacle_y = self.rect_position[i].x, self.rect_position[i].y
-            rect = Rectangle(Vector2(self.obstacle_x, self.obstacle_y),
-                             Vector2(0.05 * Constants.screen_width, 0.05 * Constants.screen_height),
-                             Material((255, 255, 255)))
+            rect = Rectangle(Vector2(rand(0, Constants.screen_width), rand(0, Constants.screen_height)),
+                             Vector2(0.007 * Constants.screen_width, 0.007 * Constants.screen_width),
+                             Material(Color.silver))
             rect.polygon_collider = []
+            rect.collidable = False
+            self.game_object_list.append(rect)
+
+        for i in range(5):
+            rect = Rectangle(Vector2(rand(0, Constants.screen_width), rand(0, Constants.screen_height)),
+                             Vector2(0.007 * Constants.screen_width, 0.007 * Constants.screen_width),
+                             Material(Color.gray))
+            rect.polygon_collider = []
+            rect.collidable = False
             self.game_object_list.append(rect)

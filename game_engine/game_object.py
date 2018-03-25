@@ -25,6 +25,7 @@ class GameObject:
         self.animator = None
         self.animation = None
         self.material = None
+        self.collidable = True
         self.__instantiate(self)
 
     def awake(self):

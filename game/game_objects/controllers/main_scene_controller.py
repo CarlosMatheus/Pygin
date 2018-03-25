@@ -44,10 +44,10 @@ class MainSceneController(GameObject):
         """
         if Time.now() - self.initial_time > 0.45 and self.should_initialize:
             self.should_initialize = False
+            BackgroundParticlesController()
             PlayerController()
             ObstacleControllerWrapper()
             ScoreController()
-            BackgroundParticlesController()
 
     def change_scene(self):
         """
