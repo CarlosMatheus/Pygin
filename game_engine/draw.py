@@ -53,11 +53,17 @@ class Draw:
             pygame.gfxdraw.filled_polygon(cls.game_display, point_list, color)
 
     @classmethod
-    def text(cls, position_x, position_y, label):
+    def text(cls, position_x, position_y, label, alpha=None):
         """
         Draws text
         :param position_x: text's x position
         :param position_y: text's y position
         :param label: its the pygame label necessary to draw the text
         """
-        cls.game_display.blit(label, (position_x, position_y))
+        if alpha is not None:
+            s = pygame.Surface((cls.screen_width, cls.screen_height))
+            s.set_alpha(alpha)
+            s.blit(label, (position_x, position_y))
+            cls.game_display.blit(s, (0, 0))
+        else:
+            cls.game_display.blit(label, (position_x, position_y))

@@ -3,6 +3,7 @@ from game_engine.basic_objects.text import Text
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from pygame.math import Vector2
+from game.scripts.material import Material
 
 class ScoreController(GameObject):
 
@@ -22,7 +23,7 @@ class ScoreController(GameObject):
         score_size = 15
 
         self.game_object_list = [
-            Text(Vector2(score_x, score_y), score_message, score_color, score_size, font_path)
+            Text(Vector2(score_x, score_y), score_message, Material(score_color), score_size, font_path)
         ]
         self.game_object_list[0].text_mesh.message = str(int(self.score))
 

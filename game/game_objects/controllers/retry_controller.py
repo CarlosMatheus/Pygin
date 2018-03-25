@@ -38,9 +38,9 @@ class RetryController(GameObject):
         title_size = 50
 
         self.game_object_list = [
-            Text(Vector2(title_x, title_y), "You died", Color.red, title_size, font_path),
-            Text(Vector2(score_x, score_y), "Score: " + score, Color.white, score_size, font_path),
-            Text(Vector2(message_x, message_y), "Press arrows keys to try again", Color.white, message_size, font_path)
+            Text(Vector2(title_x, title_y), "You died", Material(Color.red), title_size, font_path),
+            Text(Vector2(score_x, score_y), "Score: " + score, Material(Color.white), score_size, font_path),
+            Text(Vector2(message_x, message_y), "Press arrows keys to try again", Material(Color.white), message_size, font_path)
         ]
         self.setup_fader()
 

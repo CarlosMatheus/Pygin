@@ -36,8 +36,8 @@ class MainMenuController(GameObject):
         self.setup_soundtrack()
 
         self.game_object_list = [
-            Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Color.white, message_size, font_path),
-            Text(Vector2(title_x, title_y), "Balance", Color.white, title_size, font_path)
+            Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Material(Color.white), message_size, font_path),
+            Text(Vector2(title_x, title_y), "Balance", Material(Color.white), title_size, font_path)
         ]
         self.setup_fader()
 

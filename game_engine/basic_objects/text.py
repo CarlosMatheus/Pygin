@@ -6,7 +6,7 @@ import pygame
 
 class Text(GameObject):
 
-    def __init__(self, position, message, color, size, font_path="", layer=10):
+    def __init__(self, position, message, material, size, font_path="", layer=10):
         super(Text, self).__init__(position, 0, Vector2(1, 1), layer=layer)
         font = pygame.font.Font(font_path, size)
-        self.text_mesh = TextMesh(self, message, color, size, font)
+        self.text_mesh = TextMesh(self, message, material, size, font)

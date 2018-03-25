@@ -60,6 +60,8 @@ class GameObject:
             self.physics._Physics__update()
         if self.polygon_mesh is not None:
             self.polygon_mesh._PolygonMesh__update()
+        if self.text_mesh is not None:
+            self.text_mesh._TextMesh__update()
 
     def draw_game_object(self):
         """
@@ -70,9 +72,7 @@ class GameObject:
         elif self.circle_mesh is not None:
             Draw.circle(self.transform.position, self.circle_mesh.get_radius(), self.circle_mesh.material.color)
         elif self.text_mesh is not None:
-            Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.label)
-            # Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.message,
-            #           self.text_mesh.color, self.text_mesh.size, self.text_mesh.font)
+            Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.label, self.text_mesh.material.alpha)
 
     def _get_points(self):
         return None
