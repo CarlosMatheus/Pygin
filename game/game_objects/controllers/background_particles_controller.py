@@ -31,7 +31,7 @@ class BackgroundParticlesController(GameObject):
         for i in range(5):
             rect = Rectangle(Vector2(rand(0, Constants.screen_width), rand(0, Constants.screen_height)),
                              Vector2(0.007 * Constants.screen_width, 0.007 * Constants.screen_width),
-                             Material(Color.silver))
+                             Material(Color.silver), -3)
             rect.polygon_collider = []
             rect.collidable = False
             self.game_object_list.append(rect)
@@ -39,7 +39,7 @@ class BackgroundParticlesController(GameObject):
         for i in range(5):
             rect = Rectangle(Vector2(rand(0, Constants.screen_width), rand(0, Constants.screen_height)),
                              Vector2(0.007 * Constants.screen_width, 0.007 * Constants.screen_width),
-                             Material(Color.gray))
+                             Material(Color.gray), -3)
             rect.polygon_collider = []
             rect.collidable = False
             self.game_object_list.append(rect)
