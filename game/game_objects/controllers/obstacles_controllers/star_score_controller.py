@@ -16,7 +16,7 @@ class StarScoreController(GameObject):
         self.angular_speed = 0
         self.game_object_list = []
         self.size = Constants.screen_width * 0.03
-        self.points_per_star = 100
+        self.points_per_star = 50
         self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
 
     def awake(self):
