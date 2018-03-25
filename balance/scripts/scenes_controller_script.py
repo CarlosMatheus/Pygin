@@ -1,6 +1,6 @@
-from elements.scenes.scenes_list.main_scene import MainScene
-from elements.scenes.scenes_list.main_menu import MainMenu
-from elements.scenes.scenes_list.retry_scene import RetryScene
+from balance.scenes.scenes_list.main_scene import MainScene
+from balance.scenes.scenes_list.main_menu import MainMenu
+from balance.scenes.scenes_list.retry_scene import RetryScene
 
 
 class ScenesController:
