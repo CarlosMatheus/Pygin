@@ -29,7 +29,7 @@ class ObstacleControllerWrapper(GameObject):
             SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
         self.rect_x_controller = RandomXFinalObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
-        self.obstacle_geneation_delta = 1000
+        self.obstacle_geneation_delta = 1500
         self.last_generation_time = 1000 * Time.now()
         self.game_object_list = []
         self.last_increases_dificculty_time = Time.now()
