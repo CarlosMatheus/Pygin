@@ -18,7 +18,6 @@ class SimpleObstacleController(GameObject):
     def update(self):
 
         for obstacle in self.game_object_list:
-            print("Updating!")
             if obstacle.transform.position.y > Constants.screen_height:
                 self.game_object_list.remove(obstacle)
                 obstacle.destroy(obstacle)
