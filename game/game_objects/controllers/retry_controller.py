@@ -10,6 +10,7 @@ from game.scripts.material import Material
 from pygame.math import Vector2
 from game.scripts.constants import Constants
 from game.game_objects.mesh_objects.screen_fader import ScreenFader
+from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 
 
 class RetryController(GameObject):
@@ -43,6 +44,7 @@ class RetryController(GameObject):
             Text(Vector2(message_x, message_y), "Press arrows keys to try again", Color.white, message_size, font_path)
         ]
         self.setup_fader()
+        BackgroundParticlesController()
 
     def setup_fader(self):
         """
