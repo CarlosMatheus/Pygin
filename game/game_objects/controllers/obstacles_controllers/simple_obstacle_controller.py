@@ -36,4 +36,5 @@ class SimpleObstacleController(GameObject):
                          Material((255, 255, 255)))
         rect.animation = ObstaclePulsingAnimation(rect)
         rect.animator = Animator(rect, [rect.animation])
+        rect.animator.play()
         self.game_object_list.append(rect)

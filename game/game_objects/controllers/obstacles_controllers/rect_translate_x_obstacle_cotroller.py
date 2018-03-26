@@ -6,6 +6,8 @@ from game.scripts.constants import Constants
 from game_engine.material import Material
 from random import uniform as randfloat
 from random import randint
+from game.animations.obstacle_pulsing_animation import ObstaclePulsingAnimation
+from game_engine.components.animator import Animator
 
 class RectTranslateXObstacleController(GameObject):
 
@@ -44,6 +46,10 @@ class RectTranslateXObstacleController(GameObject):
         rect = Rectangle(Vector2(random_pos, -self.obstacle_size),
                          Vector2(self.obstacle_size, self.obstacle_size),
                          Material((255, 255, 255)))
+
+        rect.animation = ObstaclePulsingAnimation(rect)
+        rect.animator = Animator(rect, [rect.animation])
+        rect.animator.play()
 
         direction = randint(0, 1)
         if direction == 0:

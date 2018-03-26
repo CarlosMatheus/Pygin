@@ -5,6 +5,8 @@ from game.game_objects.mesh_objects.rectangle import Rectangle
 from game_engine.game_object import GameObject
 from game_engine.material import Material
 from game.scripts.constants import Constants
+from game.animations.obstacle_pulsing_animation import ObstaclePulsingAnimation
+from game_engine.components.animator import Animator
 
 
 class TwoInOneSimpleObstacleController(GameObject):
@@ -52,6 +54,14 @@ class TwoInOneSimpleObstacleController(GameObject):
         rect2 = Rectangle(Vector2(rect1.transform.position.x, rect1.transform.position.y),
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
+
+        rect1.animation = ObstaclePulsingAnimation(rect1)
+        rect1.animator = Animator(rect1, [rect1.animation])
+        rect1.animator.play()
+
+        rect2.animation = ObstaclePulsingAnimation(rect2)
+        rect2.animator = Animator(rect2, [rect2.animation])
+        rect2.animator.play()
 
         self.game_object_list.append([rect1, rect2])
 

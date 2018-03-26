@@ -7,6 +7,7 @@ from game_engine.color import Color
 from game_engine.time import Time
 from game_engine.basic_objects.text import Text
 from game_engine.material import Material
+from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 from pygame.math import Vector2
 from game.scripts.constants import Constants
 from game.game_objects.mesh_objects.screen_fader import ScreenFader
@@ -34,6 +35,7 @@ class MainMenuController(GameObject):
         title_size = 50
 
         self.setup_soundtrack()
+        BackgroundParticlesController()
 
         self.game_object_list = [
             Text(Vector2(message_x, message_y), "Press arrows keys to start playing", Material(Color.white), message_size, font_path),

@@ -44,6 +44,8 @@ class ObstacleControllerWrapper(GameObject):
     def update(self):
         self.increase_difficult()
 
+
+
         if 1000 * Time.now() - self.last_generation_time > self.obstacle_geneation_delta * \
                 self.generation_obstacle_difficult:
             self.generate_random_obstacle()
