@@ -60,11 +60,11 @@ class ObstacleControllerWrapper(GameObject):
         if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult \
                 and self.game_difficuty < self.max_difficult:
 
-            title_x = 0.4 * Constants.screen_width
+            title_x = 0.35 * Constants.screen_width
             title_y = 0.3 * Constants.screen_height
             title_size = 50
             font_path = "game/assets/fonts/neuropolxrg.ttf"
-            diff_text = Text(Vector2(title_x-title_size, title_y), "Harder!", Material(Color.red, alpha=255), title_size, font_path)
+            diff_text = Text(Vector2(title_x-title_size, title_y), "HARDER!", Material(Color.red, alpha=255), title_size, font_path)
             diff_text.transform.position.x -= diff_text.text_mesh.size
             diff_text.animation = TextUpFadeOutAnimation(diff_text)
             diff_text.animator = Animator(diff_text, [diff_text.animation])
@@ -80,11 +80,8 @@ class ObstacleControllerWrapper(GameObject):
                 self.delete_object_with_specific_type(TwoInOneSimpleObstacleController)
 
             if(self.game_difficuty == 10):
-                print("Max difficult!")
                 self.delete_object_with_specific_type(TwoSideBySideSimpleObstacleController)
                 self.delete_object_with_specific_type(HalfMoonSpinningRectObstacleController)
-            else:
-                print("Difficulty Increases to " + str(self.game_difficuty))
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()

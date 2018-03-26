@@ -60,7 +60,7 @@ class InvenciblePowerUpController(GameObject):
         power_up = self.game_object_list[0]
         #Power up text effect
         font_path = "game/assets/fonts/neuropolxrg.ttf"
-        power_up_text = Text(power_up.transform.position, "POWER UP!", Material(Color.green, alpha=255), 10, font_path)
+        power_up_text = Text(power_up.transform.position, "POWER UP!", Material(Color.green, alpha=255), 15, font_path)
         power_up_text.transform.position.x -= power_up_text.text_mesh.size
         power_up_text.animation = TextUpFadeOutAnimation(power_up_text)
         power_up_text.animator = Animator(power_up_text, [power_up_text.animation])

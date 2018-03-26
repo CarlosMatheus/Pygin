@@ -43,7 +43,7 @@ class StarScoreController(GameObject):
 
         #plus score effect
         font_path = "game/assets/fonts/neuropolxrg.ttf"
-        plus_score = Text(obstacle.transform.position, "+50", Material(Color.white, alpha=255), 10, font_path)
+        plus_score = Text(obstacle.transform.position, "+50", Material(Color.white, alpha=255), 15, font_path)
         plus_score.transform.position.x -= plus_score.text_mesh.size
         plus_score.animation = TextUpFadeOutAnimation(plus_score)
         plus_score.animator = Animator(plus_score, [plus_score.animation])
