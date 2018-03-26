@@ -1,16 +1,18 @@
 # Balance
-Mobile game inspired on Duet
 
-
-Infinity shooter is a fun and simple game made using Pygame. It was made as part of ITA's (Teachnological Institute of Aeronautics) discipline CES-22. The purpose of the game is to illustrate the use of POO in a real project as well as develop a simple structure for making easier the use of Pygame. This structure includes support for collisions, meshes, materials etc. The elements used are very similar to the elements used in the engine Unity.
+Balance is a simple and challenge arcade game made using [Pygame](https://www.pygame.org/).  
+One of the purposes of this game is to develop a simple engine for making easier the use of Pygame to build more complex games.  
+This engine includes support for collisions, meshes, materials, game objects and scenes.  
+The elements used are very similar to the ones used in the engine [Unity](https://unity3d.com/ "Unity Official Website").
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine if you use Linux. Instructions for Windows and Mac are similar.
+These instructions will get you a copy of the project up and running on your local machine if you use Linux. 
+Instructions for Windows and Mac are similar.
 
 ### Prerequisites
 
-You will just have to install Pygame. The instructions below will show you how to do this for Linux (Unbuntu 16.04).
+You will just have to install Pygame. The instructions below will show you how to do this for Linux (Ubuntu 16.04).
 
 First, install Python3 setup tools and pip:
 
@@ -19,7 +21,7 @@ $ sudo apt-get install python3-setuptools
 $ sudo easy_install3 pip
 ```
 
-Then install Pygame (it uses Python3 as main programming language):
+Then install Pygame using pip:
 
 ```
 $ sudo pip3.5 install pygame
@@ -27,36 +29,33 @@ $ sudo pip3.5 install pygame
 
 ### Playing the game
 
-To run the game simply run the game Python script using Python3:
+To run the game, go to the directory where you cloned the repository and simply run the following:
 
 ```
-$ python3 InfinityShooter.py
+$ python3 balance.py
 ```
 
-## Built With
+## Notes about documentation and contributing
 
-* [Pygame](https://www.pygame.org/) - Pyhton3 game library used in this game
-
-## Contributing
-
-Please read [the contributing document](docs/CONTRIBUTING.md) for details on the inner working of the code to help us make a better game.
+If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/aloysiogl/PygameAloysioAndreSebastiao/wiki/home).
 
 ## About
 
-This project aims to create a code base to make easier the precess of game development using Pygame. Therefore, the main frame of the game is flexible and can be addapted to multiple types of games.
-To understand a little bit more about how the code is structered visit the [wiki](https://github.com/aloysiogl/PygameAloysioAndreSebastiao/wiki/Home).
+This project aims to create a game engine to make easier the precess of game development using Pygame. Therefore, the main frame of the game is flexible and can be adapted to multiple types of games.
+To understand a little bit more about how the code is structured visit the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
 
-The objective of infinity shooter is to destroy the enemy and avoid obstacles. This game is an exaple of the capabilities of the game structure.
+The objective of Balance is to get the most amount of points as possible. A hard task to the game is getting to score equal to 1000 and it should be the main goal of the game.
+This game is an example of the capabilities of the game structure.
 
 ## Authors
 
-* **Aloysio Galvão Lopes** - [AloysioGL](https://github.com/aloysiogl)
-* **André Abreu Moreno** - [AndreAbreuMoreno](https://github.com/AndreAbreuMoreno)
-* **Sebastião Beethoven Brandão Filho** - [BeethovenBrandaoFilho](https://github.com/beethovenbrandaofilho)
+* **Carlos Matheus Barros da Silva** - [CarlosMatheus](https://github.com/CarlosMatheus)
+* **Eric Pereira Queiroz Moreira** - [ericpqmor](https://github.com/ericpqmor)
+* **Igor Mourão Ribeiro** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
 
 ## License
 
-This project is licensed under the MIT License - see the [licence](docs/LICENCE.md) file for details.
+This project is licensed under the MIT License - see the [licence](LICENCE.md) file for details.
 
 ## Acknowledgments
 
