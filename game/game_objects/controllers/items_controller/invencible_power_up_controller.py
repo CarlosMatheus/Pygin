@@ -1,14 +1,15 @@
 from pygame.math import Vector2
-from game.game_objects.mesh_objects.star import Star
 from pygame import mixer
 from game_engine.time import Time
-from game_engine.material import Material
 from game_engine.game_object import GameObject
-from game_engine.color import Color
 from random import uniform as randfloat
-from game.scripts.constants import Constants
 from game.game_objects.mesh_objects.invencible_circle import InvencibleCircle
-from game_engine.basic_objects.basic_circle import BasicCircle
+from game_engine.material import Material
+from game_engine.basic_objects.text import Text
+from game_engine.color import Color
+from game.scripts.constants import Constants
+from game.animations.text_up_fade_out_animation import TextUpFadeOutAnimation
+from game_engine.components.animator import Animator
 
 
 class InvenciblePowerUpController(GameObject):
@@ -56,6 +57,15 @@ class InvenciblePowerUpController(GameObject):
 
     def get_power_up(self):
         self.sound_collect.play()
+        power_up = self.game_object_list[0]
+        #Power up text effect
+        font_path = "game/assets/fonts/neuropolxrg.ttf"
+        power_up_text = Text(power_up.transform.position, "POWER UP!", Material(Color.green, alpha=255), 10, font_path)
+        power_up_text.transform.position.x -= power_up_text.text_mesh.size
+        power_up_text.animation = TextUpFadeOutAnimation(power_up_text)
+        power_up_text.animator = Animator(power_up_text, [power_up_text.animation])
+        power_up_text.animator.play()
+
         for i in range(2):
             self.player_controller.game_object_list[i].is_invencible = True
         self.change_colors_to_green()
