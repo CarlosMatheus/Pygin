@@ -29,7 +29,7 @@ class ObstacleControllerWrapper(GameObject):
             SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
         self.rect_x_controller = RandomXFinalObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
-        self.obstacle_geneation_delta = 1500
+        self.obstacle_geneation_delta = 1000
         self.last_generation_time = 1000 * Time.now()
         self.game_object_list = []
         self.last_increases_dificculty_time = Time.now()
@@ -43,9 +43,6 @@ class ObstacleControllerWrapper(GameObject):
 
     def update(self):
         self.increase_difficult()
-
-
-
         if 1000 * Time.now() - self.last_generation_time > self.obstacle_geneation_delta * \
                 self.generation_obstacle_difficult:
             self.generate_random_obstacle()
@@ -66,14 +63,22 @@ class ObstacleControllerWrapper(GameObject):
 
             self.game_difficuty += 1
             self.last_increases_dificculty_time = Time.now()
-            self.time_to_increase_difficult *= 1.01
-            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
+            self.time_to_increase_difficult *= 1.02
+            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.15 / self.max_difficult)
 
             if(self.game_difficuty == 5 and len(self.obstacle_generators) > 3):
+                for i in range(len(self.obstacle_generators)):
+                    if type(self.obstacle_generators[i]) == SimpleObstacleController:
+                        self.obstacle_generators.pop(i)
+                        break
                 self.obstacle_generators.pop(0)
 
             if(self.game_difficuty == self.max_difficult):
                 print("Max difficult!")
+                for i in range(len(self.obstacle_generators)):
+                    if type(self.obstacle_generators[i]) == TwoInOneSimpleObstacleController:
+                        self.obstacle_generators.pop(i)
+                        break
             else:
                 print("Difficulty Increases to " + str(self.game_difficuty))
 

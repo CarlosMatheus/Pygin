@@ -5,13 +5,14 @@ from game_engine.color import Color
 from pygame.math import Vector2
 from game_engine.material import Material
 
+
 class ScoreController(GameObject):
 
     def start(self):
 
         font_path = "game/assets/fonts/neuropolxrg.ttf"
 
-        self.number_of_steps_to_update_score = 30
+        self.number_of_steps_to_update_score = 20
         self.score_per_step = 1  # Number of steps of the game required to update the score
         self.current_step = 0
 

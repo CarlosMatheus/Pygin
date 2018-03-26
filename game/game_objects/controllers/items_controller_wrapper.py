@@ -14,7 +14,7 @@ class ItemsControllerWrapper(GameObject):
         self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0), 0),
                                     InvenciblePowerUpController(Vector2(0, 0), 0, Vector2(0, 0), 0)]
 
-        self.power_up_generation_delta = 7500
+        self.power_up_generation_delta = 6000
         self.last_power_up_time = 1000 * Time.now()
         self.generation_obstacle_difficult = 1
 
