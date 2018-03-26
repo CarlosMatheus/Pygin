@@ -17,6 +17,7 @@ class BasicCircle(GameObject):
         """
         super(BasicCircle, self).__init__(position, 0, Vector2(1, 1), layer)
         self.material = material
+        self.radius = radius
         self.circle_mesh = CircleMesh(self, radius, self.material)
 
     def start(self):
@@ -24,3 +25,6 @@ class BasicCircle(GameObject):
 
     def update(self):
         pass
+
+    def change_color(self, color):
+        self.circle_mesh = CircleMesh(self, self.radius, Material(color))

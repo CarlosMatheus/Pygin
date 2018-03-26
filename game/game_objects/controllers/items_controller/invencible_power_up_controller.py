@@ -28,8 +28,8 @@ class InvenciblePowerUpController(GameObject):
     def update(self):
         if Time.now() - self.time_of_last_invencibily > self.invecible_time:
             for i in range(2):
-                # print("Not invencible")
                 self.player_controller.game_object_list[i].is_invencible = False
+        self.player_controller.is_invencible = False
 
         for obstacle in self.game_object_list:
             if obstacle.transform.position.y > Constants.screen_height:
@@ -45,9 +45,9 @@ class InvenciblePowerUpController(GameObject):
 
     def get_power_up(self):
         self.sound_collect.play()
-        # print("Invencible!")
         for i in range(2):
             self.player_controller.game_object_list[i].is_invencible = True
+        self.player_controller.is_invencible = True
         self.time_of_last_invencibily = Time.now()
 
     def generate_obstacle(self):

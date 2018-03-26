@@ -5,6 +5,7 @@ from pygame.math import Vector2
 from game_engine.material import Material
 from game_engine.game_object import GameObject
 from game.scripts.constants import Constants
+from game_engine.color import Color
 import math
 
 
@@ -14,8 +15,8 @@ class PlayerController(GameObject):
         self.angle = 0.0
         self.angularSpeed = 5.0
         self.game_object_list = [
-            PlayerCircle(Vector2(Constants.circCenter_x + Constants.circRadius, Constants.screen_height+15), 15, Material((253, 102, 0))),
-            PlayerCircle(Vector2(Constants.circCenter_x - Constants.circRadius, Constants.screen_height+15), 15, Material((0, 120, 255)))
+            PlayerCircle(Vector2(Constants.circCenter_x + Constants.circRadius, Constants.screen_height+15), 15, Material(Color.blue)),
+            PlayerCircle(Vector2(Constants.circCenter_x - Constants.circRadius, Constants.screen_height+15), 15, Material(Color.orange))
         ]
         self.in_initial_animation = True
         self.should_play = True
