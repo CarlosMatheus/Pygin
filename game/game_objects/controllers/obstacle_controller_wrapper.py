@@ -60,20 +60,29 @@ class ObstacleControllerWrapper(GameObject):
         if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult \
                 and self.game_difficuty < self.max_difficult:
 
+            self.game_difficuty += 1
+            self.last_increases_dificculty_time = Time.now()
+            self.time_to_increase_difficult *= 1.02
+            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
+
             title_x = 0.35 * Constants.screen_width
             title_y = 0.3 * Constants.screen_height
             title_size = 50
+            text = "HARDER!"
+
+            if self.game_difficuty == self.max_difficult:
+                text = "MAX DIFFICULTY!"
+                title_size = 28
+                title_x = 0.20 * Constants.screen_width
+
+
             font_path = "game/assets/fonts/neuropolxrg.ttf"
-            diff_text = Text(Vector2(title_x-title_size, title_y), "HARDER!", Material(Color.red, alpha=255), title_size, font_path)
+            diff_text = Text(Vector2(title_x-title_size, title_y), text, Material(Color.red, alpha=255), title_size, font_path)
             diff_text.transform.position.x -= diff_text.text_mesh.size
             diff_text.animation = TextUpFadeOutAnimation(diff_text)
             diff_text.animator = Animator(diff_text, [diff_text.animation])
             diff_text.animator.play()
 
-            self.game_difficuty += 1
-            self.last_increases_dificculty_time = Time.now()
-            self.time_to_increase_difficult *= 1.02
-            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
 
             if(self.game_difficuty == 7 and len(self.obstacle_generators) > 3):
                 self.delete_object_with_specific_type(SimpleObstacleController)
