@@ -16,7 +16,7 @@ class RandomXFinalObstacleController(GameObject):
         self.fall_velocity = 400
         self.translate_velocity = 00
         self.game_object_list = []
-        self.size = 0.02 * Constants.screen_height
+        self.size = 0.017 * Constants.screen_height
 
     def update(self):
 

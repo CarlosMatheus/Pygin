@@ -64,24 +64,18 @@ class ObstacleControllerWrapper(GameObject):
             self.game_difficuty += 1
             self.last_increases_dificculty_time = Time.now()
             self.time_to_increase_difficult *= 1.02
-            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.15 / self.max_difficult)
+            self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
 
-            if(self.game_difficuty == 5 and len(self.obstacle_generators) > 3):
-                for i in range(len(self.obstacle_generators)):
-                    if type(self.obstacle_generators[i]) == SimpleObstacleController:
-                        self.obstacle_generators.pop(i)
-                        break
-                self.obstacle_generators.pop(0)
+            if(self.game_difficuty == 7 and len(self.obstacle_generators) > 3):
+                self.delete_object_with_specific_type(SimpleObstacleController)
+                self.delete_object_with_specific_type(TwoInOneSimpleObstacleController)
 
-            if(self.game_difficuty == self.max_difficult):
+            if(self.game_difficuty == 10):
                 print("Max difficult!")
-                for i in range(len(self.obstacle_generators)):
-                    if type(self.obstacle_generators[i]) == TwoInOneSimpleObstacleController:
-                        self.obstacle_generators.pop(i)
-                        break
+                self.delete_object_with_specific_type(TwoSideBySideSimpleObstacleController)
+                self.delete_object_with_specific_type(HalfMoonSpinningRectObstacleController)
             else:
                 print("Difficulty Increases to " + str(self.game_difficuty))
-
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()
@@ -95,3 +89,9 @@ class ObstacleControllerWrapper(GameObject):
         if self.game_difficuty == self.max_difficult:
             self.rect_x_controller.generate_obstacle()
         random_obstacle_generator.generate_obstacle()
+
+    def delete_object_with_specific_type(self, obstacle_type):
+        for i in range(len(self.obstacle_generators)):
+            if type(self.obstacle_generators[i]) == obstacle_type:
+                self.obstacle_generators.pop(i)
+                break
