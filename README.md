@@ -37,7 +37,7 @@ $ python3 balance.py
 
 ## Notes about documentation and contributing
 
-If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/aloysiogl/PygameAloysioAndreSebastiao/wiki/home).
+If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
 
 ## About
 
