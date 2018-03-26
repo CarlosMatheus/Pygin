@@ -49,9 +49,9 @@ This game is an example of the capabilities of the game structure.
 
 ## Authors
 
-* **Carlos Matheus Barros da Silva** - [CarlosMatheus](https://github.com/CarlosMatheus)
-* **Eric Pereira Queiroz Moreira** - [ericpqmor](https://github.com/ericpqmor)
-* **Igor Mourão Ribeiro** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
+* **Carlos Matheus Barros da Silva (Shark)** - [CarlosMatheus](https://github.com/CarlosMatheus)
+* **Eric Pereira Queiroz Moreira (Precioso)** - [ericpqmor](https://github.com/ericpqmor)
+* **Igor Mourão Ribeiro (Dono)** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
 
 ## License
 
