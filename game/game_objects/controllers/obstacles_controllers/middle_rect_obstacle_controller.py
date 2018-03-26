@@ -3,7 +3,7 @@ from game_engine.time import Time
 from game_engine.game_object import GameObject
 from game.game_objects.mesh_objects.rectangle import Rectangle
 from game.scripts.constants import Constants
-from game.scripts.material import Material
+from game_engine.material import Material
 
 class MiddleRectObstacleController(GameObject):
 

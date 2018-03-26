@@ -1,5 +1,5 @@
 from game_engine.components.polygon_mesh import PolygonMesh
-from game_engine.components.material import Material
+from game_engine.material import Material
 from game_engine.game_object import GameObject
 from game_engine.geometry import Geometry
 from pygame.math import Vector2
@@ -18,7 +18,7 @@ class BasicRectangle(GameObject):
         :param color: initial color of the rectangle
         """
         super(BasicRectangle, self).__init__(position, 0, Vector2(1, 1), layer)
-        self.material = Material(self, material.color, material.alpha)
+        self.material = Material(material.color, material.alpha)
         self.dimension = dimension
         self.polygon_mesh = PolygonMesh(self, self.material)
 

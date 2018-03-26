@@ -4,7 +4,7 @@ from game.game_objects.mesh_objects.main_menu_rectangle import Rectangle
 from game_engine.color import Color
 from game_engine.time import Time
 from pygame.math import Vector2
-from game.scripts.material import Material
+from game_engine.material import Material
 
 
 class TestRectGenerator(GameObject):

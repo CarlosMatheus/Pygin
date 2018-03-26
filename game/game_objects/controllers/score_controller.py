@@ -3,7 +3,7 @@ from game_engine.basic_objects.text import Text
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from pygame.math import Vector2
-from game.scripts.material import Material
+from game_engine.material import Material
 
 class ScoreController(GameObject):
 

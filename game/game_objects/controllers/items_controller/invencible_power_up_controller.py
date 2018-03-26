@@ -2,7 +2,7 @@ from pygame.math import Vector2
 from game.game_objects.mesh_objects.star import Star
 from pygame import mixer
 from game_engine.time import Time
-from game.scripts.material import Material
+from game_engine.material import Material
 from game_engine.game_object import GameObject
 from game_engine.color import Color
 from random import uniform as randfloat
