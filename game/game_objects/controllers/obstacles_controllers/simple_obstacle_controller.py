@@ -18,6 +18,7 @@ class SimpleObstacleController(GameObject):
     def update(self):
 
         for obstacle in self.game_object_list:
+            print("Updating!")
             if obstacle.transform.position.y > Constants.screen_height:
                 self.game_object_list.remove(obstacle)
                 obstacle.destroy(obstacle)
@@ -36,4 +37,5 @@ class SimpleObstacleController(GameObject):
                          Material((255, 255, 255)))
         rect.animation = ObstaclePulsingAnimation(rect)
         rect.animator = Animator(rect, [rect.animation])
+        rect.animator.play()
         self.game_object_list.append(rect)

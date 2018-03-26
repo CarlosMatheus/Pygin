@@ -4,6 +4,9 @@ from game_engine.game_object import GameObject
 from game.game_objects.mesh_objects.rectangle import Rectangle
 from game.scripts.constants import Constants
 from game.scripts.material import Material
+from game.animations.obstacle_pulsing_animation import ObstaclePulsingAnimation
+from game_engine.components.animator import Animator
+
 
 class MiddleRectObstacleController(GameObject):
 
@@ -31,4 +34,7 @@ class MiddleRectObstacleController(GameObject):
         rect = Rectangle(Vector2(0.5 * Constants.screen_width - 0.5 * self.obstacle_width, - 3*self.obstacle_height),
                          Vector2(self.obstacle_width, self.obstacle_height),
                          Material((255, 255, 255)))
+        rect.animation = ObstaclePulsingAnimation(rect)
+        rect.animator = Animator(rect, [rect.animation])
+        rect.animator.play()
         self.game_object_list.append(rect)
