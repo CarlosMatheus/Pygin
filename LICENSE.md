@@ -1,4 +1,4 @@
-MIT License
+# MIT License
 
 Copyright (c) 2018 Carlos Matheus, Eric Moreira, Igor Ribeiro
 
