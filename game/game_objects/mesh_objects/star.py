@@ -15,9 +15,10 @@ class Star(GameObject):
         Call the superclass constructor passing basic game_object parameters
         """
         super(Star, self).__init__(center_position, 0, Vector2(1, 1), 2)
+        self.material = material
         self.circle_collider = CircleCollider(self)
-        self.circle_mesh = CircleMesh(self, size, material)
-        self.polygon_mesh = PolygonMesh(self, material)
+        self.circle_mesh = CircleMesh(self, size)
+        self.polygon_mesh = PolygonMesh(self)
 
     def _get_points(self):
         point_list = list()

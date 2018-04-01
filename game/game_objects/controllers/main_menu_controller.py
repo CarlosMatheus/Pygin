@@ -44,7 +44,7 @@ class MainMenuController(GameObject):
         self.setup_fader()
 
     def setup_soundtrack(self):
-        sound_path = "game/assets/soundtrack/balance-main-theme.mp3"
+        sound_path = "game/assets/soundtrack/balance-main-theme.ogg"
         mixer.music.load(sound_path)
         mixer.music.play(-1)
 
