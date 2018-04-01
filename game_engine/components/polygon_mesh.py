@@ -4,9 +4,8 @@ from pygame.math import Vector2
 
 class PolygonMesh(Mesh):
 
-    def __init__(self, game_object, material):
+    def __init__(self, game_object):
         super(PolygonMesh, self).__init__(game_object)
-        self.material = material
         self.__point_list = None
         self.__set_points_up()
         self.__geometric_center = None

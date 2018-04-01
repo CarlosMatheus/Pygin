@@ -3,10 +3,9 @@ from game_engine.mesh import Mesh
 
 class CircleMesh(Mesh):
 
-    def __init__(self, game_object, radius, material):
+    def __init__(self, game_object, radius):
         super(CircleMesh, self).__init__(game_object)
         self.__radius = radius
-        self.material = material
 
     def get_radius(self):
         return self.__radius * max(self.transform.scale.x, self.transform.scale.y)
