@@ -1,12 +1,13 @@
 from game_engine.components.circle_mesh import CircleMesh
 from game_engine.game_object import GameObject
 from game_engine.material import Material
+from game_engine.color import Color
 from pygame.math import Vector2
 
 
 class BasicCircle(GameObject):
 
-    def __init__(self, position, radius, material, layer):
+    def __init__(self, position=Vector2(0, 0), radius=2, material=Material(Color.white), layer=0):
         """
         Add the circle mesh component
         Call the superclass constructor passing basic game_object parameters

@@ -7,7 +7,7 @@ from pygame.math import Vector2
 
 class BasicRectangle(GameObject):
 
-    def __init__(self, position, dimension, material, layer):
+    def __init__(self, position=Vector2(0, 0), dimension=Vector2(10, 10), material=Material(), layer=0, scale=Vector2(1, 1)):
         """
         Add the rectangle mesh component
         Call the superclass constructor passing basic game_object parameters
