@@ -1,5 +1,4 @@
 from game_engine.component import Component
-from game_engine.geometry import Geometry
 
 
 class Transform(Component):
@@ -25,7 +24,8 @@ class Transform(Component):
         Set the new position of the game_object (Vector2)
         :param new_position: where the game_object will go to
         """
-        self.position = new_position
+        self.position.x = new_position.x
+        self.position.y = new_position.y
 
     def rotate(self, rotation):
         """
