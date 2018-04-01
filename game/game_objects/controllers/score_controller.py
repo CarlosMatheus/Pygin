@@ -4,7 +4,7 @@ from game_engine.game_object import GameObject
 from game_engine.color import Color
 from pygame.math import Vector2
 from game_engine.material import Material
-
+from game_engine.time import Time
 
 class ScoreController(GameObject):
 
@@ -12,9 +12,9 @@ class ScoreController(GameObject):
 
         font_path = "game/assets/fonts/neuropolxrg.ttf"
 
-        self.number_of_steps_to_update_score = 20
+        self.time_to_update_score = 0.095
         self.score_per_step = 1  # Number of steps of the game required to update the score
-        self.current_step = 0
+        self.last_update_time = Time.now()
 
         self.score = 0.0
         score_x = 10.0
@@ -29,10 +29,9 @@ class ScoreController(GameObject):
         self.game_object_list[0].text_mesh.message = str(int(self.score))
 
     def update(self):
-        self.current_step += 1
-        if(self.current_step == self.number_of_steps_to_update_score):
+        if Time.now() - self.last_update_time >= self.time_to_update_score:
             self.score = self.score + self.score_per_step
-            self.current_step = 0
+            self.last_update_time = Time.now()
             Constants.current_score = self.score
             self.game_object_list[0].text_mesh.message = str(int(self.score))
 
