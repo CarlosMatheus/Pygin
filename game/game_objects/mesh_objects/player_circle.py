@@ -2,10 +2,13 @@ from game_engine.basic_objects.basic_circle import BasicCircle
 from game_engine.basic_objects.basic_rectangle import BasicRectangle
 from game.game_objects.mesh_objects.star import Star
 from game.animations.circle_player_initial_animation import CirclePlayerInitialAnimation
+from game_engine.components.particle_system import ParticleSystem
+from game.game_objects.mesh_objects.player_partiple import PlayerParticle
 from game_engine.components.animator import Animator
 from game_engine.game_object import GameObject
 from game_engine.components.circle_collider import CircleCollider
 from pygame import mixer
+from pygame.math import Vector2
 
 
 class PlayerCircle(BasicCircle):
@@ -22,6 +25,20 @@ class PlayerCircle(BasicCircle):
         self.animation = CirclePlayerInitialAnimation(self)
         self.animator = Animator(self, [self.animation])
         self.death_sound = mixer.Sound('game/assets/soundtrack/ball_death.wav')
+        self.particle_system = ParticleSystem(self, PlayerParticle, quant=5, period=0.05, vel_min=20, vel_max=180, duration=0.6)
+        self.particle_system.set_circ_gen(self.transform.position, self.circle_mesh.get_radius(), mode="directional",
+                                          direct_met=self.direct_met, ini_angle_met=self.ini_angle_met,
+                                          fin_angle_met=self.fin_angle_met)
+        self.particle_system.play()
+
+    def ini_angle_met(self):
+        return 0
+
+    def fin_angle_met(self):
+        return 180
+
+    def direct_met(self):
+        return Vector2(0, 1)
 
     def update(self):
         (collided, game_obj) = self.circle_collider.on_collision()
