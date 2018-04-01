@@ -37,7 +37,7 @@ class Draw:
         :param alpha: the opacity of the draw
         """
         if alpha is not None:
-            s = pygame.Surface((cls.screen_width, cls.screen_height))
+            s = cls.game_display.copy()
             s.set_alpha(alpha)
             pygame.gfxdraw.filled_circle(s, int(position.x), int(position.y), int(radius), color)
             cls.game_display.blit(s, (0, 0))
