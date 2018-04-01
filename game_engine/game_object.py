@@ -27,6 +27,7 @@ class GameObject:
         self.material = None
         self.physics = None
         self.polygon_mesh = None
+        self.particle_system = None
         self.circle_mesh = None
         self.text_mesh = None
         self.collidable = True
@@ -50,6 +51,10 @@ class GameObject:
         """
         pass
 
+    def protected_start(self):
+        if self.polygon_mesh is not None:
+            self.polygon_mesh._PolygonMesh__start()
+
     def protected_update(self):
         """
         This method will run every frame, but it is not intended to be implemented inside a game_object
@@ -62,6 +67,8 @@ class GameObject:
             self.polygon_mesh._PolygonMesh__update()
         if self.text_mesh is not None:
             self.text_mesh._TextMesh__update()
+        if self.particle_system is not None:
+            self.particle_system._ParticleSystem__update()
 
     def draw_game_object(self):
         """
@@ -76,6 +83,9 @@ class GameObject:
 
     def _get_points(self):
         return None
+
+    def destroy_me(self):
+        GameObject.destroy(self)
 
     @classmethod
     def find_by_type(cls, game_object_type_string):
