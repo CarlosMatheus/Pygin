@@ -18,7 +18,7 @@ class BasicCircle(GameObject):
         """
         super(BasicCircle, self).__init__(position, 0, Vector2(1, 1), layer)
         self.material = material
-        self.circle_mesh = CircleMesh(self, radius, self.material)
+        self.circle_mesh = CircleMesh(self, radius)
 
     def start(self):
         pass

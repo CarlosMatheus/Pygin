@@ -20,7 +20,7 @@ class BasicRectangle(GameObject):
         super(BasicRectangle, self).__init__(position, 0, Vector2(1, 1), layer)
         self.material = Material(material.color, material.alpha)
         self.dimension = dimension
-        self.polygon_mesh = PolygonMesh(self, self.material)
+        self.polygon_mesh = PolygonMesh(self)
 
     def _get_points(self):
         point_list = [Vector2(self.transform.position.x, self.transform.position.y),
