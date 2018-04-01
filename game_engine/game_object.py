@@ -75,11 +75,11 @@ class GameObject:
         Draw the game_object on screen
         """
         if self.polygon_mesh is not None:
-            Draw.polygon(self.polygon_mesh.material.color, self.polygon_mesh.get_points(), self.polygon_mesh.material.alpha)
+            Draw.polygon(self.material.color, self.polygon_mesh.get_points(), self.material.alpha)
         elif self.circle_mesh is not None:
-            Draw.circle(self.transform.position, self.circle_mesh.get_radius(), self.circle_mesh.material.color, self.circle_mesh.material.alpha)
+            Draw.circle(self.transform.position, self.circle_mesh.get_radius(), self.material.color, self.material.alpha)
         elif self.text_mesh is not None:
-            Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.label, self.text_mesh.material.alpha)
+            Draw.text(self.transform.position.x, self.transform.position.y, self.text_mesh.label, self.material.alpha)
 
     def _get_points(self):
         return None
