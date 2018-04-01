@@ -40,6 +40,14 @@ class PolygonMesh(Mesh):
             raise Exception("GameObject {0} has a polygon_mesh, but has not a _get_points method!"
                             .format(type(self.game_object).__name__))
 
+    def __start(self):
+        """
+        Start the mesh parameters
+        """
+        self.__point_list = self.game_object._get_points()
+        self.__update_geometric_center()
+        self.__update_scaled_point_list()
+
     def __update(self):
         """
         Update the mesh parameters
