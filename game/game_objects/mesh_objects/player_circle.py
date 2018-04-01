@@ -7,6 +7,7 @@ from game.game_objects.mesh_objects.player_partiple import PlayerParticle
 from game_engine.components.animator import Animator
 from game_engine.game_object import GameObject
 from game_engine.components.circle_collider import CircleCollider
+from game_engine.color import Color
 from pygame import mixer
 from pygame.math import Vector2
 
@@ -16,7 +17,7 @@ class PlayerCircle(BasicCircle):
     def __init__(self, position, radius, material):
         super(PlayerCircle, self).__init__(position, radius, material, layer=-2)
         self.circle_collider = CircleCollider(self)
-        self.is_invencible = True
+        self.is_invencible = False
 
     def start(self):
         self.star_score_controller = GameObject.find_by_type("StarScoreController")[0]

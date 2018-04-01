@@ -44,10 +44,10 @@ class TwoInOneSimpleObstacleController(GameObject):
 
     def generate_obstacle(self):
         direction = rand(0, 1) < 0.5
-        obstacle_width = 0.5 * Constants.screen_width
+        obstacle_width = 0.45 * Constants.screen_width
         obstacle_height = 0.06 * Constants.screen_height
 
-        rect1 = Rectangle(Vector2(direction * 0.5 * Constants.screen_width, - obstacle_height),
+        rect1 = Rectangle(Vector2(direction * 0.5 * Constants.screen_width + 12, - obstacle_height),
                           Vector2(obstacle_width, obstacle_height),
                           Material((255, 255, 255)))
 

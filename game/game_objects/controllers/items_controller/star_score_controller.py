@@ -2,11 +2,14 @@ from pygame.math import Vector2
 from game.game_objects.mesh_objects.star import Star
 from pygame import mixer
 from game_engine.time import Time
-from game_engine.material import Material
 from game_engine.game_object import GameObject
-from game_engine.color import Color
 from random import uniform as randfloat
+from game_engine.basic_objects.text import Text
+from game_engine.material import Material
+from game_engine.color import Color
 from game.scripts.constants import Constants
+from game.animations.text_up_fade_out_animation import TextUpFadeOutAnimation
+from game_engine.components.animator import Animator
 
 
 class StarScoreController(GameObject):
@@ -36,6 +39,17 @@ class StarScoreController(GameObject):
 
     def get_star(self):
         self.sound_collect.play()
+        obstacle = self.game_object_list[0]
+
+        #plus score effect
+        font_path = "game/assets/fonts/neuropolxrg.ttf"
+        plus_score = Text(obstacle.transform.position, "+50", Material(Color.white, alpha=255), 15, font_path)
+        plus_score.transform.position.x -= plus_score.text_mesh.size
+        plus_score.animation = TextUpFadeOutAnimation(plus_score)
+        plus_score.animator = Animator(plus_score, [plus_score.animation])
+        plus_score.animator.play()
+        #plus_score.destroy(plus_score)
+
         self.score_controller.score += self.points_per_star
 
     def generate_obstacle(self):

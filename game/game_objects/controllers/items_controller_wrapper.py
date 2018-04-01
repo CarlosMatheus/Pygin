@@ -14,7 +14,7 @@ class ItemsControllerWrapper(GameObject):
         self.power_up_generators = [StarScoreController(Vector2(0, 0), 0, Vector2(0, 0), 0),
                                     InvenciblePowerUpController(Vector2(0, 0), 0, Vector2(0, 0), 0)]
 
-        self.power_up_generation_delta = 7500
+        self.power_up_generation_delta = 6500
         self.last_power_up_time = 1000 * Time.now()
         self.generation_obstacle_difficult = 1
 
@@ -30,10 +30,6 @@ class ItemsControllerWrapper(GameObject):
     def generate_random_power_up(self):
         self.last_power_up_time = 1000 * Time.now()
 
-        random_ind = rand(0, 10)
-        if random_ind >= 5:
-            random_ind = 1
-        else:
-            random_ind = 0
+        random_ind = rand(0, 1)
         random_obstacle_generator = self.power_up_generators[random_ind]
         random_obstacle_generator.generate_obstacle()

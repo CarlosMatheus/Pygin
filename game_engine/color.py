@@ -9,6 +9,7 @@ class Color:
     green = (86, 244, 85)
     silver = (192, 192, 192)
     gray = (112, 112, 112)
+    orange = (253, 102, 0)
 
     @classmethod
     def random_color(cls):

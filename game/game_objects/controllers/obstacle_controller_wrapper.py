@@ -9,11 +9,16 @@ from game.game_objects.controllers.obstacles_controllers.random_x_final_obstacle
 from game.game_objects.controllers.obstacles_controllers.rect_translate_x_obstacle_cotroller import RectTranslateXObstacleController
 from game.game_objects.controllers.obstacles_controllers.two_in_one_simple_obstacle_controller import TwoInOneSimpleObstacleController
 from game.game_objects.controllers.obstacles_controllers.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
-from game.game_objects.controllers.items_controller.star_score_controller import StarScoreController
-from game.game_objects.controllers.items_controller.invencible_power_up_controller import InvenciblePowerUpController
 from game.game_objects.controllers.obstacles_controllers.spinning_middle_rect_obstacle_controller import SpinningMiddleRectObstacleController
 from game.game_objects.controllers.obstacles_controllers.half_moon_spinning_rect_obstacle_controller import HalfMoonSpinningRectObstacleController
 from game_engine.game_object import GameObject
+from game_engine.basic_objects.text import Text
+from game_engine.color import Color
+from game.animations.text_up_fade_out_animation import TextUpFadeOutAnimation
+from game_engine.components.animator import Animator
+from game_engine.material import Material
+from game.scripts.constants import Constants
+
 
 
 class ObstacleControllerWrapper(GameObject):
@@ -43,9 +48,6 @@ class ObstacleControllerWrapper(GameObject):
 
     def update(self):
         self.increase_difficult()
-
-
-
         if 1000 * Time.now() - self.last_generation_time > self.obstacle_geneation_delta * \
                 self.generation_obstacle_difficult:
             self.generate_random_obstacle()
@@ -58,25 +60,37 @@ class ObstacleControllerWrapper(GameObject):
         if Time.now() - self.last_increases_dificculty_time > self.time_to_increase_difficult \
                 and self.game_difficuty < self.max_difficult:
 
-            title_x = 20
-            title_y = 180
-            title_size = 50
-            font_path = "game/assets/fonts/neuropolxrg.ttf"
-            # Text(Vector2(title_x, title_y), "Difficulty Increased!", Color.white, title_size, font_path)
-
             self.game_difficuty += 1
             self.last_increases_dificculty_time = Time.now()
-            self.time_to_increase_difficult *= 1.01
+            self.time_to_increase_difficult *= 1.02
             self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
 
-            if(self.game_difficuty == 5 and len(self.obstacle_generators) > 3):
-                self.obstacle_generators.pop(0)
+            title_x = 0.35 * Constants.screen_width
+            title_y = 0.3 * Constants.screen_height
+            title_size = 50
+            text = "HARDER!"
 
-            if(self.game_difficuty == self.max_difficult):
-                print("Max difficult!")
-            else:
-                print("Difficulty Increases to " + str(self.game_difficuty))
+            if self.game_difficuty == self.max_difficult:
+                text = "MAX DIFFICULTY!"
+                title_size = 28
+                title_x = 0.20 * Constants.screen_width
 
+
+            font_path = "game/assets/fonts/neuropolxrg.ttf"
+            diff_text = Text(Vector2(title_x-title_size, title_y), text, Material(Color.red, alpha=255), title_size, font_path)
+            diff_text.transform.position.x -= diff_text.text_mesh.size
+            diff_text.animation = TextUpFadeOutAnimation(diff_text)
+            diff_text.animator = Animator(diff_text, [diff_text.animation])
+            diff_text.animator.play()
+
+
+            if(self.game_difficuty == 7 and len(self.obstacle_generators) > 3):
+                self.delete_object_with_specific_type(SimpleObstacleController)
+                self.delete_object_with_specific_type(TwoInOneSimpleObstacleController)
+
+            if(self.game_difficuty == 10):
+                self.delete_object_with_specific_type(TwoSideBySideSimpleObstacleController)
+                self.delete_object_with_specific_type(HalfMoonSpinningRectObstacleController)
 
     def generate_random_obstacle(self):
         self.last_generation_time = 1000 * Time.now()
@@ -90,3 +104,9 @@ class ObstacleControllerWrapper(GameObject):
         if self.game_difficuty == self.max_difficult:
             self.rect_x_controller.generate_obstacle()
         random_obstacle_generator.generate_obstacle()
+
+    def delete_object_with_specific_type(self, obstacle_type):
+        for i in range(len(self.obstacle_generators)):
+            if type(self.obstacle_generators[i]) == obstacle_type:
+                self.obstacle_generators.pop(i)
+                break
