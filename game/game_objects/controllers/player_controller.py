@@ -15,8 +15,8 @@ class PlayerController(GameObject):
         self.angle = 0.0
         self.angularSpeed = 5.0
         self.game_object_list = [
-            PlayerCircle(Vector2(Constants.circCenter_x + Constants.circRadius, Constants.screen_height+15), 15, Material(Color.blue)),
-            PlayerCircle(Vector2(Constants.circCenter_x - Constants.circRadius, Constants.screen_height+15), 15, Material(Color.orange))
+            PlayerCircle(Vector2(Constants.circCenter_x + Constants.circRadius, Constants.screen_height+15), 15, Material(Color.blue, alpha=240)),
+            PlayerCircle(Vector2(Constants.circCenter_x - Constants.circRadius, Constants.screen_height+15), 15, Material(Color.orange, alpha=240))
         ]
         self.in_initial_animation = True
         self.should_play = True
