@@ -1,9 +1,12 @@
 from game_engine.basic_objects.basic_circle import BasicCircle
+from game_engine.time import Time
 
 
 class BasicParticleCirc(BasicCircle):
 
-    def __init__(self, position):
+    def __init__(self, position, destroy_time=1.0):
+        self.destroy_time = destroy_time
+        self.creation_time = Time.now()
         self.creator_obj = None
         super().__init__(position=position, radius=1)
 
@@ -18,4 +21,5 @@ class BasicParticleCirc(BasicCircle):
         pass
 
     def update(self):
-        pass
+        if Time.now() - self.creation_time > self.destroy_time:
+            self.destroy_me()
