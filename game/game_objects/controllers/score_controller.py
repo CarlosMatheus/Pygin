@@ -6,6 +6,7 @@ from pygame.math import Vector2
 from game_engine.material import Material
 from game_engine.time import Time
 
+
 class ScoreController(GameObject):
 
     def start(self):

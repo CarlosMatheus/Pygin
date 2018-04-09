@@ -21,6 +21,8 @@ class StarScoreController(GameObject):
         self.size = Constants.screen_width * 0.03
         self.points_per_star = 50
         self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+        self.should_delete_plus_score_text = False
+        self.plus_score_text_gen_time = 0.0
 
     def awake(self):
         self.score_controller = GameObject.find_by_type("ScoreController")[0]
@@ -33,6 +35,7 @@ class StarScoreController(GameObject):
                 GameObject.destroy(obstacle)
             else:
                 self.fall(obstacle)
+        self.delete_plus_score_text()
 
     def fall(self, obstacle):
         obstacle.fall(self.fall_velocity * Time.delta_time(), self.angular_speed * Time.delta_time())
@@ -48,9 +51,17 @@ class StarScoreController(GameObject):
         plus_score.animation = TextUpFadeOutAnimation(plus_score)
         plus_score.animator = Animator(plus_score, [plus_score.animation])
         plus_score.animator.play()
-        #plus_score.destroy(plus_score)
+        self.time_of_last_plus_score = Time.now()
+        self.plus_score = plus_score
+        self.should_delete_plus_score_text = True
 
         self.score_controller.score += self.points_per_star
+
+    def delete_plus_score_text(self):
+        if self.should_delete_plus_score_text:
+            if Time.now() - self.time_of_last_plus_score > 1.0:
+                self.should_delete_plus_score_text = False
+                self.plus_score.destroy_me()
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.size / 2 + Constants.circCenter_x - Constants.circRadius,

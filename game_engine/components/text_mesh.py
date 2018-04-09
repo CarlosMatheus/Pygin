@@ -10,7 +10,6 @@ class TextMesh(Mesh):
         self.font = font
         self.label = self.font.render(self.message, 1, self.get_material().color)
 
-
     def __update(self):
         """
         update label with new message or color

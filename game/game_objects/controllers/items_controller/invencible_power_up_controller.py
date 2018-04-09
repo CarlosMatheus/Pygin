@@ -24,6 +24,8 @@ class InvenciblePowerUpController(GameObject):
         self.current_color = "normal"
         self.animation_ticks_times = [0.4, 0.5, 0.6, 0.7, 0.75, 0.80, 0.85, 0.90, 0.95, 1.00, 1.10]
         self.current_animation_tick_index = 0
+        self.should_delete_power_up_text = False
+        self.power_up_text_gen_time = 0.0
 
     def awake(self):
         self.player_controller = GameObject.find_by_type("PlayerController")[0]
@@ -42,7 +44,6 @@ class InvenciblePowerUpController(GameObject):
                 self.current_animation_tick_index += 1
                 self.tick_colors()
 
-
         for obstacle in self.game_object_list:
             if obstacle.transform.position.y > Constants.screen_height:
                 self.game_object_list.remove(obstacle)
@@ -50,6 +51,7 @@ class InvenciblePowerUpController(GameObject):
                 GameObject.destroy(obstacle)
             else:
                 self.fall(obstacle)
+        self.delete_power_up_text()
 
     def fall(self, obstacle):
         obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
@@ -71,6 +73,14 @@ class InvenciblePowerUpController(GameObject):
             self.player_controller.game_object_list[i].is_invencible = True
         self.change_colors_to_green()
         self.time_of_last_invencibily = Time.now()
+        self.power_up_text = power_up_text
+        self.should_delete_power_up_text = True
+
+    def delete_power_up_text(self):
+        if self.should_delete_power_up_text:
+            if Time.now() - self.time_of_last_invencibily > 1.0:
+                self.should_delete_power_up_text = False
+                self.power_up_text.destroy_me()
 
     def generate_obstacle(self):
         random_pos = int(randfloat(self.radius + Constants.circCenter_x - Constants.circRadius,
