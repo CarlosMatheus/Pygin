@@ -31,7 +31,7 @@ class Time:
         Set the time at the moment to get_ticks_last_frame
         """
         cls.last_frame_tick = pygame.time.get_ticks()
-        cls.clock.tick(200)
+        cls.clock.tick(144)
 
     @classmethod
     def end_of_loop(cls):
@@ -39,7 +39,7 @@ class Time:
         Set the time at the moment to get_ticks_last_frame
         """
         cls.last_frame_tick = pygame.time.get_ticks()
-        cls.clock.tick(200)
+        cls.clock.tick(144)
 
     @classmethod
     def delta_time(cls, unscaled=False):
