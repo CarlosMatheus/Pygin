@@ -3,7 +3,7 @@ from game_engine.basic_objects.basic_rectangle import BasicRectangle
 from game.game_objects.mesh_objects.star import Star
 from game.animations.circle_player_initial_animation import CirclePlayerInitialAnimation
 from game_engine.components.particle_system import ParticleSystem
-from game.game_objects.mesh_objects.player_partiple import PlayerParticle
+from game.game_objects.mesh_objects.player_particle import PlayerParticle
 from game_engine.components.animator import Animator
 from game_engine.game_object import GameObject
 from game_engine.components.circle_collider import CircleCollider
