@@ -7,6 +7,7 @@ from game.game_objects.mesh_objects.player_particle import PlayerParticle
 from game_engine.components.animator import Animator
 from game_engine.game_object import GameObject
 from game_engine.components.circle_collider import CircleCollider
+from game.animations.player_bounce import PlayerBounce
 from game_engine.color import Color
 from pygame import mixer
 from pygame.math import Vector2
@@ -26,11 +27,13 @@ class PlayerCircle(BasicCircle):
         self.animation = CirclePlayerInitialAnimation(self)
         self.animator = Animator(self, [self.animation])
         self.death_sound = mixer.Sound('game/assets/soundtrack/ball_death.wav')
-        self.particle_system = ParticleSystem(self, PlayerParticle, quant=5, period=0.05, vel_min=20, vel_max=180, duration=0.6)
+        self.particle_system = ParticleSystem(self, PlayerParticle, quant=5, period=0.05,
+                                              vel_min=40, vel_max=280, duration=0.4, inherit_vel=True, inherit_vel_mult=-0.9)
         self.particle_system.set_circ_gen(self.transform.position, self.circle_mesh.get_radius(), mode="directional",
                                           direct_met=self.direct_met, ini_angle_met=self.ini_angle_met,
                                           fin_angle_met=self.fin_angle_met)
         self.particle_system.play()
+
 
     def ini_angle_met(self):
         return 0
@@ -42,6 +45,9 @@ class PlayerCircle(BasicCircle):
         return Vector2(0, 1)
 
     def update(self):
+        self.check_collision()
+
+    def check_collision(self):
         (collided, game_obj) = self.circle_collider.on_collision()
         if collided:
             if issubclass(type(game_obj), BasicRectangle) and not self.is_invencible and game_obj.collidable:
