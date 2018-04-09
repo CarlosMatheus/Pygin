@@ -34,7 +34,7 @@ class Animation(Component):
         Method that will run every frame while this animation is running
         """
         self.current_animation_time += Time.delta_time(self.unscaled)
-        if self.key_frames[self.current_kf_idx].time <= self.current_animation_time < self.key_frames[self.current_kf_idx+1].time:
+        if self.should_change_key_frame():
 
             # todo remove this set interpolation
 
@@ -45,6 +45,13 @@ class Animation(Component):
             self.new_frame = True
             self.__set_interpolation(self.key_frames[self.current_kf_idx].interpolation)
             self.__play_on_each_parameter()
+
+    def should_change_key_frame(self):
+        return (self.key_frames[self.current_kf_idx].time <= self.current_animation_time < self.key_frames[
+            self.current_kf_idx + 1].time) and (self.current_kf_idx + 1 < len(self.key_frames))
+
+    def not_out_of_key_frame(self):
+        return self.current_kf_idx + 1 < len(self.key_frames)
 
     def set_animator(self, animator_obj):
         """
@@ -68,7 +75,7 @@ class Animation(Component):
         If it is defined a change in a keyframe,
         the parameter will not be None and will occur a change
         """
-        if self.animator.current_playing_animation is not None:
+        if self.animator.current_playing_animation is not None and self.not_out_of_key_frame():
             if self.key_frames[self.current_kf_idx].position is not None:
                 max_x = self.key_frames[self.current_kf_idx + 1].position.x
                 min_x = self.key_frames[self.current_kf_idx].position.x
