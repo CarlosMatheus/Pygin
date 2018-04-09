@@ -15,12 +15,33 @@ class Physics(Component):
         self.angular_velocity = angular_velocity
         self.angular_acceleration = angular_acceleration
         self.gravity = gravity
+        self.inst_velocity = velocity
+        p = self.transform.position
+        t = Time.delta_time()
+        self.position_vect = [Vector2(p.x, p.y), Vector2(p.x, p.y), Vector2(p.x, p.y)]
+        self.time_vect = [t, t, t]
+
+    def get_inst_velocity(self):
+        return self.inst_velocity
 
     def __update(self):
         self.__update_velocity()
         self.__update_position()
         self.__update_angular_velocity()
         self.__update_rotation()
+        self.__update_inst_velocity()
+
+    def __update_inst_velocity(self):
+        del self.time_vect[0]
+        self.time_vect.append(Time.delta_time())
+        del self.position_vect[0]
+        self.position_vect.append(Vector2(self.transform.position.x, self.transform.position.y))
+        dir = self.position_vect[2] - self.position_vect[0]
+        t = self.time_vect[0] + self.time_vect[1] + self.time_vect[2]
+        if t == 0:
+            self.inst_velocity = Vector2(0, 0)
+        else:
+            self.inst_velocity = dir / t
 
     def __update_position(self):
         new_position = Vector2(self.transform.position.x + (self.velocity.x * Time.delta_time()),
