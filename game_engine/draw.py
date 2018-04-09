@@ -28,7 +28,7 @@ class Draw:
         cls.game_display.fill(Color.black)
 
     @classmethod
-    def circle(cls, position, radius, color, alpha=None):
+    def circle(cls, position, radius, color, alpha):
         """
         Draw a circle
         :param position: circle's position
@@ -36,32 +36,24 @@ class Draw:
         :param color: circle's color
         :param alpha: the opacity of the draw
         """
-        if alpha is not None:
-            s = cls.game_display.copy()
-            s.set_alpha(alpha)
-            pygame.gfxdraw.filled_circle(s, int(position.x), int(position.y), int(radius), color)
-            cls.game_display.blit(s, (0, 0))
-        else:
-            pygame.gfxdraw.filled_circle(cls.game_display, int(position.x), int(position.y), int(radius), color)
+        if alpha < 0:
+            alpha = 0
+        pygame.gfxdraw.filled_circle(cls.game_display, int(position.x), int(position.y), int(radius), (color[0], color[1], color[2], alpha))
 
     @classmethod
-    def polygon(cls, color, point_list, alpha=None):
+    def polygon(cls, color, point_list, alpha):
         """
         Draw a polygon
         :param color: the color of the polygon
         :param point_list: the list of points that defines the polygon
         :param alpha: the opacity of the draw
         """
-        if alpha is not None:
-            s = cls.game_display.copy()
-            s.set_alpha(alpha)
-            pygame.gfxdraw.filled_polygon(s, point_list, color)
-            cls.game_display.blit(s, (0, 0))
-        else:
-            pygame.gfxdraw.filled_polygon(cls.game_display, point_list, color)
+        if alpha < 0:
+            alpha = 0
+        pygame.gfxdraw.filled_polygon(cls.game_display, point_list, (color[0], color[1], color[2], alpha))
 
     @classmethod
-    def text(cls, position_x, position_y, label, alpha=None):
+    def text(cls, position_x, position_y, label, alpha=255):
         """
         Draws text
         :param position_x: text's x position
@@ -69,7 +61,9 @@ class Draw:
         :param label: its the pygame label necessary to draw the text
         :param alpha: the opacity of the draw
         """
-        if alpha is not None:
+        if alpha != 255:
+            if alpha < 0:
+                alpha = 0
             s = cls.game_display.copy()
             s.set_alpha(alpha)
             s.blit(label, (position_x, position_y))
