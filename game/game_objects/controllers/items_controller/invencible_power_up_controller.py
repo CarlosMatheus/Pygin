@@ -15,8 +15,8 @@ from game_engine.components.animator import Animator
 class InvenciblePowerUpController(GameObject):
 
     def start(self):
-        self.fall_velocity = 250
-        self.radius = Constants.screen_width * 0.03
+        self.fall_velocity = 150
+        self.radius = Constants.screen_width * 0.025
         self.game_object_list = []
         self.sound_collect = mixer.Sound('game/assets/soundtrack/powerup_collect.wav')
         self.time_of_last_invencibily = -1000
@@ -54,8 +54,7 @@ class InvenciblePowerUpController(GameObject):
         self.delete_power_up_text()
 
     def fall(self, obstacle):
-        obstacle.transform.position = Vector2(obstacle.transform.position.x, obstacle.transform.position.y
-                                              + self.fall_velocity * Time.delta_time())
+        obstacle.transform.position.y = obstacle.transform.position.y + (self.fall_velocity * Time.delta_time())
 
     def get_power_up(self):
         self.sound_collect.play()

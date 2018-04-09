@@ -15,10 +15,10 @@ from game_engine.components.animator import Animator
 class StarScoreController(GameObject):
 
     def start(self):
-        self.fall_velocity = 250
+        self.fall_velocity = 150
         self.angular_speed = 0
         self.game_object_list = []
-        self.size = Constants.screen_width * 0.03
+        self.size = Constants.screen_width * 0.025
         self.points_per_star = 50
         self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
         self.should_delete_plus_score_text = False
