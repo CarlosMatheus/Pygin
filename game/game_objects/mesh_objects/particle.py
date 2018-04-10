@@ -2,9 +2,10 @@ from game_engine.basic_objects.basic_particle_circ import BasicParticleCirc
 from game.animations.particle_fade_animation import ParticleFadeAnimation
 from game_engine.material import Material
 from game_engine.components.animator import Animator
+from game_engine.time import Time
 
 
-class PlayerParticle(BasicParticleCirc):
+class Particle(BasicParticleCirc):
 
     def __init__(self, position):
         self.change = True
@@ -19,3 +20,5 @@ class PlayerParticle(BasicParticleCirc):
         if self.change:
             self.change = False
             self.material = Material(self.creator_obj.material.color)
+        if Time.now() - self.creation_time > self.destroy_time:
+            self.destroy_me()
