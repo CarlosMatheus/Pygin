@@ -11,8 +11,8 @@ class Rectangle(BasicRectangle):
         self.dimension = dimension
         self.polygon_collider = PolygonCollider(self)
         self.particle_system = ParticleSystem(self, Particle,
-                                              quant=0.01, quant_proport_to_len=True,
-                                              period=0.03,
+                                              quant=0.004, quant_proport_to_len=True,
+                                              period=0.04,
                                               vel_min=0, vel_max=100, duration=0.5,
                                               spawn_prob="parab", vel_prob="parab",
                                               inherit_vel=True, inherit_vel_mult=1)
