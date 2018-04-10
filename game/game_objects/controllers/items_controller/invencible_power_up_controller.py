@@ -18,7 +18,7 @@ class InvenciblePowerUpController(GameObject):
         self.fall_velocity = 150
         self.radius = Constants.screen_width * 0.025
         self.game_object_list = []
-        self.sound_collect = mixer.Sound('game/assets/soundtrack/powerup_collect.wav')
+        self.sound_collect = mixer.Sound('game/assets/soundtrack/powerup_collect_01.ogg')
         self.time_of_last_invencibily = -1000
         self.invecible_time = 3.5
         self.current_color = "normal"
@@ -62,7 +62,7 @@ class InvenciblePowerUpController(GameObject):
         #Power up text effect
         font_path = "game/assets/fonts/neuropolxrg.ttf"
         text_size = 15
-        power_up_text = Text(power_up.transform.position, "INVENCIBLE!", Material(Color.green, alpha=255), text_size, font_path)
+        power_up_text = Text(power_up.transform.position, "INVENCIBLE!", Material(Color.purple, alpha=255), text_size, font_path)
         power_up_text.transform.position.x -= power_up_text.text_mesh.size
         power_up_text.animation = TextUpFadeOutAnimation(power_up_text)
         power_up_text.animator = Animator(power_up_text, [power_up_text.animation])
@@ -87,7 +87,7 @@ class InvenciblePowerUpController(GameObject):
                                    (self.radius + Constants.circCenter_x - Constants.circRadius)))
 
         circle = InvencibleCircle(Vector2(random_pos, -2 * self.radius), self.radius,
-                                  Material(Color.green))
+                                  Material(Color.purple))
 
         self.game_object_list.append(circle)
 
@@ -105,4 +105,4 @@ class InvenciblePowerUpController(GameObject):
 
     def change_colors_to_green(self):
         for i in range(2):
-            self.player_controller.game_object_list[i].change_color(Color.green)
+            self.player_controller.game_object_list[i].change_color(Color.purple)
