@@ -19,11 +19,11 @@ class Collider(Component):
         Remove a collider from the collider list
         :param game_object: the game_object that contains the collider
         """
-        if hasattr(game_object, "box_collider"):
+        if game_object.box_collider is not None:
             cls.collider_list.remove(game_object.box_collider)
-        elif hasattr(game_object, "circle_collider"):
+        elif game_object.circle_collider is not None:
             cls.collider_list.remove(game_object.circle_collider)
-        elif hasattr(game_object, "polygon_collider"):
+        elif game_object.polygon_collider is not None:
             cls.collider_list.remove(game_object.polygon_collider)
 
     def on_collision(self):
