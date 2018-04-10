@@ -90,7 +90,7 @@ class ParticleSystem(Component):
         if self.turned_on:
             if self.should_spawn():
                 if self.quant_proport_to_len:
-                    quant = int(self.fin_point_method().distance_to(self.ini_point_method()) * self.quant)
+                    quant = math.ceil(self.fin_point_method().distance_to(self.ini_point_method()) * self.quant)
                 else:
                     quant = int(self.quant)
                 for i in range(quant):
