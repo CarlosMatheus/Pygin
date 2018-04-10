@@ -8,14 +8,20 @@ import math
 
 class ParticleSystem(Component):
 
-    def __init__(self, game_object, spawn_game_obj_class, quant=1, period=0.05, vel_min=80, vel_max=160,
-                 duration=1.0, gravity=0, inherit_vel=False, inherit_vel_mult=1, multiplier="lin"):
+    def __init__(self, game_object, spawn_game_obj_class, layer=0,
+                 quant=1, quant_proport_to_len=False,
+                 period=0.05, vel_min=80, vel_max=160,
+                 duration=1.0, gravity=0,
+                 inherit_vel=False, inherit_vel_mult=1,
+                 spawn_prob="lin", vel_prob="lin"):
         super().__init__(game_object)
         self.duration = duration
         self.gravity = gravity
         self.vel_min = vel_min
+        self.layer = layer
         self.vel_max = vel_max
         self.inherit_vel = inherit_vel
+        self.quant_proport_to_len = quant_proport_to_len
         self.inherit_vel_mult = inherit_vel_mult
         self.quant = quant
         self.turned_on = False
@@ -26,8 +32,10 @@ class ParticleSystem(Component):
         self.fin_point_method = None
         self.generation_mode = None
         self.obj_list = list()
-        self.multiplier = None
-        self.define_multiplier(multiplier)
+        self.spawn_prob = None
+        self.vel_prob = None
+        self.define_vel_prob(vel_prob)
+        self.define_spawn_prob(spawn_prob)
         if self.inherit_vel:
             if self.game_object.physics is None:
                 self.game_object.physics = Physics(self.game_object)
@@ -66,40 +74,61 @@ class ParticleSystem(Component):
     def stop(self):
         self.turned_on = False
 
-    def define_multiplier(self, multiplier):
-        if multiplier == "lin":
-            self.multiplier = self.__linear_prob_func
-        elif multiplier == "parab":
-            self.multiplier = self.__parabolic_prob_func
+    def define_spawn_prob(self, spawn_prob):
+        if spawn_prob == "lin":
+            self.spawn_prob = self.__linear_prob_func
+        elif spawn_prob == "parab":
+            self.spawn_prob = self.__parabolic_spawn_prob_func
+
+    def define_vel_prob(self, vel_prob):
+        if vel_prob == "lin":
+            self.vel_prob = self.__lin_vel_prob_func
+        elif vel_prob == "parab":
+            self.vel_prob = self.__parabolic_vel_prob_func
 
     def __update(self):
         if self.turned_on:
             if self.should_spawn():
-                for i in range(self.quant):
+                if self.quant_proport_to_len:
+                    quant = int(self.fin_point_method().distance_to(self.ini_point_method()) * self.quant)
+                else:
+                    quant = int(self.quant)
+                for i in range(quant):
                     spawn_location = None
                     obj_velocity_vect = None
-                    multiplier = self.multiplier()
+                    spawn_prob = self.spawn_prob()
+                    vel_prob = self.vel_prob(spawn_prob)
                     if self.generation_mode == self.set_line_gen:
-                        spawn_location = (self.fin_point_method() - self.ini_point_method()) * multiplier + self.ini_point_method()
+                        spawn_location = (self.fin_point_method() - self.ini_point_method()) * spawn_prob + self.ini_point_method()
                         velocity = random.randint(int(self.vel_min*1000), int(self.vel_max*1000))/1000
                         obj_velocity_vect = (self.fin_point_method() - self.ini_point_method()).normalize().rotate(90)*velocity
                     elif self.generation_mode == self.set_circ_gen:
-                        normal = Vector2(1, 0).rotate((self.fin_angle_met() - self.ini_angle_met()) * multiplier + self.ini_angle_met())
+                        normal = Vector2(1, 0).rotate((self.fin_angle_met() - self.ini_angle_met()) * spawn_prob + self.ini_angle_met())
                         spawn_location = self.center_point + normal * self.radius
+
                         velocity = random.randint(int(self.vel_min * 1000), int(self.vel_max * 1000)) / 1000
+
                         if self.mode == "radial":
-                            obj_velocity_vect = normal * velocity
+                            obj_velocity_vect = normal * velocity * vel_prob
                         elif self.mode == "directional":
-                            obj_velocity_vect = self.direct_met() * velocity
+                            obj_velocity_vect = self.direct_met() * velocity * vel_prob
                         else:
                             raise Exception("Unknown mode {0}".format(str(self.mode)))
+
+
                     obj = self.spawn_game_obj_class(spawn_location)
                     if self.inherit_vel:
-                        obj.physics = Physics(obj, velocity=obj_velocity_vect + self.game_object.physics.inst_velocity*self.inherit_vel_mult)
+                        obj.physics = Physics(obj, velocity=(obj_velocity_vect + self.game_object.physics.inst_velocity*self.inherit_vel_mult))
                     else:
-                        obj.physics = Physics(obj, velocity=obj_velocity_vect)
+                        obj.physics = Physics(obj, velocity=(obj_velocity_vect))
+
                     obj.physics.gravity = self.gravity
+
+                    obj.transform.layer = self.layer
+
                     obj.set_creator_object(self.game_object)
+
+                    obj.destroy_time = self.duration
                     self.obj_list.append(obj)
                     self.destroy_first()
 
@@ -118,7 +147,7 @@ class ParticleSystem(Component):
         else:
             return (1 - math.cos(rad)) / 2
 
-    def __parabolic_prob_func(self):
+    def __parabolic_spawn_prob_func(self):
         x = random.randint(0, 100)
         odd = random.randint(0, 100)
         if odd < 50:
@@ -127,8 +156,13 @@ class ParticleSystem(Component):
             return (math.sqrt(x/100)+1)/2
 
     def __gauss_prob_func(self):
-        # line going from 0 to 1
         return max(min(random.gauss(0.5, 0.25), 1.0), 0.0)
+
+    def __lin_vel_prob_func(self, x):
+        return 1
+
+    def __parabolic_vel_prob_func(self, x):
+        return 4 * (x - 0.5) * (x - 0.5)
 
     def __linear_prob_func(self):
         return random.randint(0, 1000)/1000.0
