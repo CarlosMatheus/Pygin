@@ -64,9 +64,7 @@ class Draw:
         if alpha != 255:
             if alpha < 0:
                 alpha = 0
-            s = cls.game_display.copy()
-            s.set_alpha(alpha)
-            s.blit(label, (position_x, position_y))
-            cls.game_display.blit(s, (0, 0))
-        else:
-            cls.game_display.blit(label, (position_x, position_y))
+            alpha_img = pygame.Surface(label.get_rect().size, pygame.SRCALPHA)
+            alpha_img.fill((255, 255, 255, alpha))
+            label.blit(alpha_img, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+        cls.game_display.blit(label, (position_x, position_y))
