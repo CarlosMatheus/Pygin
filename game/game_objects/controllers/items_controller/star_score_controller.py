@@ -20,7 +20,7 @@ class StarScoreController(GameObject):
         self.game_object_list = []
         self.size = Constants.screen_width * 0.025
         self.points_per_star = 50
-        self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect.wav')
+        self.sound_collect = mixer.Sound('game/assets/soundtrack/star_collect_01.ogg')
         self.should_delete_plus_score_text = False
         self.plus_score_text_gen_time = 0.0
 

@@ -1,4 +1,4 @@
-from game.game_objects.mesh_objects.player_particle import PlayerParticle
+from game.game_objects.mesh_objects.particle import Particle
 from game_engine.components.particle_system import ParticleSystem
 from game_engine.game_object import GameObject
 from game_engine.time import Time
@@ -17,7 +17,7 @@ class GetPowerUpEffect(GameObject):
 
     def start(self):
         self.particle_system = ParticleSystem(self,
-                                              PlayerParticle,
+                                              Particle,
                                               quant=30,
                                               period=0.02,
                                               vel_min=40,

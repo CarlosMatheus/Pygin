@@ -1,7 +1,7 @@
 from game_engine.basic_objects.basic_circle import BasicCircle
 from game_engine.components.circle_collider import CircleCollider
 from game_engine.components.particle_system import ParticleSystem
-from game.game_objects.mesh_objects.player_particle import PlayerParticle
+from game.game_objects.mesh_objects.particle import Particle
 from game.animations.power_up_fade_out import PowerUpFadeOut
 from game_engine.components.animator import Animator
 from game.animations.litter_bounce import LitterBounce
@@ -20,7 +20,7 @@ class InvencibleCircle(BasicCircle):
     # Todo: create a power_up class that is superclass of invencible circle and star
 
     def start(self):
-        self.particle_system = ParticleSystem(self, PlayerParticle, quant=1, period=0.15, vel_min=30, vel_max=60,
+        self.particle_system = ParticleSystem(self, Particle, quant=1, period=0.15, vel_min=30, vel_max=60,
                                               duration=0.8, gravity=98, inherit_vel=True)
         self.particle_system.set_circ_gen(self.transform.position, self.circle_mesh.get_radius(), mode="radial",
                                           direct_met=self.direct_met, ini_angle_met=self.ini_angle_met,

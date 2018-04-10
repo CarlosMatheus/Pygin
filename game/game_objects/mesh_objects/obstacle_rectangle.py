@@ -1,7 +1,7 @@
 from game_engine.basic_objects.basic_rectangle import BasicRectangle
 from game_engine.components.polygon_collider import PolygonCollider
 from game_engine.components.particle_system import ParticleSystem
-from game.game_objects.mesh_objects.player_particle import PlayerParticle
+from game.game_objects.mesh_objects.particle import Particle
 
 
 class Rectangle(BasicRectangle):
@@ -10,7 +10,7 @@ class Rectangle(BasicRectangle):
         super(Rectangle, self).__init__(position, dimension, material, layer=layer)
         self.dimension = dimension
         self.polygon_collider = PolygonCollider(self)
-        self.particle_system = ParticleSystem(self, PlayerParticle,
+        self.particle_system = ParticleSystem(self, Particle,
                                               quant=0.01, quant_proport_to_len=True,
                                               period=0.03,
                                               vel_min=0, vel_max=100, duration=0.5,
