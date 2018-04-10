@@ -6,6 +6,8 @@ class Input:
     engine = None
     is_pressing_left = False
     is_pressing_right = False
+    press_left_down = False
+    press_right_down = False
 
     @classmethod
     def update_input(cls, events):
@@ -13,6 +15,7 @@ class Input:
         find on the events list all events to update the input
         :param events: events list from pygame queue
         """
+        cls.reset_keys()
         for event in events:
             if event.type == pygame.KEYDOWN:
                 cls.__key_down(event)
@@ -23,7 +26,19 @@ class Input:
 
     @classmethod
     def set_engine_reference(cls, class_ref):
+        """
+        Set the reference of engine class to this class
+        :param class_ref: The reference to engine class
+        """
         cls.engine = class_ref
+
+    @classmethod
+    def reset_keys(cls):
+        """
+        Press key down reset
+        """
+        cls.press_left_down = False
+        cls.press_right_down = False
 
     @classmethod
     def __key_down(cls, event):
@@ -34,8 +49,10 @@ class Input:
         """
         if event.key == pygame.K_LEFT:
             cls.is_pressing_left = True
+            cls.press_left_down = True
         if event.key == pygame.K_RIGHT:
             cls.is_pressing_right = True
+            cls.press_right_down = True
 
     @classmethod
     def __key_up(cls, event):
