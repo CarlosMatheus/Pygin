@@ -12,15 +12,12 @@ class ObstaclePulsingAnimation(Animation):
         key_frame_list = list()
         key_frame_list.append(KeyFrame(0.00,
                                        scale=Vector2(1.0, 1.0),
-                                       position=Vector2(0, 0),
                                        interpolation="out_cubic"))
         key_frame_list.append(KeyFrame(0.35,
                                        scale=Vector2(1.07, 1.07),
-                                       position=Vector2(self.rand()*gap, self.rand()*gap),
                                        interpolation="out_cubic"))
-        key_frame_list.append(KeyFrame(0.70,
-                                       scale=Vector2(1.0, 1.0),
-                                       position=Vector2(0, 0)))
+        key_frame_list.append(KeyFrame(0.70, scale=Vector2(1.0, 1.0)))
+
         super().__init__(game_obj, key_frame_list, should_loop=True)
 
     def rand(self):

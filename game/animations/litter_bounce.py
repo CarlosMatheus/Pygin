@@ -11,7 +11,7 @@ class LitterBounce(Animation):
         :param game_object:
         """
         inter = "in_out_quint"
-        gap =5
+        gap = 10
         key_frames = list()
         key_frames.append(KeyFrame(0.0, position=Vector2(0, 0), interpolation=inter))
         key_frames.append(KeyFrame(0.5, position=Vector2(self.rand()*gap, self.rand()*gap), interpolation=inter))
