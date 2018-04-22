@@ -8,6 +8,8 @@ from game_engine.components.animator import Animator
 from game_engine.game_object import GameObject
 from game_engine.components.circle_collider import CircleCollider
 from game.game_objects.mesh_objects.get_power_up_effect import GetPowerUpEffect
+from game.game_objects.mesh_objects.die_effect import DieEffect
+from game_engine.components.physics import Physics
 from game.animations.player_bounce import PlayerBounce
 from game_engine.color import Color
 from pygame import mixer
@@ -23,6 +25,7 @@ class PlayerCircle(BasicCircle):
         self.is_not_dying = True
 
     def start(self):
+        self.physics = Physics(self)
         self.star_score_controller = GameObject.find_by_type("StarScoreController")[0]
         self.main_scene_controller = GameObject.find_by_type("MainSceneController")[0]
         self.invencible_power_up_controller = GameObject.find_by_type("InvenciblePowerUpController")[0]
@@ -55,9 +58,7 @@ class PlayerCircle(BasicCircle):
         if collided:
             if issubclass(type(game_obj), BasicRectangle) and not self.is_invencible and game_obj.collidable:
                 self.main_scene_controller.game_over()
-                if self.is_not_dying:
-                    self.death_sound.play()
-                    self.is_not_dying = False
+                self.die()
             elif issubclass(type(game_obj), Star):
                 GetPowerUpEffect(position=game_obj.transform.position, material=game_obj.material)
                 game_obj.die()
@@ -66,3 +67,19 @@ class PlayerCircle(BasicCircle):
                 GetPowerUpEffect(position=game_obj.transform.position, material=game_obj.material)
                 game_obj.die()
                 self.invencible_power_up_controller.get_power_up()
+
+    def die(self):
+        if self.is_not_dying:
+            self.death_sound.play()
+            self.is_not_dying = False
+            self.particle_system.stop()
+            inst_vel = self.physics.inst_velocity
+            r = self.circle_mesh.get_radius()
+            for i in range(7):
+                DieEffect(self.transform.position, self.material, 1 + r*i/6, inst_vel=inst_vel)
+            # DieEffect(self.transform.position, self.material, radius=1, inst_vel=inst_vel)
+            # DieEffect(self.transform.position, self.material, radius=5, inst_vel=inst_vel)
+            # DieEffect(self.transform.position, self.material, radius=10, inst_vel=inst_vel)
+            # DieEffect(self.transform.position, self.material, radius=15, inst_vel=inst_vel)
+            # DieEffect(self.transform.position, self.material, radius=20, inst_vel=inst_vel)
+            self.material.alpha = 0

@@ -1,6 +1,5 @@
 from game_engine.components.animation import Animation
 from game_engine.key_frame import KeyFrame
-from game.scripts.constants import Constants
 from pygame.math import Vector2
 import random
 
@@ -8,7 +7,6 @@ import random
 class ObstaclePulsingAnimation(Animation):
 
     def __init__(self, game_obj):
-        gap = 0.7
         key_frame_list = list()
         key_frame_list.append(KeyFrame(0.00,
                                        scale=Vector2(1.0, 1.0),

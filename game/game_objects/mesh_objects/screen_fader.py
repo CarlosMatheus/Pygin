@@ -47,5 +47,5 @@ class ScreenFader(BasicRectangle):
         """
         Will destroy the animation after finished it
         """
-        if Time.now() - self.creation_time > 1:
+        if Time.now() - self.creation_time > self.fade_duration*2:
             GameObject.destroy(self)

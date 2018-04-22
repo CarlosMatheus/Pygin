@@ -17,6 +17,7 @@ class MainSceneController(GameObject):
         """
         self.setup_initializer()
         self.setup_fader()
+        self.fade_out_duration = 1.2
 
     def setup_initializer(self):
         self.initial_time = Time.now()
@@ -56,12 +57,12 @@ class MainSceneController(GameObject):
         Will fade screen out and the change it
         """
         if self.should_fade_out:
-            ScreenFader(fade="out")
+            ScreenFader(fade="out", fade_duration=self.fade_out_duration)
             self.should_fade_out = False
             self.should_change_scene = True
             self.change_scene_timer = Time.now()
             Time.time_scale = 0
-        if self.should_change_scene and Time.now() - self.change_scene_timer > 0.68:
+        if self.should_change_scene and Time.now() - self.change_scene_timer > self.fade_out_duration+0.2:
             Time.time_scale = 1.0
             Scene.change_scene(2)
 
