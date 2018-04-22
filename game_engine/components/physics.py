@@ -6,7 +6,7 @@ from pygame.math import Vector2
 class Physics(Component):
 
     def __init__(self, game_object, mass=None, gravity=0, velocity=Vector2(0, 0), acceleration=Vector2(0, 0),
-                 angular_velocity=0, angular_acceleration=0):
+                 angular_velocity=0, angular_acceleration=0, unscaled=False):
         super(Physics, self).__init__(game_object)
         gravity *= 10
         self.mass = mass
@@ -14,10 +14,11 @@ class Physics(Component):
         self.acceleration = acceleration
         self.angular_velocity = angular_velocity
         self.angular_acceleration = angular_acceleration
+        self.unscaled = unscaled
         self.gravity = gravity
         self.inst_velocity = velocity
         p = self.transform.position
-        t = Time.delta_time()
+        t = Time.delta_time(self.unscaled, self.game_object.time_scale)
         self.position_vect = [Vector2(p.x, p.y), Vector2(p.x, p.y), Vector2(p.x, p.y)]
         self.time_vect = [t, t, t]
 
@@ -33,7 +34,7 @@ class Physics(Component):
 
     def __update_inst_velocity(self):
         del self.time_vect[0]
-        self.time_vect.append(Time.delta_time())
+        self.time_vect.append(Time.delta_time(self.unscaled, self.game_object.time_scale))
         del self.position_vect[0]
         self.position_vect.append(Vector2(self.transform.position.x, self.transform.position.y))
         dir = self.position_vect[2] - self.position_vect[0]
@@ -44,16 +45,16 @@ class Physics(Component):
             self.inst_velocity = dir / t
 
     def __update_position(self):
-        new_position = Vector2(self.transform.position.x + (self.velocity.x * Time.delta_time()),
-                               self.transform.position.y + (self.velocity.y * Time.delta_time()))
+        new_position = Vector2(self.transform.position.x + (self.velocity.x * Time.delta_time(self.unscaled, self.game_object.time_scale)),
+                               self.transform.position.y + (self.velocity.y * Time.delta_time(self.unscaled, self.game_object.time_scale)))
         self.transform.translate(new_position)
 
     def __update_velocity(self):
-        self.velocity.x = self.velocity.x + (self.acceleration.x * Time.delta_time())
-        self.velocity.y = self.velocity.y + ((self.acceleration.y + self.gravity) * Time.delta_time())
+        self.velocity.x = self.velocity.x + (self.acceleration.x * Time.delta_time(self.unscaled, self.game_object.time_scale))
+        self.velocity.y = self.velocity.y + ((self.acceleration.y + self.gravity) * Time.delta_time(self.unscaled, self.game_object.time_scale))
 
     def __update_angular_velocity(self):
-        self.angular_velocity = self.angular_velocity + (self.angular_acceleration * Time.delta_time())
+        self.angular_velocity = self.angular_velocity + (self.angular_acceleration * Time.delta_time(self.unscaled, self.game_object.time_scale))
 
     def __update_rotation(self):
-        self.transform.rotate(self.angular_velocity * Time.delta_time())
+        self.transform.rotate(self.angular_velocity * Time.delta_time(self.unscaled, self.game_object.time_scale))
