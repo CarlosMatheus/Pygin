@@ -34,6 +34,7 @@ class GameObject:
         self.box_collider = None
         self.circle_collider = None
         self.polygon_collider = None
+        self.time_scale = 1
         self.__instantiate(self)
 
     def awake(self):
