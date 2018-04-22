@@ -70,7 +70,6 @@ class PlayerCircle(BasicCircle):
 
     def die(self):
         if self.is_not_dying:
-            print(1)
             self.death_sound.play()
             self.is_not_dying = False
             self.particle_system.stop()

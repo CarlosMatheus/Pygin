@@ -31,7 +31,8 @@ class DieEffect(GameObject):
                                               layer=10,
                                               inherit_vel=True,
                                               inherit_vel_mult=0.5,
-                                              unscaled=True
+                                              unscaled=True,
+                                              num_of_periods=1
                                               )
         self.particle_system.set_circ_gen(self.transform.position,
                                           radius=self.radius,
