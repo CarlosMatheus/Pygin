@@ -23,7 +23,8 @@ class ParticleSystem(Component):
                  inherit_vel_mult=1,
                  spawn_prob="lin",
                  vel_prob="lin",
-                 unscaled=False
+                 unscaled=False,
+                 num_of_periods="inf"
                  ):
         super().__init__(game_object)
         self.duration = duration
@@ -48,6 +49,8 @@ class ParticleSystem(Component):
         self.define_vel_prob(vel_prob)
         self.define_spawn_prob(spawn_prob)
         self.unscaled = unscaled
+        self.num_of_periods = num_of_periods
+        self.actual_period = 0
         if self.inherit_vel:
             if self.game_object.physics is None:
                 self.game_object.physics = Physics(self.game_object)
@@ -106,51 +109,55 @@ class ParticleSystem(Component):
                 else:
                     quant = int(self.quant)
                 for i in range(quant):
-                    spawn_location = None
-                    obj_velocity_vect = None
-                    spawn_prob = self.spawn_prob()
-                    vel_prob = self.vel_prob(spawn_prob)
-                    if self.generation_mode == self.set_line_gen:
-                        spawn_location = (self.fin_point_method() - self.ini_point_method()) * spawn_prob + self.ini_point_method()
-                        velocity = random.randint(int(self.vel_min*1000), int(self.vel_max*1000))/1000
-                        obj_velocity_vect = (self.fin_point_method() - self.ini_point_method()).normalize().rotate(90)*velocity
-                    elif self.generation_mode == self.set_circ_gen:
-                        normal = Vector2(1, 0).rotate((self.fin_angle_met() - self.ini_angle_met()) * spawn_prob + self.ini_angle_met())
-                        spawn_location = self.center_point + normal * self.radius
-
-                        velocity = random.randint(int(self.vel_min * 1000), int(self.vel_max * 1000)) / 1000
-
-                        if self.mode == "radial":
-                            obj_velocity_vect = normal * velocity * vel_prob
-                        elif self.mode == "directional":
-                            obj_velocity_vect = self.direct_met() * velocity * vel_prob
-                        else:
-                            raise Exception("Unknown mode {0}".format(str(self.mode)))
-
-
-                    obj = self.spawn_game_obj_class(spawn_location)
-                    if self.inherit_vel:
-                        obj.physics = Physics(obj, velocity=(obj_velocity_vect + self.game_object.physics.inst_velocity*self.inherit_vel_mult))
-                    else:
-                        obj.physics = Physics(obj, velocity=(obj_velocity_vect))
-
-                    obj.physics.gravity = self.gravity
-
-                    obj.transform.layer = self.layer
-
-                    obj.set_creator_object(self.game_object)
-
-                    obj.destroy_time = self.duration
-
-                    if self.unscaled == True:
-                        if obj.animator is not None:
-                            for animation in obj.animator.animation_list:
-                                animation.unscaled = self.unscaled
-                        if obj.physics is not None:
-                            obj.physics.unscaled = self.unscaled
-
-                    self.obj_list.append(obj)
+                    self.spawn_particle()
                     self.destroy_first()
+
+    def spawn_particle(self):
+        spawn_location = None
+        obj_velocity_vect = None
+        spawn_prob = self.spawn_prob()
+        vel_prob = self.vel_prob(spawn_prob)
+        if self.generation_mode == self.set_line_gen:
+            spawn_location = (self.fin_point_method() - self.ini_point_method()) * spawn_prob + self.ini_point_method()
+            velocity = random.randint(int(self.vel_min * 1000), int(self.vel_max * 1000)) / 1000
+            obj_velocity_vect = (self.fin_point_method() - self.ini_point_method()).normalize().rotate(90) * velocity
+        elif self.generation_mode == self.set_circ_gen:
+            normal = Vector2(1, 0).rotate(
+                (self.fin_angle_met() - self.ini_angle_met()) * spawn_prob + self.ini_angle_met())
+            spawn_location = self.center_point + normal * self.radius
+
+            velocity = random.randint(int(self.vel_min * 1000), int(self.vel_max * 1000)) / 1000
+
+            if self.mode == "radial":
+                obj_velocity_vect = normal * velocity * vel_prob
+            elif self.mode == "directional":
+                obj_velocity_vect = self.direct_met() * velocity * vel_prob
+            else:
+                raise Exception("Unknown mode {0}".format(str(self.mode)))
+
+        obj = self.spawn_game_obj_class(spawn_location)
+        if self.inherit_vel:
+            obj.physics = Physics(obj, velocity=(
+                        obj_velocity_vect + self.game_object.physics.inst_velocity * self.inherit_vel_mult))
+        else:
+            obj.physics = Physics(obj, velocity=(obj_velocity_vect))
+
+        obj.physics.gravity = self.gravity
+
+        obj.transform.layer = self.layer
+
+        obj.set_creator_object(self.game_object)
+
+        obj.destroy_time = self.duration
+
+        if self.unscaled == True:
+            if obj.animator is not None:
+                for animation in obj.animator.animation_list:
+                    animation.unscaled = self.unscaled
+            if obj.physics is not None:
+                obj.physics.unscaled = self.unscaled
+
+        self.obj_list.append(obj)
 
     def destroy_first(self):
         if Time.now() - self.destroy_timer > self.duration:
@@ -188,6 +195,10 @@ class ParticleSystem(Component):
         return random.randint(0, 1000)/1000.0
 
     def should_spawn(self):
+        if self.num_of_periods != "inf":
+            self.actual_period += 1
+            if self.num_of_periods > self.actual_period:
+                return False
         if (Time.now() - self.last_time) > self.period:
             self.last_time = Time.now()
             return True
