@@ -42,13 +42,13 @@ class Time:
         cls.clock.tick(144)
 
     @classmethod
-    def delta_time(cls, unscaled=False):
+    def delta_time(cls, unscaled=False, time_scale=1):
         """
         :return: the duration of that frame in seconds
         """
         if cls.clock.get_fps() != 0:
             if unscaled:
-                return 1 / cls.clock.get_fps()
+                return 1 / cls.clock.get_fps()*time_scale
             else:
                 return (1/cls.clock.get_fps())*cls.time_scale
         else:
