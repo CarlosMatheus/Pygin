@@ -23,7 +23,7 @@ class DieEffect(GameObject):
         self.particle_system = ParticleSystem(self,
                                               Particle,
                                               quant=15,
-                                              period=0.02,
+                                              period=0.01,
                                               vel_min=30,
                                               vel_max=130,
                                               duration=0.9,
@@ -48,7 +48,7 @@ class DieEffect(GameObject):
         Will be destroyed after a time
         """
         self.physics.inst_velocity = self.inst_vel
-        if Time.now() - self.spawn_time > 0.03:
+        if Time.now() - self.spawn_time > 0.01:
             self.destroy_me()
 
     def ini_angle_met(self):

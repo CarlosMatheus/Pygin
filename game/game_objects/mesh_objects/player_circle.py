@@ -70,6 +70,7 @@ class PlayerCircle(BasicCircle):
 
     def die(self):
         if self.is_not_dying:
+            print(1)
             self.death_sound.play()
             self.is_not_dying = False
             self.particle_system.stop()
@@ -77,9 +78,4 @@ class PlayerCircle(BasicCircle):
             r = self.circle_mesh.get_radius()
             for i in range(7):
                 DieEffect(self.transform.position, self.material, 1 + r*i/6, inst_vel=inst_vel)
-            # DieEffect(self.transform.position, self.material, radius=1, inst_vel=inst_vel)
-            # DieEffect(self.transform.position, self.material, radius=5, inst_vel=inst_vel)
-            # DieEffect(self.transform.position, self.material, radius=10, inst_vel=inst_vel)
-            # DieEffect(self.transform.position, self.material, radius=15, inst_vel=inst_vel)
-            # DieEffect(self.transform.position, self.material, radius=20, inst_vel=inst_vel)
             self.material.alpha = 0
