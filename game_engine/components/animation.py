@@ -33,7 +33,7 @@ class Animation(Component):
         """
         Method that will run every frame while this animation is running
         """
-        self.current_animation_time += Time.delta_time(self.unscaled)
+        self.current_animation_time += Time.delta_time(self.unscaled, self.game_object.time_scale)
         if self.should_change_key_frame():
 
             # todo remove this set interpolation
@@ -174,7 +174,7 @@ class Animation(Component):
         Verify if it is the end of a keyframe
         """
         return abs(self.current_animation_time - self.key_frames[self.current_kf_idx + 1].time)\
-               < Time.delta_time(self.unscaled) * (3 / 2)
+               < Time.delta_time(self.unscaled, self.game_object.time_scale) * (3 / 2)
 
     def __set_interpolation(self, kind):
         """
