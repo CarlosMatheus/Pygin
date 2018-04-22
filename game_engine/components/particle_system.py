@@ -8,12 +8,23 @@ import math
 
 class ParticleSystem(Component):
 
-    def __init__(self, game_object, spawn_game_obj_class, layer=0,
-                 quant=1, quant_proport_to_len=False,
-                 period=0.05, vel_min=80, vel_max=160,
-                 duration=1.0, gravity=0,
-                 inherit_vel=False, inherit_vel_mult=1,
-                 spawn_prob="lin", vel_prob="lin"):
+    def __init__(self,
+                 game_object,
+                 spawn_game_obj_class,
+                 layer=0,
+                 quant=1,
+                 quant_proport_to_len=False,
+                 period=0.05,
+                 vel_min=80,
+                 vel_max=160,
+                 duration=1.0,
+                 gravity=0,
+                 inherit_vel=False,
+                 inherit_vel_mult=1,
+                 spawn_prob="lin",
+                 vel_prob="lin",
+                 unscaled=False
+                 ):
         super().__init__(game_object)
         self.duration = duration
         self.gravity = gravity
@@ -36,6 +47,7 @@ class ParticleSystem(Component):
         self.vel_prob = None
         self.define_vel_prob(vel_prob)
         self.define_spawn_prob(spawn_prob)
+        self.unscaled = unscaled
         if self.inherit_vel:
             if self.game_object.physics is None:
                 self.game_object.physics = Physics(self.game_object)
@@ -129,6 +141,14 @@ class ParticleSystem(Component):
                     obj.set_creator_object(self.game_object)
 
                     obj.destroy_time = self.duration
+
+                    if self.unscaled == True:
+                        if obj.animator is not None:
+                            for animation in obj.animator.animation_list:
+                                animation.unscaled = self.unscaled
+                        if obj.physics is not None:
+                            obj.physics.unscaled = self.unscaled
+
                     self.obj_list.append(obj)
                     self.destroy_first()
 
