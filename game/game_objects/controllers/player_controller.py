@@ -22,6 +22,12 @@ class PlayerController(GameObject):
         self.should_play = True
         self.initial_time = Time.now()
 
+    def on_touch_move(self, touch):
+        if touch.x < Constants.screen_width / 2.0:
+            self.turn_left()
+        else:
+            self.turn_right()
+
     def update(self):
         self.initial_animation()
         if not self.in_initial_animation:
