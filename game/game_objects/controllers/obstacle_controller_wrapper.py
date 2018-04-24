@@ -11,6 +11,8 @@ from game.game_objects.controllers.obstacles_controllers.two_in_one_simple_obsta
 from game.game_objects.controllers.obstacles_controllers.two_side_by_side_obstacle_controller import TwoSideBySideSimpleObstacleController
 from game.game_objects.controllers.obstacles_controllers.spinning_middle_rect_obstacle_controller import SpinningMiddleRectObstacleController
 from game.game_objects.controllers.obstacles_controllers.half_moon_spinning_rect_obstacle_controller import HalfMoonSpinningRectObstacleController
+from game.game_objects.controllers.obstacles_controllers.invisible_middle_obstacle_controller import InvisibleMiddleObstacleController
+from game.game_objects.controllers.obstacles_controllers.invisible_simple_obstacle_controller import InvisibleSimpleObstacleController
 from game_engine.game_object import GameObject
 from game_engine.basic_objects.text import Text
 from game_engine.color import Color
@@ -31,7 +33,9 @@ class ObstacleControllerWrapper(GameObject):
             TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # InvisibleMiddleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            # InvisibleSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
         self.rect_x_controller = RandomXFinalObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         self.obstacle_geneation_delta = 1500
