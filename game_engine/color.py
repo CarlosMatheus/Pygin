@@ -12,6 +12,7 @@ class Color:
     gray = (112, 112, 112)
     orange = (253, 102, 0)
     purple = (244, 113, 244)
+    mask = (122, 116, 116)
 
     @classmethod
     def random_color(cls):
