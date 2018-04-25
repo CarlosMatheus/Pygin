@@ -6,8 +6,10 @@ class Input:
     engine = None
     is_pressing_left = False
     is_pressing_right = False
+    is_pressing_space = False
     press_left_down = False
     press_right_down = False
+    press_space_down = False
 
     @classmethod
     def update_input(cls, events):
@@ -39,6 +41,7 @@ class Input:
         """
         cls.press_left_down = False
         cls.press_right_down = False
+        cls.press_space_down = False
 
     @classmethod
     def __key_down(cls, event):
@@ -53,6 +56,9 @@ class Input:
         if event.key == pygame.K_RIGHT:
             cls.is_pressing_right = True
             cls.press_right_down = True
+        if event.key == pygame.K_SPACE:
+            cls.is_pressing_space = True
+            cls.press_space_down = True
 
     @classmethod
     def __key_up(cls, event):
@@ -65,6 +71,8 @@ class Input:
             cls.is_pressing_left = False
         if event.key == pygame.K_RIGHT:
             cls.is_pressing_right = False
+        if event.key == pygame.K_SPACE:
+            cls.is_pressing_space = False
 
     @classmethod
     def __quit_game(cls):
