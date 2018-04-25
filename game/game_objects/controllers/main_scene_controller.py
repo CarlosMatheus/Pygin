@@ -1,12 +1,14 @@
 from game_engine.scene import Scene
 from game_engine.game_object import GameObject
 from game_engine.time import Time
+from game_engine.input import Input
 from game.game_objects.mesh_objects.screen_fader import ScreenFader
 from game.game_objects.controllers.player_controller import PlayerController
 from game.game_objects.controllers.score_controller import ScoreController
 from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 from game.game_objects.controllers.obstacle_controller_wrapper import ObstacleControllerWrapper
 from game.game_objects.controllers.items_controller_wrapper import ItemsControllerWrapper
+from game.scripts.constants import Constants
 
 
 class MainSceneController(GameObject):
@@ -36,6 +38,9 @@ class MainSceneController(GameObject):
         """
         call the initialize scene
         """
+        if Input.press_space_down:
+            Time.time_scale = (Time.time_scale + 1) % 2
+
         self.initialize_scene()
         self.change_scene()
 
@@ -46,11 +51,11 @@ class MainSceneController(GameObject):
         """
         if Time.now() - self.initial_time > 0.45 and self.should_initialize:
             self.should_initialize = False
-            BackgroundParticlesController()
-            PlayerController()
-            ObstacleControllerWrapper()
-            ItemsControllerWrapper()
-            ScoreController()
+            self.background_particle_controller = BackgroundParticlesController()
+            self.player_controller = PlayerController()
+            self.obstacle_controller_wrapper = ObstacleControllerWrapper()
+            self.items_controller = ItemsControllerWrapper()
+            self.score_controller = ScoreController()
 
     def change_scene(self):
         """

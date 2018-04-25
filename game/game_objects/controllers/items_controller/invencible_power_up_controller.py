@@ -31,6 +31,11 @@ class InvenciblePowerUpController(GameObject):
         self.player_controller = GameObject.find_by_type("PlayerController")[0]
 
     def update(self):
+
+        if Time.time_scale == 0.0:
+            #Paused game. Adjust timers
+            self.time_of_last_invencibily += Time.delta_time(True)
+
         difference_time = Time.now() - self.time_of_last_invencibily
         if difference_time > self.invecible_time:
             for i in range(2):
