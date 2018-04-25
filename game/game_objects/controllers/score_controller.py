@@ -30,7 +30,8 @@ class ScoreController(GameObject):
         self.game_object_list[0].text_mesh.message = str(int(self.score))
 
     def update(self):
-        if Time.now() - self.last_update_time >= self.time_to_update_score:
+
+        if (Time.now() - self.last_update_time) * Time.time_scale >= self.time_to_update_score:
             self.score = self.score + self.score_per_step
             self.last_update_time = Time.now()
             Constants.current_score = self.score

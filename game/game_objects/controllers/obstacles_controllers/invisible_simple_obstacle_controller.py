@@ -15,7 +15,6 @@ class InvisibleSimpleObstacleController(GameObject):
         self.fall_velocity = 300
         self.game_object_list = []
 
-
     def update(self):
 
         for obstacle in self.game_object_list:

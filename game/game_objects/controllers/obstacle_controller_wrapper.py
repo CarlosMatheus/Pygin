@@ -34,8 +34,8 @@ class ObstacleControllerWrapper(GameObject):
             HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
             SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # InvisibleMiddleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            # InvisibleSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            InvisibleMiddleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
+            InvisibleSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
         self.rect_x_controller = RandomXFinalObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         self.obstacle_geneation_delta = 1500
@@ -48,14 +48,20 @@ class ObstacleControllerWrapper(GameObject):
         self.max_difficult = 10
         self.should_delete_difficulty_text = False
         self.diff_text_gen_time = 0.0
-
         for obstacle_generator in self.obstacle_generators:
             obstacle_generator.start()
 
     def update(self):
+
+        if Time.time_scale < 0.5:
+            #Adjust timers to new delta
+            self.last_generation_time += 1000 * Time.delta_time(True)
+            self.last_increases_dificculty_time += Time.delta_time(True)
+
         self.increase_difficult()
         self.delete_difficulty_text()
-        if 1000 * Time.now() - self.last_generation_time > self.obstacle_geneation_delta * \
+
+        if (1000 * Time.now() - self.last_generation_time) * Time.time_scale > self.obstacle_geneation_delta * \
                 self.generation_obstacle_difficult:
             self.generate_random_obstacle()
 
@@ -109,6 +115,7 @@ class ObstacleControllerWrapper(GameObject):
             self.diff_text.destroy_me()
 
     def generate_random_obstacle(self):
+        print("GENERATE OBSTACLE")
         self.last_generation_time = 1000 * Time.now()
 
         number_of_obstacles = int(min(self.game_difficuty, len(self.obstacle_generators)))
