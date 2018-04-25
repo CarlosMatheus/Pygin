@@ -8,7 +8,7 @@ from game.game_objects.controllers.score_controller import ScoreController
 from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 from game.game_objects.controllers.obstacle_controller_wrapper import ObstacleControllerWrapper
 from game.game_objects.controllers.items_controller_wrapper import ItemsControllerWrapper
-from game.scripts.constants import Constants
+from game.game_objects.controllers.pause_controller import PauseController
 
 
 class MainSceneController(GameObject):
@@ -40,6 +40,11 @@ class MainSceneController(GameObject):
         """
         if Input.press_space_down:
             Time.time_scale = (Time.time_scale + 1) % 2
+            if Time.time_scale == 0.0:
+                self.pause_controller = PauseController()
+            else:
+                self.pause_controller.destroy_all_text()
+                self.pause_controller.destroy_me()
 
         self.initialize_scene()
         self.change_scene()
