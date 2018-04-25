@@ -1,6 +1,6 @@
 # Balance
 
-Balance is a simple and challenge arcade game made using [Pygame](https://www.pygame.org/).  
+Balance is a simple and challenging arcade game made using [Pygame](https://www.pygame.org/).  
 One of the purposes of this game is to develop a simple engine for making easier the use of Pygame to build more complex games.  
 This engine includes support for collisions, meshes, materials, game objects and scenes.  
 The elements used are very similar to the ones used in the engine [Unity](https://unity3d.com/ "Unity Official Website").
