@@ -32,7 +32,7 @@ class PlayerCircle(BasicCircle):
         self.animation = CirclePlayerInitialAnimation(self)
         self.animator = Animator(self, [self.animation])
         self.death_sound = mixer.Sound('game/assets/soundtrack/ball_death_01.ogg')
-        self.particle_system = ParticleSystem(self, Particle, quant=5, period=0.05,
+        self.particle_system = ParticleSystem(self, Particle, quant=5, period=0.07,
                                               vel_min=30, vel_max=200, duration=0.5,
                                               inherit_vel=True, inherit_vel_mult=-0.7)
         self.particle_system.set_circ_gen(self.transform.position, self.circle_mesh.get_radius(), mode="directional",
