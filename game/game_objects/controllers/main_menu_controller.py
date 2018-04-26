@@ -100,7 +100,7 @@ class MainMenuController(GameObject):
         """
         :return: if it should change scene
         """
-        return Input.is_pressing_right or Input.is_pressing_left
+        return Input.is_pressing_right or Input.is_pressing_left or Input.is_pressing_space
 
     def should_spawn(self):
         """
