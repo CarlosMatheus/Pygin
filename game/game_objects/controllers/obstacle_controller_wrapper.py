@@ -27,15 +27,7 @@ class ObstacleControllerWrapper(GameObject):
 
     def start(self):
         self.obstacle_generators = [
-            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            InvisibleMiddleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0),
-            InvisibleSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+            SimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         ]
         self.rect_x_controller = RandomXFinalObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
         self.obstacle_geneation_delta = 1500
@@ -43,7 +35,7 @@ class ObstacleControllerWrapper(GameObject):
         self.game_object_list = []
         self.last_increases_dificculty_time = Time.now()
         self.game_difficuty = 1
-        self.time_to_increase_difficult = 6
+        self.time_to_increase_difficult = 6.2
         self.generation_obstacle_difficult = 1
         self.max_difficult = 10
         self.should_delete_difficulty_text = False
@@ -75,16 +67,56 @@ class ObstacleControllerWrapper(GameObject):
 
             self.game_difficuty += 1
             self.last_increases_dificculty_time = Time.now()
-            self.time_to_increase_difficult *= 1.02
+            self.time_to_increase_difficult *= 1.03
             self.generation_obstacle_difficult = (1 - (self.game_difficuty - 1) * 0.2 / self.max_difficult)
             self.generate_difficulty_text()
 
-            if(self.game_difficuty == 7 and len(self.obstacle_generators) > 3):
+            if self.game_difficuty == 2:
+                obstacle = MiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+
+            if self.game_difficuty == 3:
+                obstacle = TwoInOneSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+
+            if self.game_difficuty == 4:
+                obstacle = TwoSideBySideSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+
+            if self.game_difficuty == 5:
+                obstacle = HalfMoonSpinningRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+
+            if self.game_difficuty == 6:
+                obstacle = InvisibleMiddleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+                self.delete_object_with_specific_type(MiddleRectObstacleController)
+
+            if self.game_difficuty == 7:
+                obstacle = InvisibleSimpleObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+
+            if self.game_difficuty == 8 and len(self.obstacle_generators) > 3:
+                obstacle = RectTranslateXObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
                 self.delete_object_with_specific_type(SimpleObstacleController)
                 self.delete_object_with_specific_type(TwoInOneSimpleObstacleController)
 
-            if(self.game_difficuty == 10):
+            if self.game_difficuty == 9:
+                obstacle = SpinningMiddleRectObstacleController(Vector2(0, 0), 0, Vector2(0, 0), 0)
+                obstacle.start()
+                self.obstacle_generators.append(obstacle)
+
+            if self.game_difficuty == 10:
                 self.delete_object_with_specific_type(TwoSideBySideSimpleObstacleController)
+                self.delete_object_with_specific_type(InvisibleSimpleObstacleController)
                 self.delete_object_with_specific_type(HalfMoonSpinningRectObstacleController)
 
     def generate_difficulty_text(self):
