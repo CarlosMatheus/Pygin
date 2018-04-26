@@ -12,11 +12,12 @@ from game.scripts.constants import Constants
 from game.game_objects.mesh_objects.screen_fader import ScreenFader
 from game.game_objects.controllers.background_particles_controller import BackgroundParticlesController
 
+
 class PauseController(GameObject):
 
     def start(self):
         """
-        NomalBehaivor start method
+        NormalBehavior start method
         will be called when the object is instantiate on scene
         """
         self.time = Time.now()
