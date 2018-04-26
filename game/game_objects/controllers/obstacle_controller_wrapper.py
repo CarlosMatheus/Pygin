@@ -115,7 +115,6 @@ class ObstacleControllerWrapper(GameObject):
             self.diff_text.destroy_me()
 
     def generate_random_obstacle(self):
-        print("GENERATE OBSTACLE")
         self.last_generation_time = 1000 * Time.now()
 
         number_of_obstacles = int(min(self.game_difficuty, len(self.obstacle_generators)))
