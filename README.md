@@ -5,6 +5,11 @@ One of the purposes of this game is to develop a simple engine for making easier
 This engine includes support for collisions, meshes, materials, game objects and scenes.  
 The elements used are very similar to the ones used in the engine [Unity](https://unity3d.com/ "Unity Official Website").
 
+
+![intro](./game/assets/img/intro.png)
+![game](./game/assets/img/image_for_read_me.png)
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine if you use Linux. 
