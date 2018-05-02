@@ -13,7 +13,7 @@ setup(
     name='pygame-engine',
 
     # Versions should comply with PEP440.
-    version='0.0.1',
+    version='0.0.3',
 
     description='Simple pygame game engine.',
     long_description=long_description,
@@ -58,7 +58,7 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     # for example: 'sample': ['package_data.dat']
-    package_data={},
+    package_data={'requirements': ['requirements.txt']},
 
     # Although 'package_data' is the preferred approach, in some case you may
     # need to place data files outside of your packages. See:
