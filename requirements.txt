@@ -1,6 +1,5 @@
 attrs==17.4.0
 more-itertools==4.1.0
-pkg-resources==0.0.0
 pluggy==0.6.0
 py==1.5.3
 pygame==1.9.3
