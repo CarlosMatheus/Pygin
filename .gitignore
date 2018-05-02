@@ -9,3 +9,5 @@ venv/
 \.pytest_cache/
 
 pygame_engine\.egg-info/
+
+dist/
