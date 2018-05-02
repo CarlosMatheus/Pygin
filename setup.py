@@ -13,7 +13,7 @@ setup(
     name='pygame-engine',
 
     # Versions should comply with PEP440.
-    version='0.0.3',
+    version='0.0.3a',
 
     description='Simple pygame game engine.',
     long_description=long_description,
