@@ -7,13 +7,13 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
     long_description = f.read()
 
 TESTS_REQUIRE = ['pylint', 'pytest', 'pytest-pylint']
-INSTALL_REQUIRE = ['pygame']
+INSTALL_REQUIRE = ['pygame', 'numpy']
 
 setup(
     name='pygame-engine',
 
     # Versions should comply with PEP440.
-    version='0.0.3a',
+    version='0.0.4dev',
 
     description='Simple pygame game engine.',
     long_description=long_description,
