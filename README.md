@@ -1,14 +1,9 @@
-# Balance
+# Engine
 
-Balance is a simple and challenging arcade game made using [Pygame](https://www.pygame.org/).  
-One of the purposes of this game is to develop a simple engine for making easier the use of Pygame to build more complex games.  
+Engine is a simple game engine made using [Pygame](https://www.pygame.org/).  
+One of the purposes of this engine is for making easier the use of Pygame to build more complex games.  
 This engine includes support for collisions, meshes, materials, game objects and scenes.  
 The elements used are very similar to the ones used in the engine [Unity](https://unity3d.com/ "Unity Official Website").
-
-
-![intro](./game/assets/img/intro.png)
-![game](./game/assets/img/image_for_read_me.png)
-
 
 ## Getting Started
 
@@ -32,14 +27,6 @@ Then install Pygame using pip:
 $ sudo pip3.5 install pygame
 ```
 
-### Playing the game
-
-To run the game, go to the directory where you cloned the repository and simply run the following:
-
-```
-$ python3 balance.py
-```
-
 ## Notes about documentation and contributing
 
 If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
@@ -47,16 +34,15 @@ If any substantial change is made, please, help out with the documentation using
 ## About
 
 This project aims to create a game engine to make easier the precess of game development using Pygame. Therefore, the main frame of the game is flexible and can be adapted to multiple types of games.
-To understand a little bit more about how the code is structured visit the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
-
-The objective of Balance is to get the most amount of points as possible. A hard task to the game is getting to score equal to 1000 and it should be the main goal of the game.
-This game is an example of the capabilities of the game structure.
+To understand a little bit more about how the code is structured visit the [wiki](https://github.com/CarlosMatheus/Engine/wiki).
 
 ## Authors
 
-* **Carlos Matheus Barros da Silva (Shark)** - [CarlosMatheus](https://github.com/CarlosMatheus)
-* **Eric Pereira Queiroz Moreira (Precioso)** - [ericpqmor](https://github.com/ericpqmor)
-* **Igor Mourão Ribeiro (Dono)** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
+* **Carlos Matheus Barros da Silva** - [CarlosMatheus](https://github.com/CarlosMatheus)
+* **Aloysio Galvão Lopes** - [aloysiogl](https://github.com/aloysiogl)
+* **Igor Albuquerque Silva** - [igoralbuq](https://github.com/igoralbuq)
+* **Eric Pereira Queiroz Moreira** - [ericpqmor](https://github.com/ericpqmor)
+* **Igor Mourão Ribeiro** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
 
 ## License
 
