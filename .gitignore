@@ -3,3 +3,9 @@ __pycache__
 .idea
 .DS_Store
 venv/
+
+\.eggs/
+
+\.pytest_cache/
+
+pygame_engine\.egg-info/
