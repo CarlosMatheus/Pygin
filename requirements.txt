@@ -7,3 +7,4 @@ pygame==1.9.3
 pytest==3.5.1
 pytest-runner==4.2
 six==1.11.0
+setuptools>=27.3
