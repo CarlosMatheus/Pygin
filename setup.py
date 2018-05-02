@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
     long_description = f.read()
 
-TESTS_REQUIRE = []
+TESTS_REQUIRE = ['pylint', 'pytest', 'pytest-pylint']
 INSTALL_REQUIRE = ['pygame']
 
 setup(
