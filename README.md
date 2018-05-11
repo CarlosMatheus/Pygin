@@ -7,24 +7,10 @@ The elements used are very similar to the ones used in the engine [Unity](https:
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine if you use Linux. 
-Instructions for Windows and Mac are similar.
-
-### Prerequisites
-
-You will just have to install Pygame. The instructions below will show you how to do this for Linux (Ubuntu 16.04).
-
-First, install Python3 setup tools and pip:
+You will just have to install the packge
 
 ```
-$ sudo apt-get install python3-setuptools
-$ sudo easy_install3 pip
-```
-
-Then install Pygame using pip:
-
-```
-$ sudo pip3.5 install pygame
+$ pip install pygame-engine
 ```
 
 ## Notes about documentation and contributing
