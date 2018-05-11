@@ -7,7 +7,7 @@ The elements used are very similar to the ones used in the engine [Unity](https:
 
 ## Getting Started
 
-You will just have to install the packge
+You will just have to install the packge.
 
 ```
 $ pip install pygame-engine
