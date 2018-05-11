@@ -11,3 +11,4 @@ venv/
 pygame_engine\.egg-info/
 
 dist/
+db.sqlite3
