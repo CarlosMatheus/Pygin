@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from editor.models import SimpleModel
+from editor.serializers import SimpleSerializer
+from rest_framework import generics
 
 
-def index(request):
-    return HttpResponse("<h2>HEY!</h2>")
+class SimpleModelListCreator(generics.ListCreateAPIView):
+    queryset = SimpleModel.objects.all()
+    serializer_class = SimpleSerializer
