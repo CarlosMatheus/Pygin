@@ -1,7 +1,7 @@
-# Engine
+# Pygin
 
-Engine is a simple game engine made using [Pygame](https://www.pygame.org/).  
-One of the purposes of this engine is for making easier the use of Pygame to build more complex games.  
+Pygin is a simple game engine made using [Pygame](https://www.pygame.org/).  
+One of the purposes of this engine is for making to build more complex games using python.  
 This engine includes support for collisions, meshes, materials, game objects and scenes.  
 The elements used are very similar to the ones used in the engine [Unity](https://unity3d.com/ "Unity Official Website").
 
@@ -19,7 +19,7 @@ If any substantial change is made, please, help out with the documentation using
 
 ## About
 
-This project aims to create a game engine to make easier the precess of game development using Pygame. Therefore, the main frame of the game is flexible and can be adapted to multiple types of games.
+This project aims to create a game engine to make easier the precess of game development using python.
 To understand a little bit more about how the code is structured visit the [wiki](https://github.com/CarlosMatheus/Engine/wiki).
 
 ## Authors
