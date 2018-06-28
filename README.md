@@ -29,6 +29,7 @@ To understand a little bit more about how the code is structured visit the [wiki
 * **Igor Albuquerque Silva** - [igoralbuq](https://github.com/igoralbuq)
 * **Eric Pereira Queiroz Moreira** - [ericpqmor](https://github.com/ericpqmor)
 * **Igor Mourão Ribeiro** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
+* **Luiz Henrique Aguiar** -[HikkusT](https://github.com/HikkusT)
 
 ## License
 
