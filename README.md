@@ -22,7 +22,7 @@ If any substantial change is made, please, help out with the documentation using
 This project aims to create a game engine to make easier the precess of game development using python.
 To understand a little bit more about how the code is structured visit the [wiki](https://github.com/CarlosMatheus/Engine/wiki).
 
-## Exemple Games
+## Example Games
 
 ![game](https://media.giphy.com/media/xB2Y7NHFE8C2Ip9EHD/giphy.gif)
 ![game](https://media.giphy.com/media/cdyniVu3x1ydtoq99k/giphy.gif)
