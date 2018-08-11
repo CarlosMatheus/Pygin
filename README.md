@@ -19,10 +19,6 @@ You will just have to install the Pygin packge.
 $ pip install pygin
 ```
 
-## Notes about documentation and contributing
-
-If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
-
 ## About
 
 This project aims to create a game engine to make easier the precess of game development using python.
@@ -42,6 +38,44 @@ Check out the game [Balance](https://github.com/CarlosMatheus/Balance), a simple
 * **Igor Albuquerque Silva** - [igoralbuq](https://github.com/igoralbuq)
 * **Eric Pereira Queiroz Moreira** - [ericpqmor](https://github.com/ericpqmor)
 * **Igor Mourão Ribeiro** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
+
+## Notes about documentation and contributing
+
+If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
+
+### Upgrading version on Pypi
+
+Make sure you have the latest versions of setuptools and wheel installed:
+
+```
+python -m pip install --upgrade setuptools wheel
+```
+
+Now run this command from the same directory where setup.py is located:
+
+```
+python3 setup.py sdist
+```
+
+This command will generate a file in dist directory.
+
+Now you’ll need to install Twine:
+
+```
+python -m pip install --upgrade twine
+```
+
+Once installed, run Twine to upload all of the archives under dist:
+
+```
+twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+```
+
+You will be asked your username and password from your Pypi account, in which you must have access to the project in oder to upload.
+
+After this, the version on Pypi is already updated. 
+
+Now you should delete the dist folder.
 
 ## License
 
