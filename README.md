@@ -7,10 +7,16 @@ The elements used are very similar to the ones used in the engine [Unity](https:
 
 ## Getting Started
 
-You will just have to install the packge.
+### Install Python
+
+Install de most recent Python version and the most recent version of pip.
+
+### Install Pygin
+
+You will just have to install the Pygin packge.
 
 ```
-$ pip install pygame-engine
+$ pip install pygin
 ```
 
 ## Notes about documentation and contributing
