@@ -7,21 +7,31 @@ The elements used are very similar to the ones used in the engine [Unity](https:
 
 ## Getting Started
 
-### Install Python
+These instructions will get you the Pygin package ready to run on your local machine if you use Linux. 
+Instructions for Windows and Mac would be quite similar.
 
-Install de most recent Python version and the most recent version of pip.
+### Prerequisites
 
-### Install Pygin
+You will just have to install Pygin. The instructions below will show you how to do this for Linux (Ubuntu 16.04).
 
-You will just have to install the Pygin packge.
+#### Install Python
+
+First, install de most recent Python version and the most recent version of pip.
+Therefore install Python3 setup tools and pip:
+
+```
+$ sudo apt-get install python3-setuptools
+$ sudo easy_install3 pip
+```
+
+#### Install Pygin
+
+Now you will just have to install the Pygin packge.
+Then install Pygin using pip:
 
 ```
 $ pip install pygin
 ```
-
-## Notes about documentation and contributing
-
-If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
 
 ## About
 
@@ -42,6 +52,44 @@ Check out the game [Balance](https://github.com/CarlosMatheus/Balance), a simple
 * **Igor Albuquerque Silva** - [igoralbuq](https://github.com/igoralbuq)
 * **Eric Pereira Queiroz Moreira** - [ericpqmor](https://github.com/ericpqmor)
 * **Igor Mourão Ribeiro** - [igor-ribeiiro](https://github.com/igor-ribeiiro)
+
+## Notes about documentation and contributing
+
+If any substantial change is made, please, help out with the documentation using the [wiki](https://github.com/CarlosMatheus/Balance/wiki).
+
+### Upgrading version on Pypi
+
+Make sure you have the latest versions of setuptools and wheel installed:
+
+```
+python -m pip install --upgrade setuptools wheel
+```
+
+Now run this command from the same directory where setup.py is located:
+
+```
+python3 setup.py sdist
+```
+
+This command will generate a file in dist directory.
+
+Now you’ll need to install Twine:
+
+```
+python -m pip install --upgrade twine
+```
+
+Once installed, run Twine to upload all of the archives under dist:
+
+```
+twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+```
+
+You will be asked your username and password from your Pypi account, in which you must have access to the project in oder to upload.
+
+After this, the version on Pypi is already updated. 
+
+Now you should delete the dist folder.
 
 ## License
 
