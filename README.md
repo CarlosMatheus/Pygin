@@ -7,13 +7,27 @@ The elements used are very similar to the ones used in the engine [Unity](https:
 
 ## Getting Started
 
-### Install Python
+These instructions will get you the Pygin package ready to run on your local machine if you use Linux. 
+Instructions for Windows and Mac would be quite similar.
 
-Install de most recent Python version and the most recent version of pip.
+### Prerequisites
 
-### Install Pygin
+You will just have to install Pygin. The instructions below will show you how to do this for Linux (Ubuntu 16.04).
 
-You will just have to install the Pygin packge.
+#### Install Python
+
+First, install de most recent Python version and the most recent version of pip.
+Therefore install Python3 setup tools and pip:
+
+```
+$ sudo apt-get install python3-setuptools
+$ sudo easy_install3 pip
+```
+
+#### Install Pygin
+
+Now you will just have to install the Pygin packge.
+Then install Pygin using pip:
 
 ```
 $ pip install pygin
