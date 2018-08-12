@@ -1,13 +1,13 @@
-from game_engine.basic_objects.basic_rectangle import BasicRectangle
-from game_engine.components.animation import Animation
-from game_engine.components.animator import Animator
-from game_engine.key_frame import KeyFrame
+from pygin.basic_objects.basic_rectangle import BasicRectangle
+from pygin.components.animation import Animation
+from pygin.components.animator import Animator
+from pygin.key_frame import KeyFrame
 from pygame.math import Vector2
-from game_engine.engine import Engine
-from game_engine.material import Material
-from game_engine.game_object import GameObject
-from game_engine.color import Color
-from game_engine.time import Time
+from pygin.engine import Engine
+from pygin.material import Material
+from pygin.game_object import GameObject
+from pygin.color import Color
+from pygin.time import Time
 
 
 class ScreenFader(BasicRectangle):

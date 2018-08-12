@@ -1,4 +1,4 @@
-from game_engine.mesh import Mesh
+from pygin.mesh import Mesh
 
 
 class CircleMesh(Mesh):

@@ -1,5 +1,5 @@
-from game_engine.collider import Collider
-from game_engine.geometry import Geometry
+from pygin.collider import Collider
+from pygin.geometry import Geometry
 
 
 class PolygonCollider(Collider):

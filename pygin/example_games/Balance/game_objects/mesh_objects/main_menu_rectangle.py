@@ -1,7 +1,7 @@
-from game_engine.components.polygon_collider import PolygonCollider
-from game_engine.basic_objects.basic_rectangle import BasicRectangle
-from game_engine.game_object import GameObject
-from game_engine.time import Time
+from pygin.components.polygon_collider import PolygonCollider
+from pygin.basic_objects.basic_rectangle import BasicRectangle
+from pygin.game_object import GameObject
+from pygin.time import Time
 from pygame.math import Vector2
 from Balance.scripts.constants import Constants
 

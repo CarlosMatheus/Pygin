@@ -1,4 +1,4 @@
-from game_engine.component import Component
+from pygin.component import Component
 
 
 class Transform(Component):

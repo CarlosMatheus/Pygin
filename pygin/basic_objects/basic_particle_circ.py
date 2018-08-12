@@ -1,5 +1,5 @@
-from game_engine.basic_objects.basic_circle import BasicCircle
-from game_engine.time import Time
+from pygin.basic_objects.basic_circle import BasicCircle
+from pygin.time import Time
 
 
 class BasicParticleCirc(BasicCircle):

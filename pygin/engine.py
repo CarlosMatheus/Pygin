@@ -1,8 +1,8 @@
 import pygame
 from .draw import Draw
-from game_engine.scene import Scene
-from game_engine.time import Time
-from game_engine.input import Input
+from pygin.scene import Scene
+from pygin.time import Time
+from pygin.input import Input
 
 
 class Engine:

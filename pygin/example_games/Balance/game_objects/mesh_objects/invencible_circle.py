@@ -1,12 +1,12 @@
-from game_engine.basic_objects.basic_circle import BasicCircle
-from game_engine.components.circle_collider import CircleCollider
-from game_engine.components.particle_system import ParticleSystem
+from pygin.basic_objects.basic_circle import BasicCircle
+from pygin.components.circle_collider import CircleCollider
+from pygin.components.particle_system import ParticleSystem
 from Balance.game_objects.mesh_objects.particle import Particle
 from Balance.animations.power_up_fade_out import PowerUpFadeOut
-from game_engine.components.animator import Animator
+from pygin.components.animator import Animator
 from Balance.animations.litter_bounce import LitterBounce
-from game_engine.collider import Collider
-from game_engine.time import Time
+from pygin.collider import Collider
+from pygin.time import Time
 from pygame.math import Vector2
 
 

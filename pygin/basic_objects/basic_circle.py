@@ -1,7 +1,7 @@
-from game_engine.components.circle_mesh import CircleMesh
-from game_engine.game_object import GameObject
-from game_engine.material import Material
-from game_engine.color import Color
+from pygin.components.circle_mesh import CircleMesh
+from pygin.game_object import GameObject
+from pygin.material import Material
+from pygin.color import Color
 from pygame.math import Vector2
 
 

@@ -1,4 +1,4 @@
-from game_engine.color import Color
+from pygin.color import Color
 
 
 class Material:

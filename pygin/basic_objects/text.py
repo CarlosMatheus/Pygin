@@ -1,5 +1,5 @@
-from game_engine.components.text_mesh import TextMesh
-from game_engine.game_object import GameObject
+from pygin.components.text_mesh import TextMesh
+from pygin.game_object import GameObject
 from pygame.math import Vector2
 import pygame
 

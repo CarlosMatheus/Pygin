@@ -1,7 +1,7 @@
-from game_engine.components.polygon_mesh import PolygonMesh
-from game_engine.material import Material
-from game_engine.game_object import GameObject
-from game_engine.geometry import Geometry
+from pygin.components.polygon_mesh import PolygonMesh
+from pygin.material import Material
+from pygin.game_object import GameObject
+from pygin.geometry import Geometry
 from pygame.math import Vector2
 
 

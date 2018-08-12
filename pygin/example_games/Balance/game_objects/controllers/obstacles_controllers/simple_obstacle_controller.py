@@ -1,12 +1,12 @@
 from pygame.math import Vector2
-from game_engine.time import Time
+from pygin.time import Time
 from random import randint as rand
-from game_engine.game_object import GameObject
+from pygin.game_object import GameObject
 from Balance.game_objects.mesh_objects.obstacle_rectangle import Rectangle
 from Balance.scripts.constants import Constants
-from game_engine.material import Material
+from pygin.material import Material
 from Balance.animations.obstacle_pulsing_animation import ObstaclePulsingAnimation
-from game_engine.components.animator import Animator
+from pygin.components.animator import Animator
 
 class SimpleObstacleController(GameObject):
 

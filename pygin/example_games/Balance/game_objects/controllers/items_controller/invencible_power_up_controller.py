@@ -1,15 +1,15 @@
 from pygame.math import Vector2
 from pygame import mixer
-from game_engine.time import Time
-from game_engine.game_object import GameObject
+from pygin.time import Time
+from pygin.game_object import GameObject
 from random import uniform as randfloat
 from Balance.game_objects.mesh_objects.invencible_circle import InvencibleCircle
-from game_engine.material import Material
-from game_engine.basic_objects.text import Text
-from game_engine.color import Color
+from pygin.material import Material
+from pygin.basic_objects.text import Text
+from pygin.color import Color
 from Balance.scripts.constants import Constants
 from Balance.animations.text_up_fade_out_animation import TextUpFadeOutAnimation
-from game_engine.components.animator import Animator
+from pygin.components.animator import Animator
 
 
 class InvenciblePowerUpController(GameObject):

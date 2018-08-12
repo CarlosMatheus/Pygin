@@ -1,11 +1,11 @@
-from game_engine.time import Time
+from pygin.time import Time
 from random import randint as rand
 from pygame.math import Vector2
 
 #Controllers
 from Balance.game_objects.controllers.items_controller.star_score_controller import StarScoreController
 from Balance.game_objects.controllers.items_controller.invencible_power_up_controller import InvenciblePowerUpController
-from game_engine.game_object import GameObject
+from pygin.game_object import GameObject
 
 
 class ItemsControllerWrapper(GameObject):

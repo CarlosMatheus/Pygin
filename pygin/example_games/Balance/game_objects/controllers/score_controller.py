@@ -1,10 +1,10 @@
 from Balance.scripts.constants import Constants
-from game_engine.basic_objects.text import Text
-from game_engine.game_object import GameObject
-from game_engine.color import Color
+from pygin.basic_objects.text import Text
+from pygin.game_object import GameObject
+from pygin.color import Color
 from pygame.math import Vector2
-from game_engine.material import Material
-from game_engine.time import Time
+from pygin.material import Material
+from pygin.time import Time
 
 
 class ScoreController(GameObject):

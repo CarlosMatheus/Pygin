@@ -1,6 +1,6 @@
-from game_engine.components.physics import Physics
-from game_engine.component import Component
-from game_engine.time import Time
+from pygin.components.physics import Physics
+from pygin.component import Component
+from pygin.time import Time
 from pygame.math import Vector2
 import random
 import math

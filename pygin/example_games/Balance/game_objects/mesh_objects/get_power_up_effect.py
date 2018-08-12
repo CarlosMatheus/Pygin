@@ -1,7 +1,7 @@
 from Balance.game_objects.mesh_objects.particle import Particle
-from game_engine.components.particle_system import ParticleSystem
-from game_engine.game_object import GameObject
-from game_engine.time import Time
+from pygin.components.particle_system import ParticleSystem
+from pygin.game_object import GameObject
+from pygin.time import Time
 from pygame.math import Vector2
 
 

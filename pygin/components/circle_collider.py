@@ -1,7 +1,7 @@
-from game_engine.collider import Collider
-from game_engine.components.polygon_collider import PolygonCollider
+from pygin.collider import Collider
+from pygin.components.polygon_collider import PolygonCollider
 from pygame.math import Vector2
-from game_engine.geometry import Geometry
+from pygin.geometry import Geometry
 
 
 class CircleCollider(Collider):

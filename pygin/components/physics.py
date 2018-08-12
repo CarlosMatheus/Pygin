@@ -1,5 +1,5 @@
-from game_engine.component import Component
-from game_engine.time import Time
+from pygin.component import Component
+from pygin.time import Time
 from pygame.math import Vector2
 
 
