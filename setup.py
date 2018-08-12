@@ -1,6 +1,7 @@
 """Based on: https://github.com/pypa/sampleproject."""
 from os import path
 from setuptools import find_packages, setup
+from pygin._version import get_version
 
 # Get the long description from the README file
 with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
@@ -13,7 +14,7 @@ setup(
     name='pygin',
 
     # Versions should comply with PEP440.
-    version='0.0.6',
+    version=get_version(),
 
     description='Simple Python Balance engine.',
     long_description=long_description,
