@@ -10,16 +10,16 @@ TESTS_REQUIRE = ['pylint', 'pytest', 'pytest-pylint']
 INSTALL_REQUIRE = ['pygame', 'numpy']
 
 setup(
-    name='pygame-engine',
+    name='pygin',
 
     # Versions should comply with PEP440.
-    version='0.0.5',
+    version='0.0.6',
 
-    description='Simple pygame game engine.',
+    description='Simple Python Balance engine.',
     long_description=long_description,
     long_description_content_type='text/markdown',
 
-    url='https://github.com/CarlosMatheus/Engine',
+    url='https://github.com/CarlosMatheus/Pygin',
 
     author='Aloysio, Carlos, Igor',
     author_email='aloysiogl@gmail.com',
@@ -37,7 +37,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
 
-    keywords='engine pygame',
+    keywords='engine python pygame',
 
     packages=find_packages(),
 
