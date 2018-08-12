@@ -68,7 +68,7 @@ python -m pip install --upgrade setuptools wheel
 Now run this command from the same directory where setup.py is located:
 
 ```
-python3 setup.py sdist
+python setup.py sdist
 ```
 
 This command will generate a file in dist directory.
@@ -85,11 +85,11 @@ Once installed, run Twine to upload all of the archives under dist:
 twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
 ```
 
-You will be asked your username and password from your Pypi account, in which you must have access to the project in oder to upload.
+You will be asked your username and password from your Pypi account, in which you must have access to the project in order to upload.
 
 After this, the version on Pypi is already updated. 
 
-Now you should delete the dist folder.
+Now you should **delete the dist folder**.
 
 ## License
 
