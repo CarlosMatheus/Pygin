@@ -11,3 +11,5 @@ venv/
 pygame_engine\.egg-info/
 
 dist/
+
+pygin.egg-info
