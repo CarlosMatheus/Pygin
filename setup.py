@@ -11,6 +11,10 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
 with open(path.join(path.abspath(path.dirname(__file__)), 'VERSION')) as f:
     version = f.read()
 
+# Write the version from the VERSION file inside VERSION file inside pygin
+open(path.join(path.join(path.abspath(path.dirname(__file__)), 'pygin'), 'VERSION'), 'w').write(version)
+
+
 TESTS_REQUIRE = ['pylint', 'pytest', 'pytest-pylint']
 INSTALL_REQUIRE = ['pygame', 'numpy']
 
