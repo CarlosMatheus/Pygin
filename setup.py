@@ -1,7 +1,8 @@
 """Based on: https://github.com/pypa/sampleproject."""
 from os import path
 from setuptools import find_packages, setup
-from pygin._version import get_version
+from _version import get_version
+
 
 # Get the long description from the README file
 with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
@@ -18,7 +19,6 @@ setup(
 
     description='Simple Python Balance engine.',
     long_description=long_description,
-    long_description_content_type='text/markdown',
 
     url='https://github.com/CarlosMatheus/Pygin',
 
