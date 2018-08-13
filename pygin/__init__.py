@@ -1,3 +1,18 @@
+import sys
+import os
+
+
+# Disable
+def blockPrint():
+    sys.stdout = open(os.devnull, 'w')
+
+
+# Restore
+def enablePrint():
+    sys.stdout = sys.__stdout__
+
+
+blockPrint()
 from .collider import Collider
 from .color import Color
 from .component import Component
@@ -26,3 +41,4 @@ from .basic_objects.basic_circle import BasicCircle
 from .basic_objects.basic_particle_circ import BasicParticleCirc
 from .basic_objects.basic_rectangle import BasicRectangle
 from .basic_objects.text import Text
+enablePrint()
