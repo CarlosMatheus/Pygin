@@ -2,11 +2,14 @@
 from os import path
 from setuptools import find_packages, setup
 
-version = str(open(path.join(path.abspath(path.dirname(__file__)), '_version'), 'r').read())
 
 # Get the long description from the README file
 with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
     long_description = f.read()
+
+# Get the version from the VERSION file
+with open(path.join(path.abspath(path.dirname(__file__)), 'VERSION')) as f:
+    version = f.read()
 
 TESTS_REQUIRE = ['pylint', 'pytest', 'pytest-pylint']
 INSTALL_REQUIRE = ['pygame', 'numpy']

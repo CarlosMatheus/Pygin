@@ -1,6 +1,6 @@
 import subprocess
 import os
-path = os.path.realpath("pygin/_version")
+path = os.path.realpath("pygin/VERSION")
 root_path = os.path.realpath("")
 
 version_file = open(path, 'w')
