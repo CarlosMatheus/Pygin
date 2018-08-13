@@ -7,14 +7,14 @@ import sys
 import os
 import errno
 import shutil
-from _version import get_version
 
 
 user_path = os.path.realpath("")
 file_path = os.path.realpath(__file__)
 pygin_path = os.path.dirname(file_path)
-template_path = os.path.join(os.path.join(pygin_path, 'example_games'), 'template_game' )
-
+root_path = os.path.dirname(pygin_path)
+template_path = os.path.join(os.path.join(pygin_path, 'example_games'), 'template_game')
+version = str(open(os.path.join(root_path, '_version'), 'r').read())
 
 class BColors:
     """
@@ -48,7 +48,7 @@ def print_version():
     """
     Print the current pygin version
     """
-    print("pygin " + get_version())
+    print("pygin " + version)
 
 
 def new_project():
