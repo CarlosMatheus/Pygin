@@ -3,7 +3,7 @@ from _version import get_version
 
 
 def print_version():
-    print(get_version())
+    print("pygin " + get_version())
 
 
 def new_project():
