@@ -13,7 +13,7 @@ user_path = os.path.realpath("")
 file_path = os.path.realpath(__file__)
 pygin_path = os.path.dirname(file_path)
 template_path = os.path.join(os.path.join(pygin_path, 'example_games'), 'template_game')
-version = str(open(os.path.join(pygin_path, 'VERSION'), 'r').read())
+version = str(open(os.path.join(pygin_path, 'VERSION.py'), 'r').read())
 
 
 class BColors:
